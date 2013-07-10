@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Bcfg2 bundle groups generator
+# Bcfg2 consistency report
 # Written by Stephane Graber <stgraber@ubuntu.com>
 
 # This program is free software; you can redistribute it and/or modify
