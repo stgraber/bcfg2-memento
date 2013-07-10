@@ -1,0 +1,5 @@
+<Groups version='3.0' xmlns:xi='http://www.w3.org/2001/XInclude'>
+    <!-- Include the profiles -->
+    <xi:include href='groups-bundles.xml'/>
+    <xi:include href='groups-profiles.xml'/>
+</Groups>

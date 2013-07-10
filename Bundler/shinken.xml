@@ -1,0 +1,9 @@
+<Bundle name='shinken' version='2.0'>
+    <!-- Get configuration from NagiosGen -->
+    <Path name='/etc/nagios/nagiosgen.cfg'/>
+
+    <!-- Shared commands -->
+    <Path name='/etc/nagios/commands.cfg'/>
+
+    <Service name='shinken-arbiter'/>
+</Bundle>

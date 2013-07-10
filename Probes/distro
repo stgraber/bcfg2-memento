@@ -1,0 +1,22 @@
+#!/usr/bin/python
+import apt_pkg
+import lsb_release
+
+# Get the information
+apt_pkg.init()
+info = lsb_release.get_lsb_information()
+
+arch = apt_pkg.Config.Find("APT::Architecture").lower()
+distro = info['ID'].lower()
+release = info['RELEASE'].lower()
+codename = info['CODENAME'].lower()
+
+# Return the groups
+print("group:%s" % arch)
+print("group:%s" % distro)
+print("group:%s" % codename)
+print("group:%s-%s" % (distro, release))
+
+# Return the probe data
+print("arch=%s,distro=%s,release=%s,codename=%s" % (arch, distro, release,
+                                                    codename))

@@ -1,0 +1,17 @@
+<Bundle name='apt' version='2.0'>
+    <Action name='apt-update'/>
+
+    <Group name='apt-sourceslist'>
+        <Path name='/etc/apt/sources.list'/>
+    </Group>
+
+    <Group name='apt-unattended-upgrade'>
+        <Package name='unattended-upgrades'/>
+        <Path name='/etc/apt/apt.conf.d/50unattended-upgrades'/>
+        <Action name='apt-unattended-upgrade'/>
+    </Group>
+
+    <Group name='apt-autoremove'>
+        <Action name='apt-autoremove'/>
+    </Group>
+</Bundle>

@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="nagios-nrpe-server" status="on" type="deb" restart="true"
+             install="true"/>
+</Rules>

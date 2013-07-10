@@ -1,0 +1,103 @@
+<Bundle name='munin-node' version='2.0'>
+    <Path name='/etc/munin/munin-node.conf'/>
+    <Path name='/etc/cron.d/munin-node'/>
+
+    <Package name='munin-node'/>
+    <Service name='munin-node'/>
+
+    <!-- Common plugins -->
+    <Path name='/etc/munin/plugins/processes'/>
+
+    <!-- Group plugins -->
+    <Group name='host'>
+        <Path name='/etc/munin/plugins/cpu'/>
+        <Path name='/etc/munin/plugins/df'/>
+        <Path name='/etc/munin/plugins/df_inode'/>
+        <Path name='/etc/munin/plugins/diskstats'/>
+        <Path name='/etc/munin/plugins/entropy'/>
+        <Path name='/etc/munin/plugins/forks'/>
+        <Path name='/etc/munin/plugins/fw_packets'/>
+        <Path name='/etc/munin/plugins/if_eth0'/>
+        <Path name='/etc/munin/plugins/if_err_eth0'/>
+        <Path name='/etc/munin/plugins/if_eth1'/>
+        <Path name='/etc/munin/plugins/if_err_eth1'/>
+        <Path name='/etc/munin/plugins/interrupts'/>
+        <Path name='/etc/munin/plugins/iostat'/>
+        <Path name='/etc/munin/plugins/iostat_ios'/>
+        <Path name='/etc/munin/plugins/irqstats'/>
+        <Path name='/etc/munin/plugins/load'/>
+        <Path name='/etc/munin/plugins/memory'/>
+        <Path name='/etc/munin/plugins/netstat'/>
+        <Path name='/etc/munin/plugins/open_files'/>
+        <Path name='/etc/munin/plugins/open_inodes'/>
+        <Path name='/etc/munin/plugins/proc_pri'/>
+        <Path name='/etc/munin/plugins/swap'/>
+        <Path name='/etc/munin/plugins/threads'/>
+        <Path name='/etc/munin/plugins/uptime'/>
+        <Path name='/etc/munin/plugins/vmstat'/>
+    </Group>
+
+    <Group name='lxc-ve'>
+        <Path name='/etc/munin/plugins/df'/>
+        <Path name='/etc/munin/plugins/df_inode'/>
+        <Path name='/etc/munin/plugins/diskstats'/>
+        <Path name='/etc/munin/plugins/forks'/>
+        <Path name='/etc/munin/plugins/fw_packets'/>
+        <Path name='/etc/munin/plugins/if_eth0'/>
+        <Path name='/etc/munin/plugins/if_err_eth0'/>
+        <Path name='/etc/munin/plugins/iostat'/>
+        <Path name='/etc/munin/plugins/iostat_ios'/>
+        <Path name='/etc/munin/plugins/netstat'/>
+        <Path name='/etc/munin/plugins/open_files'/>
+        <Path name='/etc/munin/plugins/open_inodes'/>
+        <Path name='/etc/munin/plugins/proc_pri'/>
+        <Path name='/etc/munin/plugins/threads'/>
+        <Path name='/etc/munin/plugins/vmstat'/>
+    </Group>
+
+    <Group name='apache2'>
+        <Package name='libwww-perl'/>
+        <Path name='/etc/munin/plugin-conf.d/apache'/>
+
+        <Path name='/etc/munin/plugins/apache_accesses'/>
+        <Path name='/etc/munin/plugins/apache_processes'/>
+        <Path name='/etc/munin/plugins/apache_volume'/>
+    </Group>
+
+    <Group name='munin'>
+        <Path name='/etc/munin/plugins/munin_stats'/>
+        <Path name='/etc/munin/plugins/munin_update'/>
+    </Group>
+
+    <Group name='unbound'>
+        <Path name='/etc/munin/plugin-conf.d/unbound'/>
+
+        <Path name='/usr/share/munin/plugins/unbound_munin_'/>
+
+        <Package name='bc'/>
+
+        <Path name='/etc/munin/plugins/unbound_munin_hits'/>
+        <Path name='/etc/munin/plugins/unbound_munin_queue'/>
+        <Path name='/etc/munin/plugins/unbound_munin_memory'/>
+        <Path name='/etc/munin/plugins/unbound_munin_by_type'/>
+        <Path name='/etc/munin/plugins/unbound_munin_by_class'/>
+        <Path name='/etc/munin/plugins/unbound_munin_by_opcode'/>
+        <Path name='/etc/munin/plugins/unbound_munin_by_rcode'/>
+        <Path name='/etc/munin/plugins/unbound_munin_by_flags'/>
+        <Path name='/etc/munin/plugins/unbound_munin_histogram'/>
+    </Group>
+
+    <Group name='backuppc'>
+        <!-- <Path name='/etc/munin/plugin-conf.d/backuppc'/> -->
+        <Path name='/usr/share/munin/plugins/backuppc'/>
+
+        <Path name='/etc/munin/plugins/backuppc'/>
+    </Group>
+
+    <Group name='bonding-TODO'>
+        <Path name='/usr/share/munin/plugins/bonding_err_'/>
+    </Group>
+
+    <Path name='/usr/local/bin/clean-munin-plugins.sh'/>
+    <Action name='clean-munin-plugins'/>
+</Bundle>

@@ -1,0 +1,7 @@
+<Bundle name='postgresql' version='2.0'>
+    <Package name='postgresql'/>
+    <Service name='postgresql'/>
+
+    <Path name='/etc/postgresql/9.1/main/postgresql.conf'/>
+    <Path name='/etc/postgresql/9.1/main/pg_hba.conf'/>
+</Bundle>

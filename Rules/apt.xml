@@ -1,0 +1,10 @@
+<Rules priority='0'>
+    <Action timing='pre' name='apt-update' when='always'
+            command='apt-get update' status='check'/>
+
+    <Action timing='post' name='apt-unattended-upgrade' when='always'
+            command='unattended-upgrade' status='check'/>
+
+    <Action timing='post' name='apt-autoremove' when='always'
+            command='apt-get autoremove --purge -y' status='check'/>
+</Rules>

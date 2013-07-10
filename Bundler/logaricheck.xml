@@ -1,0 +1,4 @@
+<Bundle name='logaricheck' version='2.0'>
+    <Path name='/etc/logaricheck/logaricheck.conf'/>
+    <Package name='logaricheck'/>
+</Bundle>

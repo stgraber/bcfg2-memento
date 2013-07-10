@@ -1,0 +1,63 @@
+#!/usr/bin/python3
+# Bcfg2 bundle groups generator
+# Written by Stephane Graber <stgraber@ubuntu.com>
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+import os
+import sys
+from xml.dom import minidom
+
+if len(sys.argv) < 2:
+    print ("Syntax: %s <bundler directory> [output file path]" % sys.argv[0])
+    sys.exit()
+
+# Create a new empty XML document
+impl = minidom.getDOMImplementation()
+xml_doc = impl.createDocument(None, "Groups", None)
+xml_groups = xml_doc.getElementsByTagName("Groups")[0]
+
+# Add a comment
+xml_comment = xml_doc.createComment(" File auto-generated, do not edit !!! ")
+xml_groups.appendChild(xml_comment)
+
+# Get the list of files in the directory
+if not os.path.exists(sys.argv[1]):
+    print("Directory \"%s\" doesn't exist." % sys.argv[1])
+    sys.exit()
+bundles = os.listdir(sys.argv[1])
+bundles.sort()
+
+# For each .xml file generate a Group and Bundle entry
+for bundle in bundles:
+    if not bundle.endswith(".xml"):
+        continue
+    bundle = bundle.replace(".xml", "")
+    xml_group = xml_doc.createElement("Group")
+    xml_group.setAttribute("name", bundle)
+    xml_groups.appendChild(xml_group)
+    xml_bundle = xml_doc.createElement("Bundle")
+    xml_bundle.setAttribute("name", bundle)
+    xml_group.appendChild(xml_bundle)
+
+# Output either to stdout or to a file
+if len(sys.argv) == 3:
+    if not os.path.exists(sys.argv[2]):
+        print("Output file \"%s\" doesn't exist." % sys.argv[2])
+        sys.exit()
+    with open(sys.argv[2], "w+") as fd:
+        fd.write(xml_doc.toprettyxml().replace("\t", "    ").strip())
+else:
+    print(xml_doc.toprettyxml().replace("\t", "    ").strip())

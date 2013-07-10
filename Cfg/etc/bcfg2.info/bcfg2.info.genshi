@@ -1,0 +1,27 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+Hostname: ${metadata.hostname}
+
+Groups:
+{% for group in sorted(metadata.groups) %}\
+ - ${group}
+{% end %}\
+
+Bundles:
+{% for bundle in sorted(metadata.bundles) %}\
+ - ${bundle}
+{% end %}\
+{% if metadata.categories %}\
+
+Categories:
+{% for category in sorted(metadata.categories) %}\
+ - ${category}
+{% end %}\
+{% end %}\
+{% if metadata.Probes %}\
+
+Probes:
+{% for probe, value in sorted(metadata.Probes.items(),
+                              key=lambda item: item[0]) %}\
+ - ${probe} -- ${value.strip()}
+{% end %}\
+{% end %}\

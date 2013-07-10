@@ -1,0 +1,117 @@
+#!/usr/bin/python3
+# Bcfg2 bundle groups generator
+# Written by Stephane Graber <stgraber@ubuntu.com>
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+import glob
+import os
+from xml.etree import ElementTree
+
+# Iterate through Cfg/ and look for common problems
+empty_dirs = []
+missing_comment = []
+missing_info = []
+valid_paths = ["Cfg/etc/nagios/nagiosgen.cfg", "Cfg/etc/nagiosgen.status"]
+
+for dirpath, dirnames, filenames in os.walk("Cfg/"):
+    if not dirnames and not filenames:
+        empty_dirs.append(dirpath)
+        continue
+
+    # Leaf directory
+    if not dirnames:
+        if "info.xml" not in filenames:
+            missing_info.append(dirpath)
+
+        if ["info.xml"] == filenames:
+            empty_dirs.append(dirpath)
+
+        for entry in filenames:
+            if entry == "info.xml":
+                continue
+
+            try:
+                with open(os.path.join(dirpath, entry), "r") as fd:
+                    for line in fd.readlines()[0:3]:
+                        if ("This file is managed by Bcfg2. "
+                                "Any local change will be lost.") in line:
+                            break
+                    else:
+                        missing_comment.append(os.path.join(dirpath, entry))
+            except UnicodeDecodeError:
+                # Ignore binary files
+                pass
+
+        valid_paths.append(dirpath)
+
+# Check for tabs in xml files
+contain_tabs = []
+for entry in glob.glob("*/*.xml"):
+    with open(entry, "r") as fd:
+        for line in fd:
+            if "\t" in line:
+                contain_tabs.append(entry)
+                break
+
+# Get a list of all Path entries from Bundler
+bundles_paths = set()
+
+for entry in glob.glob("Bundler/*.xml"):
+    bundles_paths.update(set(["Cfg/%s" % "".join(path.get("name")[1:])
+                         for path in ElementTree.parse(entry).iter("Path")]))
+
+# Get a list of all Path entries from Rules
+rules_paths = set()
+
+for entry in glob.glob("Rules/*.xml"):
+    rules_paths.update(set(["Cfg/%s" % "".join(path.get("name")[1:])
+                       for path in ElementTree.parse(entry).iter("Path")]))
+
+
+# Generate a list of orphaned and missing files
+orphaned_files = set(valid_paths) - bundles_paths
+missing_files = bundles_paths - rules_paths - set(valid_paths)
+
+# Print a fancy report
+if contain_tabs:
+    print("XML containing \\t:")
+    for entry in sorted(contain_tabs):
+        print(" - %s" % entry)
+
+if empty_dirs:
+    print("Empty directories:")
+    for entry in sorted(empty_dirs):
+        print(" - %s" % entry)
+
+if missing_comment:
+    print("Missing comment (in first 3 lines):")
+    for entry in sorted(missing_comment):
+        print(" - %s" % entry)
+
+if missing_info:
+    print("Missing info.xml:")
+    for entry in sorted(missing_info):
+        print(" - %s" % entry)
+
+if orphaned_files:
+    print("Orphaned files:")
+    for entry in sorted(orphaned_files):
+        print(" - %s" % entry)
+
+if missing_files:
+    print("Missing files:")
+    for entry in sorted(missing_files):
+        print(" - %s" % entry)

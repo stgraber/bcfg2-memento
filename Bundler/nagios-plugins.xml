@@ -1,0 +1,12 @@
+<Bundle name='nagios-plugins' version='2.0'>
+    <!-- Meta package including all nagios plugins packages -->
+    <Package name='nagios-plugins'/>
+
+    <Package name='nagios-nrpe-plugin'/>
+    <Package name='python-pysnmp4'/>
+
+    <!-- Additionnal custom plugins -->
+    <Path name='/usr/lib/nagios/plugins/check_munin_node'/>
+
+    <Package name='bc'/>
+</Bundle>

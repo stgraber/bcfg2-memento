@@ -1,0 +1,7 @@
+<Bundle name='unbound' version='2.0'>
+    <Package name='unbound'/>
+    <Service name='unbound'/>
+
+    <Path name='/etc/default/unbound'/>
+    <Path name='/etc/unbound/unbound.conf'/>
+</Bundle>

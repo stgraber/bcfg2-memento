@@ -1,0 +1,91 @@
+<Sources>
+    <Group name='ubuntu-10.04'>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='lucid'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='lucid-updates'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='lucid-security'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Group name='ubuntu-backports'>
+            <Source type='apt'
+                url='http://archive.ubuntu.com/ubuntu'
+                version='lucid-backports'>
+                <Component>main</Component>
+                <Component>restricted</Component>
+                <Component>universe</Component>
+                <Component>multiverse</Component>
+                <Arch>amd64</Arch>
+                <Arch>i386</Arch>
+            </Source>
+        </Group>
+    </Group>
+
+    <Group name='ubuntu-12.04'>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='precise'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='precise-updates'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='precise-security'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Group name='ubuntu-backports'>
+            <Source type='apt'
+                url='http://archive.ubuntu.com/ubuntu'
+                version='precise-backports'>
+                <Component>main</Component>
+                <Component>restricted</Component>
+                <Component>universe</Component>
+                <Component>multiverse</Component>
+                <Arch>amd64</Arch>
+                <Arch>i386</Arch>
+            </Source>
+        </Group>
+    </Group>
+</Sources>

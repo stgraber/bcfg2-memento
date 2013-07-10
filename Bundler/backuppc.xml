@@ -1,0 +1,8 @@
+<Bundle name='backuppc' version='2.0'>
+    <Package name='backuppc'/>
+    <Service name='backuppc'/>
+
+    <Path name='/etc/apache2/conf.d/backuppc.conf'/>
+    <Path name='/etc/backuppc/apache.conf'/>
+    <Path name='/etc/backuppc/config.pl'/>
+</Bundle>

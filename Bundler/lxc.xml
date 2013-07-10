@@ -1,0 +1,5 @@
+<Bundle name='lxc' version='2.0'>
+    <Package name='lxc'/>
+
+    <Path name='/etc/default/lxc'/>
+</Bundle>

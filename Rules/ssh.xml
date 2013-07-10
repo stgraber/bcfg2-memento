@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="ssh" status="on" type="upstart" restart="true"
+             install="true"/>
+</Rules>

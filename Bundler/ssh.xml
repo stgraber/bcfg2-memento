@@ -1,0 +1,7 @@
+<Bundle name='ssh' version='2.0'>
+    <Group name='ssh-server'>
+        <Package name='openssh-server'/>
+        <Path name='/etc/ssh/sshd_config'/>
+        <Service name='ssh'/>
+    </Group>
+</Bundle>

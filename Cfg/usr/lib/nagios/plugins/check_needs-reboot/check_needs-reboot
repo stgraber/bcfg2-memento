@@ -1,0 +1,17 @@
+#!/usr/bin/python
+# This file is managed by Bcfg2. Any local change will be lost.
+
+import os, pynag
+
+def check_needs_reboot(options, args):
+    if os.path.exists("/var/run/reboot-required"):
+        raise pynag.ExecutionWarning("A reboot is required")
+
+    return "System is clean"
+
+check_munin_node = pynag.Check(
+    func=check_needs_reboot,
+    name="NEEDS-REBOOT",
+    timeout=10
+)
+check_munin_node.run()

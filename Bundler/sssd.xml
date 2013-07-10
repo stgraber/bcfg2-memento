@@ -1,0 +1,22 @@
+<Bundle name='sssd' version='2.0'>
+    <Package name='sssd'/>
+    <Package name='libsasl2-modules-gssapi-heimdal'/>
+    <Path name='/etc/sssd/sssd.conf'/>
+    <Path name='/etc/apparmor.d/disable/usr.sbin.sssd'/>
+    <Path name='/etc/apparmor.d/force-complain/usr.sbin.sssd'/>
+    <Path name='/usr/share/pam-configs/bcfg2'/>
+    <Service name='sssd'/>
+
+    <Action name='sssd-pam-auth-update'/>
+    <Group name='sssd-ad'>
+        <Path name='/etc/krb5.conf'/>
+        <Group name='samba4-dc' negate='true'>
+            <Path name='/etc/samba/smb.conf'/>
+            <Package name='samba-common-bin'/>
+        </Group>
+    </Group>
+
+    <Group name='sssd-sudo'>
+        <Package name='libsss-sudo'/>
+    </Group>
+</Bundle>

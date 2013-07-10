@@ -1,0 +1,7 @@
+<Bundle name='freeradius' version='2.0'>
+    <Package name='freeradius'/>
+    <Service name='freeradius'/>
+
+    <Path name='/etc/freeradius/clients.conf'/>
+    <Path name='/etc/freeradius/radiusd.conf'/>
+</Bundle>

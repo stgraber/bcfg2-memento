@@ -1,0 +1,7 @@
+<Bundle name='bcfg2' version='2.0'>
+    <Path name='/etc/default/bcfg2'/>
+
+    <Group name='bcfg2-info'>
+        <Path name='/etc/bcfg2.info'/>
+    </Group>
+</Bundle>

@@ -1,0 +1,68 @@
+<Bundle name='networking' version='2.0'>
+    <Path name='/etc/sysctl.d/10-ipv6-privacy.conf'/>
+    <Path name='/etc/default/ntpdate'/>
+
+    <Group name='networking-bridge'>
+        <Package name='bridge-utils'/>
+    </Group>
+
+    <Group name='networking-bond'>
+        <Package name='ifenslave-2.6'/>
+    </Group>
+
+    <Group name='networking-dhcpd'>
+        <Package name='isc-dhcp-server'/>
+        <Service name='isc-dhcp-server'/>
+
+        <Path name='/etc/dhcp/dhcpd.conf'/>
+    </Group>
+
+    <Group name='networking-dhcp-relay'>
+        <Package name='isc-dhcp-relay'/>
+        <Service name='isc-dhcp-relay'/>
+
+        <Path name='/etc/default/isc-dhcp-relay'/>
+    </Group>
+
+    <Group name='networking-firewall'>
+        <Action name='networking-firewall'/>
+
+        <Package name='iptables'/>
+
+        <Path name='/etc/network/if-up.d/firewall'/>
+        <Path name='/etc/init/firewall.conf'/>
+        <Path name='/etc/firewall'/>
+        <Path name='/etc/firewall/firewall'/>
+    </Group>
+
+    <Group name='networking-interfaces'>
+        <Path name='/etc/network/interfaces'/>
+        <Path name='/etc/network/interfaces.d'/>
+    </Group>
+
+    <Group name='networking-radvd'>
+        <Package name='radvd'/>
+
+        <Path name='/etc/radvd.conf'/>
+
+        <Group name='ubuntu-12.04'>
+            <Path name='/etc/init.d/radvd'/>
+        </Group>
+
+        <Service name='radvd'/>
+    </Group>
+
+    <Group name='networking-resolv'>
+        <Action name='networking-resolvconf-update'/>
+
+        <Package name='resolvconf'/>
+
+        <Path name='/etc/resolvconf/resolv.conf.d/head'/>
+        <Path name='/etc/resolvconf/resolv.conf.d/original'/>
+        <Path name='/etc/resolvconf/resolv.conf.d/tail'/>
+    </Group>
+
+    <Group name='networking-vlan'>
+        <Package name='vlan'/>
+    </Group>
+</Bundle>

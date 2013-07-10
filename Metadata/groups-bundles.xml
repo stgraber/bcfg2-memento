@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<Groups>
+    <!-- File auto-generated, do not edit !!! -->
+    <Group name="apache2">
+        <Bundle name="apache2"/>
+    </Group>
+    <Group name="apt">
+        <Bundle name="apt"/>
+    </Group>
+    <Group name="backuppc">
+        <Bundle name="backuppc"/>
+    </Group>
+    <Group name="bcfg2">
+        <Bundle name="bcfg2"/>
+    </Group>
+    <Group name="freeradius">
+        <Bundle name="freeradius"/>
+    </Group>
+    <Group name="logaricheck">
+        <Bundle name="logaricheck"/>
+    </Group>
+    <Group name="lxc">
+        <Bundle name="lxc"/>
+    </Group>
+    <Group name="munin-node">
+        <Bundle name="munin-node"/>
+    </Group>
+    <Group name="munin">
+        <Bundle name="munin"/>
+    </Group>
+    <Group name="nagios-nrpe">
+        <Bundle name="nagios-nrpe"/>
+    </Group>
+    <Group name="nagios-plugins">
+        <Bundle name="nagios-plugins"/>
+    </Group>
+    <Group name="networking">
+        <Bundle name="networking"/>
+    </Group>
+    <Group name="postgresql">
+        <Bundle name="postgresql"/>
+    </Group>
+    <Group name="rsync">
+        <Bundle name="rsync"/>
+    </Group>
+    <Group name="samba4">
+        <Bundle name="samba4"/>
+    </Group>
+    <Group name="shinken">
+        <Bundle name="shinken"/>
+    </Group>
+    <Group name="ssh">
+        <Bundle name="ssh"/>
+    </Group>
+    <Group name="sssd">
+        <Bundle name="sssd"/>
+    </Group>
+    <Group name="tftpd-hpa">
+        <Bundle name="tftpd-hpa"/>
+    </Group>
+    <Group name="unbound">
+        <Bundle name="unbound"/>
+    </Group>
+</Groups>

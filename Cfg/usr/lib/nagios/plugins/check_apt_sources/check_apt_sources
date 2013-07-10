@@ -1,0 +1,15 @@
+#!/bin/sh
+# This file is managed by Bcfg2. Any local change will be lost.
+
+if [ ! -d /etc/apt/sources.list.d ]; then
+    echo "APT-SOURCES: No sources.list.d directory"
+    exit 3
+fi
+
+if [ -n "$(ls -1 /etc/apt/sources.list.d/)" ]; then
+    echo "APT-SOURCES: Custom sources found in sources.list.d"
+    exit 2
+fi
+
+echo "APT-SOURCES: Clean, no custom sources"
+exit 0

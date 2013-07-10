@@ -1,0 +1,6 @@
+<Rules priority="0">
+    <Service name="backuppc" status="on" type="deb" restart="true"
+             install="true"/>
+    <Path type='symlink' name='/etc/apache2/conf.d/backuppc.conf'
+          to='/etc/backuppc/apache.conf'/>
+</Rules>

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+FLAGS=""
+
+append_flag() {
+    [ -n "$FLAGS" ] && FLAGS=",$1" || FLAGS=$1
+}
+
+if [ -x "$(which sshd)" ]; then
+    if grep -q AuthorizedKeysCommand $(which sshd); then
+        append_flag "ssh-supports-authorizedkeyscommand"
+    fi
+fi
+
+echo $FLAGS

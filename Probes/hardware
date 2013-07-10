@@ -1,0 +1,195 @@
+#!/bin/sh
+#
+# Copyright 2009-2010 Michael Jeanson <mjeanson@rlnx.com>
+# Copyright 2009-2010 Revolution Linux
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+####
+### First check if we are in a virtual container
+####
+
+# Check if inside ltsp chroot
+if [ -f "/etc/ltsp_chroot" ]; then
+    echo "group:ltsp_chroot"
+    exit 0
+fi
+
+# Check for OpenVZ / Virtuozzo.
+# /proc/vz - always exists on OpenVZ kernel (inside and outside container)
+# /proc/bc - exists on node, but not inside container.
+if [ -d "/proc/vz" -a ! -d "/proc/bc" ]; then
+    echo "group:openvz-ve"
+    is_virtual=1
+fi
+
+# Check for LXC
+if grep -q "container=lxc" /proc/1/environ; then
+    echo "group:lxc-ve"
+    is_virtual=1
+fi
+
+# Check for VServer
+mount |grep "/dev/hdv1" >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo "group:vserver"
+    is_virtual=1
+fi
+
+# If we are running in a virtual container
+# no need to detect hardware
+if [ "$is_virtual" ]; then
+    exit 0
+fi
+
+
+####
+### Check for host type
+####
+
+if [ -d "/proc/vz" ]; then
+    echo "group:openvz-host"
+
+elif [ -f "/proc/virtual/info" ]; then
+    echo "group:vserver-host"
+else
+    echo "group:host"
+fi
+
+
+####
+### Check for hardware type (or fully virtualized host)
+####
+
+DMIDECODE="/usr/sbin/dmidecode"
+
+# Check for /sys/class/dmi/id
+if [ -d "/sys/class/dmi/id" ]; then
+    VENDOR=`cat /sys/class/dmi/id/chassis_vendor`
+    MODEL=`cat /sys/class/dmi/id/product_name`
+# Fallback to dmidecode
+elif [ -x "$DMIDECODE" ]; then
+    VENDOR=`$DMIDECODE -s system-manufacturer`
+    MODEL=`$DMIDECODE -s system-product-name`
+else
+    echo "No more detection methods."
+    exit 1
+fi
+
+# Sanitize vars
+## To lowercase
+VENDOR=`echo $VENDOR | tr '[:upper:]' '[:lower:]'`
+MODEL=`echo $MODEL | tr '[:upper:]' '[:lower:]'`
+# Remove non-alphanumeric characters including whitespace
+VENDOR=`echo $VENDOR | sed 's/[^a-z0-9]//g'`
+MODEL=`echo $MODEL | sed 's/[^a-z0-9]//g'`
+
+# Check for empty vars
+if [ "x$VENDOR" = "x" ]; then
+    VENDOR="unknown"
+fi
+
+if [ "x$MODEL" = "x" ]; then
+    MODEL="unknown"
+fi
+
+# Print probe output
+echo "group:hw-vendor-$VENDOR"
+
+echo "group:hw-model-$MODEL"
+
+####
+### Now let's define hardware specific things
+####
+
+## HP Advanced Server Management
+if [ "$VENDOR" = "hp" ]; then
+
+    # Space delimited list of hpasm excluded systems
+    HPEXCLUDELIST="proliantdl165g5p"
+    HPEXCLUDED="no"
+
+    for i in $HPEXCLUDELIST; do
+        if [ "$i" = "$MODEL" ]; then
+            HPEXCLUDED="yes"
+        fi
+    done
+
+    if [ "$HPEXCLUDED" = "no" ]; then
+        echo $MODEL | grep "proliant" >/dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo "group:hpasm"
+        fi
+    fi
+fi
+
+## Dell OMSA
+if [ "$VENDOR" = "dellinc" ]; then
+
+    # Space delimited list of hpasm excluded systems
+    DELLEXCLUDELIST=""
+    DELLEXCLUDED="no"
+
+    for i in $DELLEXCLUDELIST; do
+        if [ "$i" = "$MODEL" ]; then
+            DELLEXCLUDED="yes"
+        fi
+    done
+
+    if [ "$DELLEXCLUDED" = "no" ]; then
+        echo $MODEL | grep "poweredge" >/dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo "group:dellomsa"
+        fi
+    fi
+fi
+
+## Put VMWare tools stuff here
+
+###
+##  Do we have bonded interfaces ?
+###
+
+# Is the bonding module loaded?
+if grep bonding /proc/modules >/dev/null 2>&1; then
+    # bonding modules is loaded, any bond up?
+    cat /proc/net/dev | grep ':' | cut -d ':' -f 1 | grep bond >/dev/null 2>&1
+    if [ "$?" ]; then
+        echo "group:bonding"
+    fi
+fi
+
+##
+# Check for software RAID
+##
+
+if [ -f "/proc/mdstat" ]; then
+    # Grep for the word "blocks" which is present when at least one md is configured
+    grep "blocks" /proc/mdstat >/dev/null 2>&1
+
+    if [ "$?" -eq "0" ]; then
+        echo "group:md-raid"
+    fi
+fi
+
+##
+# Check for HP SmartArray controlers (cciss)
+##
+
+if [ -d "/sys/module/cciss" ] || [ -d "/sys/module/hpsa" ]; then
+    echo "group:cciss"
+fi
+
+exit 0

@@ -1,0 +1,28 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+
+# The settings in this file are used by the program ntpdate-debian, but not
+# by the upstream program ntpdate.
+
+# Set to "yes" to take the server list from /etc/ntp.conf, from package ntp,
+# so you only have to keep it in one place.
+NTPDATE_USE_NTP_CONF=yes
+
+# List of NTP servers to use  (Separate multiple servers with spaces.)
+# Not used if NTPDATE_USE_NTP_CONF is yes.
+NTPSERVERS="ntp1.cmc.ec.gc.ca"
+
+# Additional options to pass to ntpdate
+NTPOPTIONS=""
+
+# Avoid spamming ntpdate
+NTPDATE_LAST=/run/ntpdate.last
+
+if [ -f "$NTPDATE_LAST" ]; then
+    current=$(date +%s)
+    last_modified=$(stat -c "%Y" $NTPDATE_LAST)
+
+    if [ "$(($current-$last_modified))" -lt "180" ]; then
+        exit 0
+    fi
+fi
+touch $NTPDATE_LAST

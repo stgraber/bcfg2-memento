@@ -1,0 +1,10 @@
+<Rules priority="0">
+    <Action timing="post" name="sssd-pam-auth-update" when="modified"
+            command="pam-auth-update --package" status="check"/>
+    <Service name="sssd" status="on" type="upstart" restart="true"
+             install="true"/>
+    <Path name="/etc/apparmor.d/force-complain/usr.sbin.sssd"
+          type="nonexistent"/>
+    <Path name="/etc/apparmor.d/disable/usr.sbin.sssd"
+          to="/etc/apparmor.d/usr.sbin.sssd" type="symlink"/>
+</Rules>

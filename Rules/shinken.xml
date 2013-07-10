@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="shinken-arbiter" status="ignore" type="deb" restart="true"
+             install="false" target="reload"/>
+</Rules>

@@ -1,0 +1,10 @@
+<Bundle name='rsync' version='2.0'>
+    <Package name='rsync'/>
+
+    <Group name='rsync-server'>
+        <Service name='rsync'/>
+        <Path name='/etc/default/rsync'/>
+        <Path name='/etc/rsyncd.conf'/>
+        <Path name='/etc/rsyncd.secrets'/>
+    </Group>
+</Bundle>

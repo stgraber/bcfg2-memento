@@ -1,0 +1,8 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+[unbound*]
+user root
+env.statefile /var/lib/munin-node/plugin-state/root/unbound-state
+env.unbound_conf /etc/unbound/unbound.conf
+env.unbound_control /usr/sbin/unbound-control
+env.spoof_warn 1000
+env.spoof_crit 100000

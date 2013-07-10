@@ -1,0 +1,4 @@
+<Bundle name='apache2' version='2.0'>
+    <Package name='apache2'/>
+    <Service name='apache2'/>
+</Bundle>

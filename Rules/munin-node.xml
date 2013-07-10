@@ -1,0 +1,91 @@
+<Rules priority='0'>
+    <!-- Service -->
+    <Service name="munin-node" status="on" type="upstart" restart="true"
+             install="true"/>
+
+    <!-- Action -->
+    <Action timing='pre' name='clean-munin-plugins' when='always'
+            status='ignore' command='/usr/local/bin/clean-munin-plugins.sh'/>
+
+    <!-- SymLink -->
+    <Path type='symlink' name='/etc/munin/plugins/apache_accesses'
+          to='/usr/share/munin/plugins/apache_accesses'/>
+    <Path type='symlink' name='/etc/munin/plugins/apache_processes'
+          to='/usr/share/munin/plugins/apache_processes'/>
+    <Path type='symlink' name='/etc/munin/plugins/apache_volume'
+          to='/usr/share/munin/plugins/apache_volume'/>
+    <Path type='symlink' name='/etc/munin/plugins/backuppc'
+          to='/usr/share/munin/plugins/backuppc'/>
+    <Path type='symlink' name='/etc/munin/plugins/cpu'
+          to='/usr/share/munin/plugins/cpu'/>
+    <Path type='symlink' name='/etc/munin/plugins/df_inode'
+          to='/usr/share/munin/plugins/df_inode'/>
+    <Path type='symlink' name='/etc/munin/plugins/df'
+          to='/usr/share/munin/plugins/df'/>
+    <Path type='symlink' name='/etc/munin/plugins/diskstats'
+          to='/usr/share/munin/plugins/diskstats'/>
+    <Path type='symlink' name='/etc/munin/plugins/entropy'
+          to='/usr/share/munin/plugins/entropy'/>
+    <Path type='symlink' name='/etc/munin/plugins/forks'
+          to='/usr/share/munin/plugins/forks'/>
+    <Path type='symlink' name='/etc/munin/plugins/fw_packets'
+          to='/usr/share/munin/plugins/fw_packets'/>
+    <Path type='symlink' name='/etc/munin/plugins/if_eth0'
+          to='/usr/share/munin/plugins/if_'/>
+    <Path type='symlink' name='/etc/munin/plugins/if_err_eth0'
+          to='/usr/share/munin/plugins/if_err_'/>
+    <Path type='symlink' name='/etc/munin/plugins/interrupts'
+          to='/usr/share/munin/plugins/interrupts'/>
+    <Path type='symlink' name='/etc/munin/plugins/iostat'
+          to='/usr/share/munin/plugins/iostat'/>
+    <Path type='symlink' name='/etc/munin/plugins/iostat_ios'
+          to='/usr/share/munin/plugins/iostat_ios'/>
+    <Path type='symlink' name='/etc/munin/plugins/irqstats'
+          to='/usr/share/munin/plugins/irqstats'/>
+    <Path type='symlink' name='/etc/munin/plugins/load'
+          to='/usr/share/munin/plugins/load'/>
+    <Path type='symlink' name='/etc/munin/plugins/memory'
+          to='/usr/share/munin/plugins/memory'/>
+    <Path type='symlink' name='/etc/munin/plugins/munin_stats'
+          to='/usr/share/munin/plugins/munin_stats'/>
+    <Path type='symlink' name='/etc/munin/plugins/munin_update'
+          to='/usr/share/munin/plugins/munin_update'/>
+    <Path type='symlink' name='/etc/munin/plugins/netstat'
+          to='/usr/share/munin/plugins/netstat'/>
+    <Path type='symlink' name='/etc/munin/plugins/open_files'
+          to='/usr/share/munin/plugins/open_files'/>
+    <Path type='symlink' name='/etc/munin/plugins/open_inodes'
+          to='/usr/share/munin/plugins/open_inodes'/>
+    <Path type='symlink' name='/etc/munin/plugins/processes'
+          to='/usr/share/munin/plugins/processes'/>
+    <Path type='symlink' name='/etc/munin/plugins/proc_pri'
+          to='/usr/share/munin/plugins/proc_pri'/>
+    <Path type='symlink' name='/etc/munin/plugins/swap'
+          to='/usr/share/munin/plugins/swap'/>
+    <Path type='symlink' name='/etc/munin/plugins/threads'
+          to='/usr/share/munin/plugins/threads'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_by_class'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_by_flags'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_by_opcode'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_by_rcode'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_by_type'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_histogram'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_hits'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_memory'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/unbound_munin_queue'
+          to='/usr/share/munin/plugins/unbound_munin_'/>
+    <Path type='symlink' name='/etc/munin/plugins/uptime'
+          to='/usr/share/munin/plugins/uptime'/>
+    <Path type='symlink' name='/etc/munin/plugins/users'
+          to='/usr/share/munin/plugins/users'/>
+    <Path type='symlink' name='/etc/munin/plugins/vmstat'
+          to='/usr/share/munin/plugins/vmstat'/>
+</Rules>

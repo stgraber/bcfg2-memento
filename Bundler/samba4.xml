@@ -1,0 +1,4 @@
+<Bundle name='samba4' version='2.0'>
+    <Package name='samba4'/>
+    <Service name='samba4'/>
+</Bundle>

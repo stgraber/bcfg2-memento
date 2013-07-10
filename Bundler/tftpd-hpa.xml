@@ -1,0 +1,4 @@
+<Bundle name='tftpd-hpa' version='2.0'>
+    <Package name='tftpd-hpa'/>
+    <Service name='tftpd-hpa'/>
+</Bundle>

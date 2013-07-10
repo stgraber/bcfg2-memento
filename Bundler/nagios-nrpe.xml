@@ -1,0 +1,80 @@
+<Bundle name='nagios-nrpe' version='2.0'>
+    <!-- Generate NagiosGen config -->
+    <Path name='/etc/nagiosgen.status'/>
+
+    <Path name='/etc/nagios/nrpe.cfg'/>
+    <Path name='/etc/nagios/nrpe.cfg.d/hosts.cfg'/>
+
+    <Path name='/etc/sudoers.d/nrpe'/>
+
+    <Package name='nagios-nrpe-server'/>
+    <Package name='nagios-plugins-basic'/>
+    <Package name='pynag'/>
+
+    <Service name='nagios-nrpe-server'/>
+
+    <Group name='ntp'>
+        <Path name='/etc/nagios/nrpe.cfg.d/ntp.cfg'/>
+    </Group>
+
+    <Group name='postgresql'>
+        <Path name='/etc/nagios/nrpe.cfg.d/postgres.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_pgconn'/>
+        <Package name='libdbi-perl'/>
+        <Package name='libdbd-pg-perl'/>
+        <Package name='libclass-dbi-pg-perl'/>
+    </Group>
+
+    <Group name='postgresql-database'>
+        <Path name='/etc/nagios/nrpe.cfg.d/postgres-database.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_database_pgsql'/>
+    </Group>
+
+    <Group name="apt-unattended-upgrade">
+        <Package name="python-pysqlite2"/>
+        <Path name='/usr/lib/nagios/plugins/check_unattended-upgrade'/>
+    </Group>
+
+    <Group name='backuppc'>
+        <Path name='/etc/nagios/nrpe.cfg.d/backuppc.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_backuppc'/>
+    </Group>
+
+    <Group name='md-raid'>
+        <Path name='/etc/nagios/nrpe.cfg.d/md-raid.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_md_raid'/>
+    </Group>
+
+    <Group name='multipath-tools'>
+        <Path name='/etc/nagios/nrpe.cfg.d/multipath-tools.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_multipath'/>
+    </Group>
+
+    <Group name='bcfg2'>
+        <Path name='/etc/nagios/nrpe.cfg.d/bcfg2_client.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_bcfg2_client'/>
+    </Group>
+
+    <Group name='bonding'>
+        <Path name='/etc/nagios/nrpe.cfg.d/bonding.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_linux_bonding'/>
+    </Group>
+
+    <Group name='apt'>
+        <Path name='/etc/nagios/nrpe.cfg.d/dpkg.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_dpkg'/>
+
+        <Path name='/etc/nagios/nrpe.cfg.d/apt_sources.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_apt_sources'/>
+
+        <Package name='update-notifier-common'/>
+        <Path name='/etc/nagios/nrpe.cfg.d/needs-reboot.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_needs-reboot'/>
+    </Group>
+
+
+    <Group name='tftpd'>
+        <Path name='/etc/nagios/nrpe.cfg.d/tftpd.cfg'/>
+        <Path name='/usr/lib/nagios/plugins/check_tftp'/>
+    </Group>
+</Bundle>
