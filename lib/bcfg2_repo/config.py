@@ -21,6 +21,8 @@ except ImportError:  # pragma: no cover
 
 import os
 
+from genshi.template import TemplateError
+
 
 def parse_config(path):
     config = {}
@@ -46,7 +48,15 @@ def parse_config(path):
     return config
 
 
-def get_config_section(bundle, section):
-    config = parse_config(os.path.join("/var/lib/bcfg2/etc/",
-                                       "%s.ini" % bundle))
+def get_config_section(repo, metadata, bundle, section):
+    path = os.path.join(repo, "etc", "%s.ini" % bundle)
+
+    if not os.path.exists(path):
+        raise TemplateError("Missing config file: %s" % path)
+
+    config = parse_config(path)
+
+    if section not in config:
+        raise TemplateError("Missing config section: %s" % section)
+
     return config[section]

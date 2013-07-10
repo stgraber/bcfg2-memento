@@ -1,0 +1,47 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "apt", "sources.list")
+
+    # Parse the probe result
+    distro = probes.get_probe_as_dict(metadata, "distro")
+
+    # Ports/non-ports logic
+    if distro['arch'] in ("armel", "armhf", "powerpc"):
+        mirror = conf['ports_mirror']
+        security_mirror = conf['ports_mirror']
+    else:
+        mirror = conf['archive_mirror']
+        security_mirror = conf['security_mirror']
+
+    # Pocket related logic
+    repositories = []
+    for entry in conf['pockets']:
+        if entry == "release":
+            repositories.append((mirror, ""))
+        elif entry == "security":
+            repositories.append((security_mirror, "-%s" % entry))
+        else:
+            repositories.append((mirror, "-%s" % entry))
+    repositories.sort()
+%}\
+
+# Binary package repositories
+{% for url, pocket in repositories %}\
+deb ${url} ${distro.codename}${pocket} ${conf.components}
+{% end %}\
+\
+{% if conf.sources == "true" %}\
+# Source package repositories
+
+{% for url, pocket in repositories %}\
+deb-src ${url} ${distro.codename}${pocket} ${conf.components}
+{% end %}\
+{% end %}\
