@@ -19,6 +19,7 @@ try:
 except ImportError:  # pragma: no cover
     from ConfigParser import ConfigParser
 
+import glob
 import os
 
 from genshi.template import TemplateError
@@ -54,9 +55,30 @@ def get_config_section(repo, metadata, bundle, section):
     if not os.path.exists(path):
         raise TemplateError("Missing config file: %s" % path)
 
-    config = parse_config(path)
+    paths = [path]
 
-    if section not in config:
+    for conffile in sorted(glob.glob("%s.G*" % path)):
+        try:
+            group = conffile.split(".G")[-1].split("_", 1)[-1]
+        except:
+            # Invalid filename syntax
+            continue
+
+        if group in metadata.groups:
+            paths.append(conffile)
+
+    if os.path.exists("%s.H_%s" % (path, metadata.hostname)):
+        paths.append("%s.H_%s" % (path, metadata.hostname))
+
+    config = {}
+    for entry in paths:
+        conf = parse_config(entry)
+        if section not in conf:
+            continue
+
+        config.update(conf[section])
+
+    if not config:
         raise TemplateError("Missing config section: %s" % section)
 
-    return config[section]
+    return config
