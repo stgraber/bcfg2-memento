@@ -25,9 +25,9 @@ for line in ip.stdout.read().split("\n"):
         ips.append(fields[1].split('/')[0])
 
 # Sites
-sites = {'main': (,)}
-zones = {'mgmt': (,),
-         'srv':  (,)}
+sites = {'main': []}
+zones = {'mgmt': [],
+         'srv':  []}
 
 local_site = "unknown"
 local_zone = "unknown"
