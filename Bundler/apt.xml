@@ -1,5 +1,6 @@
 <Bundle name='apt' version='2.0'>
     <Action name='apt-update'/>
+    <Path name='/etc/apt/apt.conf.d/99bcfg2'/>
 
     <Group name='apt-sourceslist'>
         <Path name='/etc/apt/sources.list'/>
@@ -7,7 +8,6 @@
 
     <Group name='apt-unattended-upgrade'>
         <Package name='unattended-upgrades'/>
-        <Path name='/etc/apt/apt.conf.d/50unattended-upgrades'/>
         <Action name='apt-unattended-upgrade'/>
     </Group>
 

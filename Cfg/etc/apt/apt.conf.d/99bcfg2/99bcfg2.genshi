@@ -1,0 +1,37 @@
+// This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "apt", "apt.conf")
+
+    # Pocket related logic
+    pockets = []
+    if conf['unattended_pockets'] != "none":
+        for entry in conf['unattended_pockets']:
+            if entry == "release":
+                pockets.append("")
+            else:
+                pockets.append("-%s" % entry)
+        pockets.sort()
+
+%}\
+{% if pockets %}\
+
+// Automatically upgrade packages from these sources
+Unattended-Upgrade::Allowed-Origins {
+{% for pocket in pockets %}\
+    "$${distro_id}:$${distro_codename}${pocket}";
+{% end %}\
+};
+\
+{% if conf.http_proxy != "none" %}\
+
+// Use an http proxy
+Acquire::http::Proxy "${conf.http_proxy}";
+{% end %}\
