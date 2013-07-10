@@ -3,3 +3,4 @@ Probes/probed.xml
 Packages/cache/*
 NagiosGen/*-host.cfg
 NagiosGen/nagiosgen.cfg
+*.pyc
