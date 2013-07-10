@@ -22,6 +22,9 @@
         security_mirror = conf['security_mirror']
 
     # Pocket related logic
+    if not isinstance(conf['pockets'], list):
+        conf['pockets'] = [conf['pockets']]
+
     repositories = []
     for entry in conf['pockets']:
         if entry == "release":
@@ -31,17 +34,22 @@
         else:
             repositories.append((mirror, "-%s" % entry))
     repositories.sort()
+
+    # Components
+    if not isinstance(conf['components'], list):
+        conf['components'] = [conf['components']]
+    components = " ".join(conf['components'])
 %}\
 
 # Binary package repositories
 {% for url, pocket in repositories %}\
-deb ${url} ${distro.codename}${pocket} ${conf.components}
+deb ${url} ${distro.codename}${pocket} ${components}
 {% end %}\
 \
 {% if conf.sources == "true" %}\
 # Source package repositories
 
 {% for url, pocket in repositories %}\
-deb-src ${url} ${distro.codename}${pocket} ${conf.components}
+deb-src ${url} ${distro.codename}${pocket} ${components}
 {% end %}\
 {% end %}\

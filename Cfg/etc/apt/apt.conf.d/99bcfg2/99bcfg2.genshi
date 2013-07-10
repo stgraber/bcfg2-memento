@@ -13,6 +13,9 @@
     # Pocket related logic
     pockets = []
     if conf['unattended_pockets'] != "none":
+        if not isinstance(conf['unattended_pockets'], list):
+            conf['unattended_pockets'] = [conf['unattended_pockets']]
+
         for entry in conf['unattended_pockets']:
             if entry == "release":
                 pockets.append("")
