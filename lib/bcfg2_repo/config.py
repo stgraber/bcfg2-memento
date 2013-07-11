@@ -40,7 +40,7 @@ def parse_config(path):
             value = configp.get(section, option)
             if "," in value:
                 value = [entry.strip('"').strip()
-                         for entry in value.split(",")]
+                         for entry in value.split(", ")]
             else:
                 value = value.strip('"').strip()
             config_section[option] = value
