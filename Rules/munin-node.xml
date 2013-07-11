@@ -3,9 +3,9 @@
     <Service name="munin-node" status="on" type="upstart" restart="true"
              install="true"/>
 
-    <!-- Action -->
-    <Action timing='pre' name='clean-munin-plugins' when='always'
-            status='ignore' command='/usr/local/bin/clean-munin-plugins.sh'/>
+    <!-- Directories -->
+    <Path name="/etc/munin/plugins" type="directory" mode="755" owner="root"
+          group="root" prune="true"/>
 
     <!-- SymLink -->
     <Path type='symlink' name='/etc/munin/plugins/apache_accesses'

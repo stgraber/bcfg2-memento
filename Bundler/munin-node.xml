@@ -6,6 +6,7 @@
     <Service name='munin-node'/>
 
     <!-- Common plugins -->
+    <Path name='/etc/munin/plugins/'/>
     <Path name='/etc/munin/plugins/processes'/>
 
     <!-- Group plugins -->
@@ -97,7 +98,4 @@
     <Group name='bonding-TODO'>
         <Path name='/usr/share/munin/plugins/bonding_err_'/>
     </Group>
-
-    <Path name='/usr/local/bin/clean-munin-plugins.sh'/>
-    <Action name='clean-munin-plugins'/>
 </Bundle>
