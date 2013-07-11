@@ -1,0 +1,21 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "sssd", "sssd.conf")
+    smb_workgroup = conf['domain'].split(".")[0].upper()
+%}\
+
+[global]
+workgroup = ${smb_workgroup}
+realm = ${conf.domain}
+server string = %h
+security = ads
+kerberos method = system keytab
+passdb backend = tdbsam

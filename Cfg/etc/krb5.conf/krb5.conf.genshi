@@ -1,0 +1,29 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "sssd", "sssd.conf")
+    krb5_domain = conf['domain'].upper()
+%}\
+
+[libdefaults]
+    default_realm = ${krb5_domain}
+    dns_lookup_realm = false
+    dns_lookup_kdc = true
+{% if "samba4" not in metadata.groups %}\
+    ticket_lifetime = 24h
+    allow_weak_crypto = true
+    default_tgs_enctypes = rc4-hmac aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96
+    default_tkt_enctypes = rc4-hmac aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96
+    permitted_enctypes = rc4-hmac aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96
+
+[domain_realm]
+    .${conf.domain} = ${krb5_domain}
+    ${conf.domain} = ${krb5_domain}
+{% end %}\

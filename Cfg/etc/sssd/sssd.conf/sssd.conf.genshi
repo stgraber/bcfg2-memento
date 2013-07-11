@@ -1,0 +1,69 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "sssd", "sssd.conf")
+
+    if conf['allowed_groups'] == "all":
+        conf['allowed_groups'] = ""
+    elif isinstance(conf['allowed_groups'], list):
+        conf['allowed_groups'] = " ".join(conf['allowed_groups'])
+
+    krb5_domain = conf['domain'].upper()
+    ldap_dn = "DC=%s" % ",DC=".join(conf['domain'].split("."))
+
+    if conf['ldap_user_search_base'] == "none":
+        conf['ldap_user_search_base'] = ldap_dn
+
+    if conf['ldap_sudo_search_base'] == "none":
+        conf['ldap_sudo_search_base'] = ldap_dn
+%}\
+
+[sssd]
+domains = SAMBA
+services = nss, pam, sudo, ssh
+config_file_version = 2
+sbus_timeout = 30
+debug_level = 0
+
+[nss]
+default_shell = /bin/bash
+
+[domain/SAMBA]
+enumerate = true
+cache_credentials = true
+fallback_homedir = /home/%u
+
+access_provider = simple
+id_provider = ldap
+auth_provider = krb5
+chpass_provider = krb5
+sudo_provider = ldap
+ssh_provider = ldap
+
+dns_discovery_domain = ${conf.domain}
+krb5_realm = ${krb5_domain}
+
+ldap_idmap_default_domain_sid = ${conf.domain_sid}
+ldap_schema = ad
+ldap_id_mapping = true
+ldap_user_gecos = displayName
+ldap_force_upper_case_realm = true
+ldap_user_ssh_public_key = sshPublicKey
+
+ldap_user_search_base = ${conf.ldap_user_search_base}
+ldap_sudo_search_base = ${conf.ldap_sudo_search_base}
+
+ldap_access_order = expire, filter
+ldap_account_expire_policy = ad
+{% if conf.allowed_groups %}\
+simple_allow_groups = ${conf.allowed_groups}
+{% end %}\
+
+ldap_sasl_mech = GSSAPI
