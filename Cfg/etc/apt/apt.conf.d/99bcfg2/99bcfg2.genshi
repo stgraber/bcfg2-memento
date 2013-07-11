@@ -23,6 +23,11 @@
                 pockets.append("-%s" % entry)
         pockets.sort()
 
+    if conf['unattended_extra_origins'] == "none":
+        conf['unattended_extra_origins'] = []
+    elif not isinstance(conf['unattended_extra_origins'], list):
+        conf['unattended_extra_origins'] = [conf['unattended_extra_origins']]
+
 %}\
 {% if pockets %}\
 
@@ -30,6 +35,9 @@
 Unattended-Upgrade::Allowed-Origins {
 {% for pocket in pockets %}\
     "$${distro_id}:$${distro_codename}${pocket}";
+{% end %}\
+{% for origin in conf.unattended_extra_origins %}\
+    "${origin}";
 {% end %}\
 };
 \
