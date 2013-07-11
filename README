@@ -1,0 +1,21 @@
+Design principles:
+ - Track the latest stable Bcfg2 version
+ - Support only Ubuntu LTS releases starting with 12.04
+ - Configuration only. binaries, scripts, plugins, ... should be shipped as
+   their own packages
+ - Minimal changes to the target system should always be the #1 goal
+ - No config duplication, use templating instead
+ - Make as much of the configuration files configurable through etc/
+
+Coding guidelines:
+ - Only use Genshi for templating
+ - Whenever possible, lines shouldn't be longer than 79 characters
+ - 4 spaces indent is to be preferred to tab indent
+ - Comments are to be written in proper English
+ - Commits have to identify the bundle being affected as in
+   "<bundle>: commit message" with two special names:
+     + "git" for changes to .gitignore
+     + "bcfg2" for changes affecting the repository as a whole
+ - Trailing white spaces are to be avoided
+ - Scripts under utils/ should be executable python scripts
+ - All python code needs to be 2.7/3.2 compatible
