@@ -1,4 +1,7 @@
 <Rules priority="0">
+    <Path name="/etc/nagios/nrpe.cfg.d" type="directory" mode="755"
+          owner="root" group="root" prune="true"/>
+
     <Service name="nagios-nrpe-server" status="on" type="deb" restart="true"
              install="true"/>
 </Rules>

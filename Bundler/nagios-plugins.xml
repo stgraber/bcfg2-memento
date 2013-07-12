@@ -3,10 +3,8 @@
     <Package name='nagios-plugins'/>
 
     <Package name='nagios-nrpe-plugin'/>
+    <Package name='nagios-plugins-stgraber.net'/>
     <Package name='python-pysnmp4'/>
-
-    <!-- Additionnal custom plugins -->
-    <Path name='/usr/lib/nagios/plugins/check_munin_node'/>
 
     <Package name='bc'/>
 </Bundle>
