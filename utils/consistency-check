@@ -24,7 +24,13 @@ from xml.etree import ElementTree
 empty_dirs = []
 missing_comment = []
 missing_info = []
-valid_paths = ["Cfg/etc/nagios/nagiosgen.cfg", "Cfg/etc/nagiosgen.status"]
+valid_paths = ["Cfg/etc/nagios/nagiosgen.cfg", "Cfg/etc/nagiosgen.status",
+               "Cfg/etc/ssh/ssh_host_dsa_key",
+               "Cfg/etc/ssh/ssh_host_dsa_key.pub",
+               "Cfg/etc/ssh/ssh_host_ecdsa_key",
+               "Cfg/etc/ssh/ssh_host_ecdsa_key.pub",
+               "Cfg/etc/ssh/ssh_host_rsa_key",
+               "Cfg/etc/ssh/ssh_host_rsa_key.pub"]
 
 for dirpath, dirnames, filenames in os.walk("Cfg/"):
     if not dirnames and not filenames:
