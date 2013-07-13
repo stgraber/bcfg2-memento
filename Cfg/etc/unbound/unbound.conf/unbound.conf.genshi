@@ -1,0 +1,94 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "unbound", "unbound.conf")
+
+    # Generate the list of zones and forward_zones overrides
+    zones = []
+    local_zones = []
+    for zone in conf['forward_zones']:
+        zone_conf = config.get_config_section(repo, metadata, "unbound", "zone_%s" % zone)
+
+        if not "servers" in zone_conf:
+            continue
+
+        if not isinstance(zone_conf['servers'], list):
+            zone_conf['servers'] = [zone_conf['servers']]
+
+        zones.append((zone, zone_conf['servers']))
+
+        if not zone.endswith(".in-addr.arpa"):
+            continue
+
+        if zone.endswith(".172.in-addr.arpa"):
+            sub = int(zone.split(".")[-4])
+            if sub not in range(0, 32):
+                continue
+
+        local_zones.append(zone)
+
+    # Parse some lists
+    if conf['dnssec_insecure_domains'] == "none":
+        conf['dnssec_insecure_domains'] = []
+    elif not isinstance(conf['dnssec_insecure_domains'], list):
+        conf['dnssec_insecure_domains'] = [conf['dnssec_insecure_domains']]
+
+    if conf['extra_conf'] == "none":
+        conf['extra_conf'] = []
+    elif not isinstance(conf['extra_conf'], list):
+        conf['extra_conf'] = [conf['extra_conf']]
+%}\
+
+server:
+    interface: 0.0.0.0
+    interface-automatic: yes
+    num-threads: 3
+    access-control: 0.0.0.0/0 allow
+    access-control: ::/0 allow
+{% for local_zone in local_zones %}\
+    local-zone: "${local_zone}" nodefault
+{% end %}\
+{% if conf.extra_conf %}
+
+    # Extra configuration
+{% for file in conf.extra_conf %}\
+    include: /etc/unbound/unbound.conf.d/${file}
+{% end %}\
+{% end %}\
+{% if "munin-node" in metadata.groups %}\
+
+    # Statistics for the munin plugin
+    extended-statistics: yes
+    statistics-interval: 0
+    statistics-cumulative: no
+{% end %}\
+{% if conf.dnssec == "true" %}\
+
+    # DNSSEC
+    auto-trust-anchor-file: "/etc/unbound/keys/root.key"
+    dlv-anchor: "dlv.isc.org. DS 19297 5 1 7D480DBEF530374D8A4333FCB22106EB10013B46"
+{% for domain in conf.dnssec_insecure_domains %}\
+    domain-insecure: "${domain}"
+{% end %}\
+{% end %}\
+{% if conf.roundrobin == "true" %}\
+
+    # Round-robin
+    rrset-roundrobin: yes
+    minimal-responses: yes
+{% end %}\
+{% for zone_name, zone_servers in zones %}\
+
+forward-zone:
+    name: "${zone_name}"
+{% for server in zone_servers %}\
+    forward-addr: ${server}
+{% end %}\
+{% end %}\

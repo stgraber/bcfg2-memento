@@ -2,6 +2,10 @@
     <Package name='unbound'/>
     <Service name='unbound'/>
 
+    <Action name='unbound-dnssec-anchor'/>
+
     <Path name='/etc/default/unbound'/>
+    <Path name='/etc/unbound/keys/'/>
     <Path name='/etc/unbound/unbound.conf'/>
+    <Path name='/etc/unbound/unbound.conf.d'/>
 </Bundle>

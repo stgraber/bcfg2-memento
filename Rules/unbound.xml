@@ -1,4 +1,10 @@
 <Rules priority="0">
-    <Service name="unbound" status="on" type="deb" restart="true"
+    <Service name="unbound" status="ignore" type="deb" restart="true"
              install="true"/>
+    <Path name='/etc/unbound/keys/' type="directory" mode="755" owner="unbound"
+          group="unbound"/>
+    <Path name='/etc/unbound/unbound.conf.d/' type="directory" mode="755" owner="root"
+          group="root" prune="true"/>
+    <Action timing="post" name="unbound-dnssec-anchor" when="modified"
+            command="sudo -u unbound unbound-anchor -a /etc/unbound/keys/root.key -c /etc/unbound/keys/icannbundle.pem" status="check"/>
 </Rules>
