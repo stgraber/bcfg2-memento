@@ -7,5 +7,5 @@
     <Path name='/etc/default/unbound'/>
     <Path name='/etc/unbound/keys/'/>
     <Path name='/etc/unbound/unbound.conf'/>
-    <Path name='/etc/unbound/unbound.conf.d'/>
+    <Path name='/etc/unbound/unbound.conf.d/'/>
 </Bundle>
