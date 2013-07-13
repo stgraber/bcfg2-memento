@@ -3,6 +3,7 @@
     <Path name='/etc/cron.d/munin-node'/>
 
     <Package name='munin-node'/>
+    <Package name='munin-plugins-stgraber.net'/>
     <Service name='munin-node'/>
 
     <!-- Common plugins -->
@@ -73,10 +74,6 @@
     <Group name='unbound'>
         <Path name='/etc/munin/plugin-conf.d/unbound'/>
 
-        <Path name='/usr/share/munin/plugins/unbound_munin_'/>
-
-        <Package name='bc'/>
-
         <Path name='/etc/munin/plugins/unbound_munin_hits'/>
         <Path name='/etc/munin/plugins/unbound_munin_queue'/>
         <Path name='/etc/munin/plugins/unbound_munin_memory'/>
@@ -89,13 +86,6 @@
     </Group>
 
     <Group name='backuppc'>
-        <!-- <Path name='/etc/munin/plugin-conf.d/backuppc'/> -->
-        <Path name='/usr/share/munin/plugins/backuppc'/>
-
         <Path name='/etc/munin/plugins/backuppc'/>
-    </Group>
-
-    <Group name='bonding-TODO'>
-        <Path name='/usr/share/munin/plugins/bonding_err_'/>
     </Group>
 </Bundle>
