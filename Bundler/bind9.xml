@@ -1,0 +1,6 @@
+<Bundle name='bind9' version='2.0'>
+    <Package name='bind9'/>
+    <Path name='/etc/bind/named.conf'/>
+    <Path name='/etc/bind/named.conf.options'/>
+    <Service name='bind9'/>
+</Bundle>
