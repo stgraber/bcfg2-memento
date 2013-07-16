@@ -13,6 +13,9 @@
     <Group name="bcfg2">
         <Bundle name="bcfg2"/>
     </Group>
+    <Group name="bind9">
+        <Bundle name="bind9"/>
+    </Group>
     <Group name="freeradius">
         <Bundle name="freeradius"/>
     </Group>
