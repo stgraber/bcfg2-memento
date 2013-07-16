@@ -10,8 +10,8 @@
     <Action name='sssd-pam-auth-update'/>
     <Group name='sssd-ad'>
         <Path name='/etc/krb5.conf'/>
+        <Path name='/etc/samba/smb.conf'/>
         <Group name='samba4-dc' negate='true'>
-            <Path name='/etc/samba/smb.conf'/>
             <Package name='samba-common-bin'/>
         </Group>
     </Group>

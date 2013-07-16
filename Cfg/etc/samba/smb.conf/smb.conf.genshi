@@ -10,12 +10,32 @@
     # Load the config
     conf = config.get_config_section(repo, metadata, "sssd", "sssd.conf")
     smb_workgroup = conf['domain'].split(".")[0].upper()
+
+    netbios = metadata.hostname.split(".")[0].upper()
 %}\
 
+# Global parameters
 [global]
-workgroup = ${smb_workgroup}
-realm = ${conf.domain}
+    workgroup = ${smb_workgroup}
+    realm = ${conf.domain}
+{% if "samba4" not in metadata.groups %}\
 server string = %h
 security = ads
 kerberos method = system keytab
 passdb backend = tdbsam
+{% end %}\
+{% if "samba4" in metadata.groups %}\
+    netbios name = ${netbios}
+    server role = active directory domain controller
+    server services = rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate, smb
+    dcerpc endpoint servers = epmapper, wkssvc, rpcecho, samr, netlogon, lsarpc, spoolss, drsuapi, dssetup, unixinfo, browser, eventlog6, backupkey, dnsserver, winreg, srvsvc
+    acl:search = false
+
+[netlogon]
+    path = /var/lib/samba/sysvol/${conf.domain}/scripts
+    read only = No
+
+[sysvol]
+    path = /var/lib/samba/sysvol
+    read only = No
+{% end %}\
