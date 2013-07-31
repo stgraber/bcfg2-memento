@@ -1,6 +1,7 @@
 <Bundle name='apt' version='2.0'>
     <Action name='apt-update'/>
     <Path name='/etc/apt/apt.conf.d/99bcfg2'/>
+    <Path name='/etc/apt/sources.list.d'/>
 
     <Group name='apt-sourceslist'>
         <Path name='/etc/apt/sources.list'/>
