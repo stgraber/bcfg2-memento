@@ -16,6 +16,9 @@
     <Group name="bind9">
         <Bundle name="bind9"/>
     </Group>
+    <Group name="cups">
+        <Bundle name="cups"/>
+    </Group>
     <Group name="freeradius">
         <Bundle name="freeradius"/>
     </Group>

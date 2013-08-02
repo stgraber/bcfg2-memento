@@ -1,0 +1,10 @@
+<Bundle name='cups' version='2.0'>
+    <Package name='cups'/>
+
+    <Service name="cups"/>
+
+    <Group name="cups-samsung">
+        <Path name="/etc/apt/sources.list.d/samsung-printer.list"/>
+        <Package name="samsungmfp-driver"/>
+    </Group>
+</Bundle>
