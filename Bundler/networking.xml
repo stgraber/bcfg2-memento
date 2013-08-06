@@ -15,6 +15,8 @@
         <Service name='isc-dhcp-server'/>
 
         <Path name='/etc/dhcp/dhcpd.conf'/>
+        <Path name='/etc/dhcp/dhcpd.conf.d/local'/>
+        <Path name='/etc/dhcp/dhcpd.conf.d/static'/>
     </Group>
 
     <Group name='networking-dhcp-relay'>
