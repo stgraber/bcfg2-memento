@@ -27,6 +27,9 @@ def get_probe_as_dict(metadata, probe):
         if len(parts) < 2:
             continue
 
-        values[parts[0]] = parts[1]
+        if ";" in parts[1]:
+            values[parts[0]] = parts[1].split(";")
+        else:
+            values[parts[0]] = parts[1]
 
     return values
