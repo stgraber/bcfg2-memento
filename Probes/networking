@@ -52,12 +52,9 @@ addresses += [ipaddr.IPAddress(line.split()[1].split("/")[0])
 config = configparser.ConfigParser()
 config.read(CONF_PATH)
 
-for site in [section for section in config.sections()
-             if section.startswith("site_")]:
-    site_name = site.split("_", 1)[1]
-
+for site_name in config.sections():
     zones = set()
-    for zone_name, zone_subnets in config.items(site):
+    for zone_name, zone_subnets in config.items(site_name):
         for subnet_string in zone_subnets.split(", "):
             subnet = ipaddr.IPNetwork(subnet_string)
             for ip in addresses:
