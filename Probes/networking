@@ -17,10 +17,14 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import configparser
-import ipaddr
 import os
 import subprocess
 import sys
+
+try:
+    import ipaddr
+except ImportError:
+    sys.exit(0)
 
 CONF_PATH = "/etc/bcfg2.netmap"
 
