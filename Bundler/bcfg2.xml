@@ -1,4 +1,10 @@
 <Bundle name='bcfg2' version='2.0'>
+    <!-- Required for the probes -->
+    <Package name='python3'/>
+    <Package name='python3-apt'/>
+    <Package name='python3-ipaddr'/>
+    <Path name='/etc/bcfg2.netmap'/>
+
     <Path name='/etc/default/bcfg2'/>
 
     <Group name='bcfg2-info'>

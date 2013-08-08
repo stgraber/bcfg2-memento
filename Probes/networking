@@ -1,0 +1,70 @@
+#!/usr/bin/python3
+# Bcfg2 distro probe
+# Written by Stephane Graber <stgraber@ubuntu.com>
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+import configparser
+import ipaddr
+import os
+import subprocess
+import sys
+
+CONF_PATH = "/etc/bcfg2.netmap"
+
+if not os.path.exists(CONF_PATH):
+    sys.exit(0)
+
+addresses = []
+
+# Extract all the IPv4 addresses
+ip4 = subprocess.Popen(['ip', '-4', 'addr', 'show', 'scope', 'global'],
+                       stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                       universal_newlines=True)
+addresses += [ipaddr.IPAddress(line.split()[1].split("/")[0])
+              for line in ip4.stdout if "inet" in line]
+
+# Extract all the IPv6 addresses
+ip6 = subprocess.Popen(['ip', '-6', 'addr', 'show', 'scope', 'global'],
+                       stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                       universal_newlines=True)
+addresses += [ipaddr.IPAddress(line.split()[1].split("/")[0])
+              for line in ip6.stdout if "inet6" in line]
+
+
+# Parse the config and return the groups
+config = configparser.ConfigParser()
+config.read(CONF_PATH)
+
+for site in [section for section in config.sections()
+             if section.startswith("site_")]:
+    site_name = site.split("_", 1)[1]
+
+    zones = set()
+    for zone_name, zone_subnets in config.items(site):
+        for subnet_string in zone_subnets.split(", "):
+            subnet = ipaddr.IPNetwork(subnet_string)
+            for ip in addresses:
+                if ip in subnet:
+                    zones.add(zone_name)
+                    break
+
+    if zones:
+        print("group:%s" % site_name)
+        for zone in zones:
+            print("group:%s" % zone)
+
+        print("site=%s,zones=%s" % (site_name, ";".join(zones)))
+        sys.exit(0)

@@ -1,0 +1,36 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "bcfg2", "global")
+
+    sites = {}
+    if conf['sites'] == "none":
+        conf['sites'] = []
+
+    if not isinstance(conf['sites'], list):
+        conf['sites'] = [conf['sites']]
+
+    for entry in conf['sites']:
+        site = config.get_config_section(repo, metadata, "bcfg2",
+                                         "site_%s" % entry)
+
+        for zone_name, zone_subnets in site.items():
+            if isinstance(zone_subnets, list):
+                site[zone_name] = ", ".join(zone_subnets)
+
+        sites[entry] = site
+%}\
+{% for site_name, site_zones in sites.items() %}\
+
+[${site_name}]
+{% for zone_name, zone_subnets in site_zones.items() %}\
+${zone_name} = ${zone_subnets}
+{% end %}\
+{% end %}\
