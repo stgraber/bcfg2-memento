@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Bcfg2 distro probe
+# Bcfg2 networking probe
 # Written by Stephane Graber <stgraber@ubuntu.com>
 
 # This program is free software; you can redistribute it and/or modify
