@@ -27,6 +27,9 @@
 {% if "samba-printserver" not in metadata.groups %}\
     load printers = No
 {% end %}\
+{% if "samba-fileserver" in metadata.groups %}\
+    map to guest = bad user
+{% end %}\
 {% if "samba4" in metadata.groups %}\
     netbios name = ${netbios}
     server role = active directory domain controller
