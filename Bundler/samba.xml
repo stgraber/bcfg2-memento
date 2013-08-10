@@ -1,0 +1,9 @@
+<Bundle name='samba' version='2.0'>
+    <Path name='/etc/samba/smb.conf'/>
+    <Package name='samba'/>
+    <Service name='smbd'/>
+
+    <Group name='samba-fileserver'>
+        <Path name='/etc/samba/shares.conf'/>
+    </Group>
+</Bundle>

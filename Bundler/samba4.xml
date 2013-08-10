@@ -1,4 +1,5 @@
 <Bundle name='samba4' version='2.0'>
+    <Path name='/etc/samba/smb.conf'/>
     <Package name='dnsutils'/>
     <Package name='samba4'/>
     <Service name='samba4'/>

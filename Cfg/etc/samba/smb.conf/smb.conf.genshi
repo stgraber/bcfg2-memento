@@ -19,10 +19,13 @@
     workgroup = ${smb_workgroup}
     realm = ${conf.domain}
 {% if "samba4" not in metadata.groups %}\
-server string = %h
-security = ads
-kerberos method = system keytab
-passdb backend = tdbsam
+    server string = %h
+    security = ads
+    kerberos method = system keytab
+    passdb backend = tdbsam
+{% end %}\
+{% if "samba-printserver" not in metadata.groups %}\
+    load printers = No
 {% end %}\
 {% if "samba4" in metadata.groups %}\
     netbios name = ${netbios}
@@ -39,4 +42,8 @@ passdb backend = tdbsam
 [sysvol]
     path = /var/lib/samba/sysvol
     read only = No
+{% end %}\
+{% if "samba-fileserver" in metadata.groups %}\
+
+include = /etc/samba/shares.conf
 {% end %}\

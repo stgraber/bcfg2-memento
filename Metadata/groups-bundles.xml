@@ -49,6 +49,9 @@
     <Group name="rsync">
         <Bundle name="rsync"/>
     </Group>
+    <Group name="samba">
+        <Bundle name="samba"/>
+    </Group>
     <Group name="samba4">
         <Bundle name="samba4"/>
     </Group>
