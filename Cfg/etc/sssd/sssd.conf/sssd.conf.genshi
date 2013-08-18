@@ -23,6 +23,9 @@
 
     if conf['ldap_sudo_search_base'] == "none":
         conf['ldap_sudo_search_base'] = ldap_dn
+
+    if conf['ldap_group_search_base'] == "none":
+        conf['ldap_group_search_base'] = ldap_dn
 %}\
 
 [sssd]
@@ -59,6 +62,7 @@ ldap_force_upper_case_realm = true
 ldap_user_ssh_public_key = sshPublicKey
 
 ldap_user_search_base = ${conf.ldap_user_search_base}
+ldap_group_search_base = ${conf.ldap_group_search_base}
 ldap_sudo_search_base = ${conf.ldap_sudo_search_base}
 
 ldap_access_order = expire, filter
