@@ -50,3 +50,15 @@
 
 include = /etc/samba/shares.conf
 {% end %}\
+{% if "samba-printserver" in metadata.groups %}\
+
+[printers]
+    comment = All Printers
+    path = /var/spool/samba
+    printable = yes
+
+[print$]
+    comment = Printer Drivers
+    path = /var/lib/samba/printers/
+    writeable = yes
+{% end %}\
