@@ -1,4 +1,16 @@
 # This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    import socket
+
+    munin_servers = []
+    for entry in metadata.query.by_groups(['munin']):
+        addr = socket.getaddrinfo(entry.hostname, None)[0][4][0]
+
+        if ":" in addr:
+            munin_servers.append("^%s$" % addr)
+        else:
+            munin_servers.append("^%s$" % addr.replace(".", "\."))
+%}\
 
 log_level 4
 log_file /var/log/munin/munin-node.log
@@ -32,6 +44,9 @@ ignore_file \.pod$
 # may repeat the allow line as many times as you'd like
 
 allow ^127\.0\.0\.1$
+{% for address in munin_servers %}\
+allow ${address}
+{% end %}\
 
 # If you have installed the Net::CIDR perl module, you can use one or more
 # cidr_allow and cidr_deny address/mask patterns.  A connecting client must

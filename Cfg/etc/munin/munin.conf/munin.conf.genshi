@@ -1,4 +1,12 @@
 # This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    import socket
+
+    munin_nodes = []
+    for entry in metadata.query.by_groups(['munin-node']):
+        addr = socket.getaddrinfo(entry.hostname, None)[0][4][0]
+        munin_nodes.append((entry.hostname, addr))
+%}\
 
 # The next three variables specifies where the location of the RRD
 # databases, the HTML output, logs and the lock/pid files.  They all
@@ -55,3 +63,9 @@ includedir /etc/munin/munin-conf.d
 # For those with Nagios, the following might come in handy. In addition,
 # the services must be defined in the Nagios server as well.
 #contact.nagios.command /usr/bin/send_nsca nagios.host.comm -c /etc/nsca.conf
+
+{% for hostname, address in munin_nodes %}\
+[${hostname}]
+    address ${address}
+    use_node_name yes
+{% end %}\
