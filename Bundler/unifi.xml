@@ -1,0 +1,14 @@
+<Bundle name='unifi' version='2.0'>
+    <Path name='/etc/apt/sources.list.d/unifi.list'/>
+    <Path name='/etc/apt/trusted.gpg.d/unifi.gpg'/>
+
+    <Group name='unifi-beta'>
+        <Package name='unifi-beta'/>
+    </Group>
+
+    <Group name='unifi-beta' negate='true'>
+        <Package name='unifi'/>
+    </Group>
+
+    <Service name='unifi'/>
+</Bundle>
