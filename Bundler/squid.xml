@@ -1,0 +1,6 @@
+<Bundle name='squid' version='2.0'>
+    <Path name='/etc/squid3/squid.conf'/>
+
+    <Package name='squid3'/>
+    <Service name='squid3'/>
+</Bundle>

@@ -58,6 +58,9 @@
     <Group name="shinken">
         <Bundle name="shinken"/>
     </Group>
+    <Group name="squid">
+        <Bundle name="squid"/>
+    </Group>
     <Group name="ssh">
         <Bundle name="ssh"/>
     </Group>

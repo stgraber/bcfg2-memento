@@ -1,0 +1,47 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "squid", "squid.conf")
+%}\
+
+{% if "squid-nolog" in metadata.groups %}\
+# No logging
+cache_access_log /dev/null
+cache_store_log none
+cache_log /dev/null
+{% end %}\
+
+cache_mgr ${conf.contact}
+visible_hostname ${metadata.hostname}
+coredump_dir /var/spool/squid3
+
+# Caching
+cache_mem ${conf.cache_memory}
+cache_dir ufs ${conf.cache_fs_path} ${conf.cache_fs_size} 32 256
+maximum_object_size ${conf.max_object_size}
+
+# ACLs
+acl QUERY urlpath_regex cgi-bin \?
+acl all src 0.0.0.0/0
+cache deny QUERY
+
+# Advance configuration
+hierarchy_stoplist cgi-bin ?
+
+# Port and mode configuration
+always_direct allow all
+http_access allow all
+http_port ${conf.http_port}
+
+{% if "squid-htcp" in metadata.groups %}\
+htcp_access allow all
+htcp_clr_access allow all
+htcp_port 4827
+{% end %}\
