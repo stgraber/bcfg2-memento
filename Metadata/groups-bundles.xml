@@ -52,9 +52,6 @@
     <Group name="samba">
         <Bundle name="samba"/>
     </Group>
-    <Group name="samba4">
-        <Bundle name="samba4"/>
-    </Group>
     <Group name="shinken">
         <Bundle name="shinken"/>
     </Group>

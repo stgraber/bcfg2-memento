@@ -18,7 +18,7 @@
 [global]
     workgroup = ${smb_workgroup}
     realm = ${conf.domain}
-{% if "samba4" not in metadata.groups %}\
+{% if "samba-dc" not in metadata.groups %}\
     server string = %h
     security = ads
     kerberos method = system keytab
@@ -30,7 +30,7 @@
 {% if "samba-fileserver" in metadata.groups %}\
     map to guest = bad user
 {% end %}\
-{% if "samba4" in metadata.groups %}\
+{% if "samba-dc" in metadata.groups %}\
     netbios name = ${netbios}
     server role = active directory domain controller
     server services = rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate, smb

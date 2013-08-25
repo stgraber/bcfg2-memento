@@ -1,4 +1,0 @@
-<Rules priority="0">
-    <Service name="samba4" status="on" type="upstart" restart="true"
-             install="true"/>
-</Rules>

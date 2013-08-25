@@ -16,7 +16,7 @@
     default_realm = ${krb5_domain}
     dns_lookup_realm = false
     dns_lookup_kdc = true
-{% if "samba4" not in metadata.groups %}\
+{% if "samba-dc" not in metadata.groups %}\
     ticket_lifetime = 24h
     allow_weak_crypto = true
     default_tgs_enctypes = rc4-hmac aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96

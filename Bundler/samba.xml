@@ -1,9 +1,20 @@
 <Bundle name='samba' version='2.0'>
     <Path name='/etc/samba/smb.conf'/>
-    <Package name='samba'/>
-    <Service name='smbd'/>
+
+    <Group name='samba-dc'>
+        <Package name='dnsutils'/>
+        <Package name='samba4'/>
+        <Service name='samba4'/>
+    </Group>
 
     <Group name='samba-fileserver'>
+        <Package name='samba'/>
+        <Service name='smbd'/>
         <Path name='/etc/samba/shares.conf'/>
+    </Group>
+
+    <Group name='samba-printserver'>
+        <Package name='samba'/>
+        <Service name='smbd'/>
     </Group>
 </Bundle>

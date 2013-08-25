@@ -1,4 +1,6 @@
 <Rules priority="0">
     <Service name="smbd" status="on" type="upstart" restart="true"
              install="true"/>
+    <Service name="samba4" status="on" type="upstart" restart="true"
+             install="true"/>
 </Rules>

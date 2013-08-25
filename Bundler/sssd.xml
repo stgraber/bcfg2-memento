@@ -11,7 +11,7 @@
     <Group name='sssd-ad'>
         <Path name='/etc/krb5.conf'/>
         <Path name='/etc/samba/smb.conf'/>
-        <Group name='samba4-dc' negate='true'>
+        <Group name='samba-dc' negate='true'>
             <Package name='samba-common-bin'/>
         </Group>
     </Group>
