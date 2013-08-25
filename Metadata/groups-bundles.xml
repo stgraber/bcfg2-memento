@@ -16,6 +16,9 @@
     <Group name="bind9">
         <Bundle name="bind9"/>
     </Group>
+    <Group name="cacti">
+        <Bundle name="cacti"/>
+    </Group>
     <Group name="cups">
         <Bundle name="cups"/>
     </Group>
