@@ -43,6 +43,9 @@
     <Group name="nagios-plugins">
         <Bundle name="nagios-plugins"/>
     </Group>
+    <Group name="nagios">
+        <Bundle name="nagios"/>
+    </Group>
     <Group name="networking">
         <Bundle name="networking"/>
     </Group>

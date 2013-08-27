@@ -1,0 +1,8 @@
+<Bundle name='nagios' version='2.0'>
+    <Package name='nagios3'/>
+    <Service name='nagios3'/>
+
+    <Group name='nagios-nagiosgen'>
+        <Path name='/etc/nagios/nagiosgen.cfg'/>
+    </Group>
+</Bundle>
