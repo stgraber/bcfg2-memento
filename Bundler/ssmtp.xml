@@ -1,0 +1,4 @@
+<Bundle name='ssmtp' version='2.0'>
+    <Path name='/etc/ssmtp/ssmtp.conf'/>
+    <Package name='ssmtp'/>
+</Bundle>

@@ -64,6 +64,9 @@
     <Group name="ssh">
         <Bundle name="ssh"/>
     </Group>
+    <Group name="ssmtp">
+        <Bundle name="ssmtp"/>
+    </Group>
     <Group name="sssd">
         <Bundle name="sssd"/>
     </Group>
