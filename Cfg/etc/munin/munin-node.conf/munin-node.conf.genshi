@@ -10,6 +10,15 @@
             munin_servers.append("^%s$" % addr)
         else:
             munin_servers.append("^%s$" % addr.replace(".", "\."))
+
+    nagios_servers = []
+    for entry in metadata.query.by_groups(['nagios']):
+        addr = socket.getaddrinfo(entry.hostname, None)[0][4][0]
+
+        if ":" in addr:
+            nagios_servers.append("^%s$" % addr)
+        else:
+            nagios_servers.append("^%s$" % addr.replace(".", "\."))
 %}\
 
 log_level 4
@@ -45,6 +54,9 @@ ignore_file \.pod$
 
 allow ^127\.0\.0\.1$
 {% for address in munin_servers %}\
+allow ${address}
+{% end %}\
+{% for address in nagios_servers %}\
 allow ${address}
 {% end %}\
 
