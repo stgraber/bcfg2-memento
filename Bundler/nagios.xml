@@ -2,7 +2,11 @@
     <Package name='nagios3'/>
     <Service name='nagios3'/>
 
+    <Path name='/etc/nagios3/conf.d/bcfg2_commands.cfg'/>
+
     <Group name='nagios-nagiosgen'>
         <Path name='/etc/nagios/nagiosgen.cfg'/>
+        <Path name='/etc/nagios3/conf.d/bcfg2_groups.cfg'/>
+        <Path name='/etc/nagios3/conf.d/bcfg2_nagiosgen.cfg'/>
     </Group>
 </Bundle>

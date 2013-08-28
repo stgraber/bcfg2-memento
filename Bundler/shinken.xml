@@ -3,7 +3,7 @@
     <Path name='/etc/nagios/nagiosgen.cfg'/>
 
     <!-- Shared commands -->
-    <Path name='/etc/nagios/commands.cfg'/>
+    <Path name='/etc/nagios3/conf.d/bcfg2_commands.cfg'/>
 
     <Service name='shinken-arbiter'/>
 </Bundle>

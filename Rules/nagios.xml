@@ -1,4 +1,7 @@
 <Rules priority="0">
     <Service name="nagios3" status="on" type="deb" restart="true"
              install="true"/>
+
+    <Path type='symlink' name='/etc/nagios3/conf.d/bcfg2_nagiosgen.cfg'
+          to='/etc/nagios/nagiosgen.cfg'/>
 </Rules>
