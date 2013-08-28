@@ -1,4 +1,16 @@
 # This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    import socket
+
+    allowed_hosts = "::1"
+    for entry in metadata.query.by_groups(['nagios']):
+        addr = socket.getaddrinfo(entry.hostname, None)[0][4][0]
+
+        if ":" in addr:
+            allowed_hosts += ",%s" % addr
+        else:
+            allowed_hosts += ",:ffff:%s" % addr
+%}\
 
 # LOG FACILITY
 # The syslog facility that should be used for logging purposes.
@@ -65,8 +77,7 @@ nrpe_group=nagios
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-allowed_hosts=::1,:ffff:127.0.0.1
- 
+allowed_hosts=${allowed_hosts}
 
 
 # COMMAND ARGUMENT PROCESSING
@@ -138,8 +149,8 @@ connection_timeout=300
 # This directive allows you to use SSL even if your system does not have
 # a /dev/random or /dev/urandom (on purpose or because the necessary patches
 # were not applied). The random number generator will be seeded from a file
-# which is either a file pointed to by the environment valiable $RANDFILE
-# or $HOME/.rnd. If neither exists, the pseudo random number generator will
+# which is either a file pointed to by the environment valiable $$RANDFILE
+# or $$HOME/.rnd. If neither exists, the pseudo random number generator will
 # be initialized and a warning will be issued.
 # Values: 0=only seed from /dev/[u]random, 1=also seed from weak randomness
 
@@ -198,10 +209,10 @@ connection_timeout=300
 # config file is set to '1'.  This poses a potential security risk, so
 # make sure you read the SECURITY file before doing this.
 
-#command[check_users]=/usr/lib/nagios/plugins/check_users -w $ARG1$ -c $ARG2$
-#command[check_load]=/usr/lib/nagios/plugins/check_load -w $ARG1$ -c $ARG2$
-#command[check_disk]=/usr/lib/nagios/plugins/check_disk -w $ARG1$ -c $ARG2$ -p $ARG3$
-#command[check_procs]=/usr/lib/nagios/plugins/check_procs -w $ARG1$ -c $ARG2$ -s $ARG3$
+#command[check_users]=/usr/lib/nagios/plugins/check_users -w $$ARG1$$ -c $$ARG2$$
+#command[check_load]=/usr/lib/nagios/plugins/check_load -w $$ARG1$$ -c $$ARG2$$
+#command[check_disk]=/usr/lib/nagios/plugins/check_disk -w $$ARG1$$ -c $$ARG2$$ -p $$ARG3$$
+#command[check_procs]=/usr/lib/nagios/plugins/check_procs -w $$ARG1$$ -c $$ARG2$$ -s $$ARG3$$
 
 #
 # local configuration:
