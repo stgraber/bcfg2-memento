@@ -6,6 +6,12 @@
 
     <Path name='/etc/nagios3/conf.d/bcfg2_commands.cfg'/>
 
+    <Group name='apache2'>
+        <Path name='/var/lib/nagios3'/>
+        <Path name='/var/lib/nagios3/rw'/>
+        <Action name='nagios-adduser'/>
+    </Group>
+
     <Group name='nagios-nagiosgen'>
         <Path name='/etc/nagios/nagiosgen.cfg'/>
         <Path name='/etc/nagios3/conf.d/bcfg2_groups.cfg'/>
