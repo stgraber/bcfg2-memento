@@ -1,5 +1,7 @@
 <Bundle name='nagios' version='2.0'>
     <Package name='nagios3'/>
+    <Package name='nagios-nrpe-plugin'/>
+    <Package name='snmp-mibs-downloader'/>
     <Service name='nagios3'/>
 
     <Path name='/etc/nagios3/conf.d/bcfg2_commands.cfg'/>
