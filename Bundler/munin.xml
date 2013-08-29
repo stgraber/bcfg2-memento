@@ -1,10 +1,7 @@
 <Bundle name='munin' version='2.0'>
     <Path name='/etc/munin/munin.conf'/>
     <Path name="/etc/munin/apache.conf"/>
-
     <Path name="/etc/apache2/conf.d/munin"/>
 
     <Package name='munin'/>
-
-    <Service name="apache2"/>
 </Bundle>

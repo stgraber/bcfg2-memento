@@ -57,7 +57,7 @@
         <Path name='/etc/munin/plugins/vmstat'/>
     </Group>
 
-    <Group name='apache2'>
+    <Group name='apache'>
         <Package name='libwww-perl'/>
         <Path name='/etc/munin/plugin-conf.d/apache'/>
 
