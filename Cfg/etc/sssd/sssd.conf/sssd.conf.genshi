@@ -60,6 +60,7 @@ ldap_id_mapping = true
 ldap_user_gecos = displayName
 ldap_force_upper_case_realm = true
 ldap_user_ssh_public_key = sshPublicKey
+ldap_referrals = false
 
 ldap_user_search_base = ${conf.ldap_user_search_base}
 ldap_group_search_base = ${conf.ldap_group_search_base}
