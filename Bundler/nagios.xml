@@ -6,6 +6,9 @@
 
     <Path name='/etc/nagios3/conf.d/bcfg2_commands.cfg'/>
 
+    <Path name='/etc/nagios3/cgi.cfg'/>
+    <Path name='/etc/nagios3/nagios.cfg'/>
+
     <Group name='apache'>
         <Path name='/var/lib/nagios3'/>
         <Path name='/var/lib/nagios3/rw'/>
