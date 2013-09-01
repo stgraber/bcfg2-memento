@@ -1,0 +1,14 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+
+# Please don't edit this file directly, instead create a site/domain
+# specific override such as interfaces.G50_my-domain
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
