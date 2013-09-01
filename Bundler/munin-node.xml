@@ -1,4 +1,4 @@
-<Bundle name='munin-node' version='2.0'>
+<Bundle name='munin-node' version='2.0' xmlns:py="http://genshi.edgewall.org/">
     <Path name='/etc/munin/munin-node.conf'/>
     <Path name='/etc/cron.d/munin-node'/>
 
@@ -8,53 +8,35 @@
 
     <!-- Common plugins -->
     <Path name='/etc/munin/plugins/'/>
+    <Path name='/etc/munin/plugins/df'/>
+    <Path name='/etc/munin/plugins/df_inode'/>
+    <Path name='/etc/munin/plugins/diskstats'/>
+    <Path name='/etc/munin/plugins/forks'/>
+    <Path name='/etc/munin/plugins/fw_packets'/>
+    <py:for each='interface in metadata.Probes["hardware"].json["interfaces"]'>
+        <Path name='/etc/munin/plugins/if_${interface}'/>
+        <Path name='/etc/munin/plugins/if_err_${interface}'/>
+    </py:for>
+    <Path name='/etc/munin/plugins/iostat'/>
+    <Path name='/etc/munin/plugins/iostat_ios'/>
+    <Path name='/etc/munin/plugins/netstat'/>
+    <Path name='/etc/munin/plugins/open_files'/>
+    <Path name='/etc/munin/plugins/open_inodes'/>
+    <Path name='/etc/munin/plugins/proc_pri'/>
     <Path name='/etc/munin/plugins/processes'/>
+    <Path name='/etc/munin/plugins/threads'/>
+    <Path name='/etc/munin/plugins/vmstat'/>
 
     <!-- Group plugins -->
     <Group name='host'>
         <Path name='/etc/munin/plugins/cpu'/>
-        <Path name='/etc/munin/plugins/df'/>
-        <Path name='/etc/munin/plugins/df_inode'/>
-        <Path name='/etc/munin/plugins/diskstats'/>
         <Path name='/etc/munin/plugins/entropy'/>
-        <Path name='/etc/munin/plugins/forks'/>
-        <Path name='/etc/munin/plugins/fw_packets'/>
-        <Path name='/etc/munin/plugins/if_eth0'/>
-        <Path name='/etc/munin/plugins/if_err_eth0'/>
-        <Path name='/etc/munin/plugins/if_eth1'/>
-        <Path name='/etc/munin/plugins/if_err_eth1'/>
         <Path name='/etc/munin/plugins/interrupts'/>
-        <Path name='/etc/munin/plugins/iostat'/>
-        <Path name='/etc/munin/plugins/iostat_ios'/>
         <Path name='/etc/munin/plugins/irqstats'/>
         <Path name='/etc/munin/plugins/load'/>
         <Path name='/etc/munin/plugins/memory'/>
-        <Path name='/etc/munin/plugins/netstat'/>
-        <Path name='/etc/munin/plugins/open_files'/>
-        <Path name='/etc/munin/plugins/open_inodes'/>
-        <Path name='/etc/munin/plugins/proc_pri'/>
         <Path name='/etc/munin/plugins/swap'/>
-        <Path name='/etc/munin/plugins/threads'/>
         <Path name='/etc/munin/plugins/uptime'/>
-        <Path name='/etc/munin/plugins/vmstat'/>
-    </Group>
-
-    <Group name='lxc-ve'>
-        <Path name='/etc/munin/plugins/df'/>
-        <Path name='/etc/munin/plugins/df_inode'/>
-        <Path name='/etc/munin/plugins/diskstats'/>
-        <Path name='/etc/munin/plugins/forks'/>
-        <Path name='/etc/munin/plugins/fw_packets'/>
-        <Path name='/etc/munin/plugins/if_eth0'/>
-        <Path name='/etc/munin/plugins/if_err_eth0'/>
-        <Path name='/etc/munin/plugins/iostat'/>
-        <Path name='/etc/munin/plugins/iostat_ios'/>
-        <Path name='/etc/munin/plugins/netstat'/>
-        <Path name='/etc/munin/plugins/open_files'/>
-        <Path name='/etc/munin/plugins/open_inodes'/>
-        <Path name='/etc/munin/plugins/proc_pri'/>
-        <Path name='/etc/munin/plugins/threads'/>
-        <Path name='/etc/munin/plugins/vmstat'/>
     </Group>
 
     <Group name='apache'>
