@@ -27,21 +27,21 @@ cache_mem ${conf.cache_memory}
 cache_dir ufs ${conf.cache_fs_path} ${conf.cache_fs_size} 32 256
 maximum_object_size ${conf.max_object_size}
 
-# ACLs
-acl QUERY urlpath_regex cgi-bin \?
-acl all src 0.0.0.0/0
-cache deny QUERY
-
-# Advance configuration
-hierarchy_stoplist cgi-bin ?
+# Include local config
+include /etc/squid3/squid.conf.d/*.conf
 
 # Port and mode configuration
-always_direct allow all
+{% if "squid-http" in metadata.groups or "squid-tproxy" in metadata.groups %}\
 http_access allow all
+{% end %}\
+{% if "squid-http" in metadata.groups %}\
 http_port ${conf.http_port}
-
+{% end %}\
+{% if "squid-tproxy" in metadata.groups %}\
+http_port ${conf.tproxy_port} tproxy
+{% end %}\
 {% if "squid-htcp" in metadata.groups %}\
 htcp_access allow all
 htcp_clr_access allow all
-htcp_port 4827
+htcp_port ${conf.htcp_port}
 {% end %}\
