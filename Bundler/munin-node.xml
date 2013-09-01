@@ -7,7 +7,7 @@
     <Service name='munin-node'/>
 
     <!-- Common plugins -->
-    <Path name='/etc/munin/plugins/'/>
+    <Path name='/etc/munin/plugins'/>
     <Path name='/etc/munin/plugins/df'/>
     <Path name='/etc/munin/plugins/df_inode'/>
     <Path name='/etc/munin/plugins/diskstats'/>
