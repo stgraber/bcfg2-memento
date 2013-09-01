@@ -27,7 +27,8 @@ attributes = {}
 # Return the list of network interfaces
 attributes['interfaces'] = []
 for interface in os.listdir("/sys/class/net/"):
-    attributes['interfaces'].append(interface)
+    if os.path.isdir(os.path.join("/sys/class/net/", interface)):
+        attributes['interfaces'].append(interface)
 
 # Detect containers vs host
 process = subprocess.Popen(["running-in-container"], stdout=subprocess.PIPE,
