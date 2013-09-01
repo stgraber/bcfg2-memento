@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/python3
 # Bcfg2 hardware probe
 # Written by Stephane Graber <stgraber@ubuntu.com>
 
@@ -16,79 +16,76 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import json
+import os
+import subprocess
+import sys
+
+# Attributes dictionary
+attributes = {}
+
+# Return the list of network interfaces
+attributes['interfaces'] = []
+for interface in os.listdir("/sys/class/net/"):
+    attributes['interfaces'].append(interface)
+
 # Detect containers vs host
-CONTAINER=$(running-in-container)
-if [ -n "$CONTAINER" ]; then
-    echo "group:container"
-    echo "group:$CONTAINER-ve"
+process = subprocess.Popen(["running-in-container"], stdout=subprocess.PIPE,
+                           universal_newlines=True)
+
+if process.wait() == 0:
+    print("group:container")
+    print("group:%s-ve" % process.stdout.read().strip())
 
     # The next tests are for hosts, so exit now
-    exit 0
-else
-    echo "group:host"
-fi
+    print(json.dumps(attributes))
+    sys.exit(0)
+else:
+    print("group:host")
 
 # Export some product information
-if [ -d "/sys/class/dmi/id" ]; then
-    VENDOR=$(cat /sys/class/dmi/id/chassis_vendor | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g')
-    MODEL=$(cat /sys/class/dmi/id/product_name | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g')
-fi
-echo "group:hw-vendor-${VENDOR:-unknown}"
-echo "group:hw-model-${MODEL:-unknown}"
+vendor = "unknown"
+model = "unknown"
+if os.path.exists("/sys/class/dmi/id"):
+
+    with open("/sys/class/dmi/id/chassis_vendor", "r") as fd:
+        vendor = "".join(filter(str.isalnum, fd.read())).lower()
+
+    with open("/sys/class/dmi/id/product_name", "r") as fd:
+        model = "".join(filter(str.isalnum, fd.read())).lower()
+
+print("group:hw-vendor-%s" % vendor)
+print("group:hw-model-%s" % model)
 
 # Hardware monitoring
 ## HP Advanced Server Management
-if [ "$VENDOR" = "hp" ]; then
-
-    # Space delimited list of hpasm excluded systems
-    HPEXCLUDELIST="proliantdl165g5p"
-    HPEXCLUDED="no"
-
-    for i in $HPEXCLUDELIST; do
-        if [ "$i" = "$MODEL" ]; then
-            HPEXCLUDED="yes"
-        fi
-    done
-
-    if [ "$HPEXCLUDED" = "no" ] && \
-       echo $MODEL | grep -q "proliant"; then
-        echo "group:hpasm"
-    fi
-fi
+if vendor == "hp":
+    hp_exclude_list = ["proliantdl165g5p"]
+    if model not in hp_exclude_list and "prolian" in model:
+        print("group:hpasm")
 
 ## Dell OMSA
-if [ "$VENDOR" = "dellinc" ]; then
+if vendor == "dellinc":
+    dell_exclude_list = []
 
-    # Space delimited list of hpasm excluded systems
-    DELLEXCLUDELIST=""
-    DELLEXCLUDED="no"
-
-    for i in $DELLEXCLUDELIST; do
-        if [ "$i" = "$MODEL" ]; then
-            DELLEXCLUDED="yes"
-        fi
-    done
-
-    if [ "$DELLEXCLUDED" = "no" ] && \
-       echo $MODEL | grep -q "poweredge"; then
-        echo "group:dellomsa"
-    fi
-fi
+    if model not in dell_exclude_list and "poweredge" in model:
+        print("group:dellomsa")
 
 # Detect NIC bonding
-if [ -e /sys/class/net/bonding_masters ] && \
-   [ "$(cat /sys/class/net/bonding_masters | wc -l)" -gt 0 ]; then
-    echo "group:bonding"
-fi
+if os.path.exists("/sys/class/net/bonding_masters"):
+    with open("/sys/class/net/bonding_masters", "r") as fd:
+        if fd.read().strip():
+            print("group:bonding")
 
 # Detect software RAID
-if [ -f "/proc/mdstat" ] && grep -q "blocks" /proc/mdstat; then
-    echo "group:md-raid"
-fi
+if os.path.exists("/proc/mdstat"):
+    with open("/proc/mdstat", "r") as fd:
+        if "blocks" in fd.read():
+            print("group:md-raid")
 
 # Detect HP SmartArray controlers
-if [ -d "/sys/module/hpsa" ]; then
-    echo "group:hpsa"
-fi
+if os.path.exists("/sys/module/hpsa"):
+    print("group:hpsa")
 
-exit 0
+print(json.dumps(attributes))
+sys.exit(0)
