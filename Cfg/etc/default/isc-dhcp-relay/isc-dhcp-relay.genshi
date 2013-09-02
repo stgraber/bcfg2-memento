@@ -1,0 +1,45 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "networking", "isc-dhcp-relay")
+
+    # Parse some lists
+    if conf['interfaces'] == "none":
+        conf['interfaces'] = ""
+    elif isinstance(conf['interfaces'], list):
+        conf['interfaces'] = " ".join(conf['interfaces'])
+
+    if conf['options'] == "none":
+        conf['options'] = ""
+    elif isinstance(conf['options'], list):
+        conf['options'] = " ".join(conf['options'])
+
+    if conf['servers'] == "none":
+        conf['servers'] = ""
+    elif isinstance(conf['servers'], list):
+        conf['servers'] = " ".join(conf['servers'])
+%}\
+
+# Defaults for isc-dhcp-relay initscript
+# sourced by /etc/init.d/isc-dhcp-relay
+# installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# What servers should the DHCP relay forward requests to?
+SERVERS="${conf.servers}"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="${conf.interfaces}"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS="${conf.options}"
