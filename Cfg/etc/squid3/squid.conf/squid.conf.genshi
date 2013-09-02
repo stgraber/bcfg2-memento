@@ -24,7 +24,9 @@ coredump_dir /var/spool/squid3
 
 # Caching
 cache_mem ${conf.cache_memory}
+{% if "squid-nocache" not in metadata.groups %}\
 cache_dir ufs ${conf.cache_fs_path} ${conf.cache_fs_size} 32 256
+{% end %}\
 maximum_object_size ${conf.max_object_size}
 
 # Include local config
