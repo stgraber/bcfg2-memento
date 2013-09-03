@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# This file is managed by Bcfg2. Any local change will be lost.
+
+# Please don't edit this file directly, instead create a site/domain
+# specific override such as firewall.G50_my-domain

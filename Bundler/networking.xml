@@ -34,7 +34,7 @@
         <Path name='/etc/network/if-up.d/firewall'/>
         <Path name='/etc/init/firewall.conf'/>
         <Path name='/etc/firewall'/>
-        <Path name='/etc/firewall/firewall'/>
+        <Path name='/etc/firewall.d'/>
     </Group>
 
     <Group name='networking-interfaces'>

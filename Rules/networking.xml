@@ -3,16 +3,16 @@
             command="resolvconf -u" status="check"/>
 
     <Action timing="post" name="networking-firewall" when="modified"
-            command="/etc/firewall/firewall" status="check"/>
+            command="/etc/firewall" status="check"/>
 
-    <Path name="/etc/firewall" type="directory" mode="755" owner="root"
+    <Path name="/etc/firewall.d" type="directory" mode="755" owner="root"
           group="root" prune="true"/>
 
     <Path name="/etc/network/interfaces.d" type="directory" mode="755"
           owner="root" group="root" prune="true"/>
 
     <Path name="/etc/network/if-up.d/firewall" type="symlink" owner="root"
-          group="root" to="/etc/firewall/firewall"/>
+          group="root" to="/etc/firewall"/>
 
     <Path name="/etc/resolvconf/resolv.conf.d/original" type="nonexistent"/>
     <Path name="/etc/resolvconf/resolv.conf.d/tail" type="nonexistent"/>
