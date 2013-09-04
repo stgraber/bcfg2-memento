@@ -5,12 +5,14 @@
     <Path name='/etc/nagios/nrpe.cfg'/>
     <Path name='/etc/nagios/nrpe.d'/>
     <Path name='/etc/nagios/nrpe.d/nagios-nrpe.cfg'/>
+    <Path name='/etc/logaricheck/logaricheck.conf'/>
 
     <Path name='/etc/sudoers.d/nrpe'/>
 
     <Package name='nagios-nrpe-server'/>
     <Package name='nagios-plugins-basic'/>
     <Package name='nagios-plugins-stgraber.net'/>
+    <Package name='logaricheck'/>
 
     <Service name='nagios-nrpe-server'/>
 

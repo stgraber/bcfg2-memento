@@ -25,9 +25,6 @@
     <Group name="freeradius">
         <Bundle name="freeradius"/>
     </Group>
-    <Group name="logaricheck">
-        <Bundle name="logaricheck"/>
-    </Group>
     <Group name="lxc">
         <Bundle name="lxc"/>
     </Group>
