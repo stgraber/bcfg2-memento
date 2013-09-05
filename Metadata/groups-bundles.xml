@@ -79,4 +79,7 @@
     <Group name="unifi">
         <Bundle name="unifi"/>
     </Group>
+    <Group name="xbmc">
+        <Bundle name="xbmc"/>
+    </Group>
 </Groups>
