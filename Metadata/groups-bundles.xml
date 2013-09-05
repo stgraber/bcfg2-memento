@@ -73,6 +73,9 @@
     <Group name="tftpd-hpa">
         <Bundle name="tftpd-hpa"/>
     </Group>
+    <Group name="tor">
+        <Bundle name="tor"/>
+    </Group>
     <Group name="unbound">
         <Bundle name="unbound"/>
     </Group>

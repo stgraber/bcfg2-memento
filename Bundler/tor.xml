@@ -1,0 +1,7 @@
+<Bundle name='tor' version='2.0'>
+    <Path name='/etc/tor/torrc'/>
+
+    <Package name='tor'/>
+
+    <Service name='tor'/>
+</Bundle>

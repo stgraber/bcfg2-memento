@@ -1,0 +1,27 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "tor", "torrc")
+%}\
+
+VirtualAddrNetwork ${conf.virtual_addr_network}
+AutomapHostsOnResolve 1
+{% if conf.socks_port != "none" %}\
+SOCKSPort ${conf.socks_port}
+SOCKSListenAddress 0.0.0.0
+{% end %}\
+{% if conf.dns_port != "none" %}\
+DNSPort ${conf.dns_port}
+DNSListenAddress 0.0.0.0
+{% end %}\
+{% if conf.trans_port != "none" %}\
+TransPort ${conf.trans_port}
+TransListenAddress 0.0.0.0
+{% end %}\
