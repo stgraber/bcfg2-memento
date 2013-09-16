@@ -12,9 +12,14 @@
 
     # Parse the probe result
     distro = probes.get_probe_as_dict(metadata, "distro")
+
+    if "xbmc-unstable" in metadata.groups:
+        version = "unstable"
+    else:
+        version = "ppa"
 %}\
 
-deb http://ppa.launchpad.net/team-xbmc/ppa/ubuntu ${distro.codename} main
+deb http://ppa.launchpad.net/team-xbmc/${version}/ubuntu ${distro.codename} main
 {% if conf.sources == "true" %}\
-deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu ${distro.codename} main
+deb-src http://ppa.launchpad.net/team-xbmc/${version}/ubuntu ${distro.codename} main
 {% end %}\
