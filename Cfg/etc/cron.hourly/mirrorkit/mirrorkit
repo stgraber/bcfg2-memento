@@ -1,6 +1,6 @@
 #!/bin/sh
 # This file is managed by Bcfg2. Any local change will be lost.
 
-if ! pgrep mirrorkit >/dev/null 2>&1; then
+if ! pgrep debmirror >/dev/null 2>&1; then
     mirrorkit
 fi
