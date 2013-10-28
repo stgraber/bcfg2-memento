@@ -22,9 +22,10 @@
         mirror = config.get_config_section(repo, metadata, "mirrorkit",
                                            mirror_name)
         mirror['name'] = mirror_name
-	mirror['sub_components'] = mirror['sub-components']
+        mirror['sub_components'] = mirror['sub-components']
 
-	for key in ("architectures", "pockets", "components", "sub_components"):
+        for key in ("architectures", "pockets", "components",
+                    "sub_components"):
             if isinstance(mirror[key], list):
                 mirror[key] = ", ".join(mirror[key])
 
