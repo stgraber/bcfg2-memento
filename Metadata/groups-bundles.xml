@@ -28,6 +28,9 @@
     <Group name="lxc">
         <Bundle name="lxc"/>
     </Group>
+    <Group name="mirrorkit">
+        <Bundle name="mirrorkit"/>
+    </Group>
     <Group name="munin-node">
         <Bundle name="munin-node"/>
     </Group>

@@ -1,0 +1,13 @@
+<Bundle name='mirrorkit' version='2.0'>
+    <Package name='mirrorkit'/>
+    <Path name='/etc/mirrorkit.conf'/>
+    <Path name='/etc/cron.hourly/mirrorkit'/>
+
+    <Group name='apache'>
+        <Path name='/etc/apache2/mods-enabled/proxy.conf'/>
+        <Path name='/etc/apache2/mods-enabled/proxy_http.load'/>
+        <Path name='/etc/apache2/mods-enabled/proxy.load'/>
+        <Path name='/etc/apache2/mods-enabled/rewrite.load'/>
+        <Path name='/etc/apache2/mods-enabled/version.load'/>
+    </Group>
+</Bundle>

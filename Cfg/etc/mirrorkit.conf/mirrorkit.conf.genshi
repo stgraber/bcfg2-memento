@@ -1,0 +1,67 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "mirrorkit",
+                                     "mirrorkit.conf")
+
+    if not conf['mirrors']:
+        conf['mirrors'] = []
+    if not isinstance(conf['mirrors'], list):
+        conf['mirrors'] = [conf['mirrors']]
+
+    mirror_names = ", ".join(conf['mirrors'])
+    mirrors = []
+    for mirror_name in conf['mirrors']:
+        mirror = config.get_config_section(repo, metadata, "mirrorkit",
+                                           mirror_name)
+        mirror['name'] = mirror_name
+	mirror['sub_components'] = mirror['sub-components']
+
+	for key in ("architectures", "pockets", "components", "sub_components"):
+            if isinstance(mirror[key], list):
+                mirror[key] = ", ".join(mirror[key])
+
+        mirrors.append(mirror)
+%}\
+
+[global]
+
+# Destination path for the mirror (mandatory)
+publish_path = /var/lib/mirrorkit/www/
+
+# Destination path for the html log files (optional)
+log_path = /var/lib/mirrorkit/www/logs/
+
+# Path of the html template for the logs (mandatory if log_path is set)
+log_template_path = /usr/share/mirrorkit/log.html.tpl
+
+# Path to the mirror relative to the http server root (optional, default to /)
+http_base = /
+
+# Path to the auto-generated apache configuration file (optional)
+{% if "ubuntu-12.04" in metadata.groups %}\
+apache_conf_path = /etc/apache2/conf.d/mirrorkit.conf
+{% end %}\
+{% if "ubuntu-12.04" not in metadata.groups %}\
+apache_conf_path = /etc/apache2/conf-enabled/mirrorkit.conf
+{% end %}\
+
+# List of mirrors that are enabled (optional, off if empty)
+mirrors = ${mirror_names}
+{% for mirror in mirrors %}\
+
+[${mirror.name}]
+source = ${mirror.source}
+pockets = ${mirror.pockets}
+components = ${mirror.components}
+sub-components = ${mirror.sub_components}
+architectures = ${mirror.architectures}
+sources = ${mirror.sources}
+{% end %}\
