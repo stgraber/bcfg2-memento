@@ -1,5 +1,5 @@
-<Bundle name='backuppc' version='2.0' xmlns:py="http://genshi.edgewall.org/">
-    <?python
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
     # Import the bcfg2_repo module
     import os
     import sys
@@ -19,17 +19,9 @@
     for host_name in conf['hosts']:
         host = config.get_config_section(repo, metadata, "backuppc",
                                          "host_%s" % host_name)
-        hosts.append(host['fqdn'])
-    ?>
-    <Package name='backuppc'/>
-    <Service name='backuppc'/>
-
-    <Path name='/etc/apache2/conf.d/backuppc.conf'/>
-    <Path name='/etc/backuppc/apache.conf'/>
-    <Path name='/etc/backuppc/config.pl'/>
-    <Path name='/etc/backuppc/hosts'/>
-
-    <py:for each='host in hosts'>
-        <Path name='/etc/backuppc/${host}.pl' altsrc='/etc/backuppc/host.pl'/>
-    </py:for>
-</Bundle>
+        hosts.append(host)
+%}\
+host        dhcp    user    moreUsers     # <--- do not edit this line
+{% for host in hosts %}\
+${host.fqdn} 0 ${host.contact}
+{% end %}\

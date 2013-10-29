@@ -1,0 +1,61 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import socket
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "backuppc", "config.pl")
+
+    if not conf['hosts']:
+        conf['hosts'] = []
+    if not isinstance(conf['hosts'], list):
+        conf['hosts'] = [conf['hosts']]
+
+    fqdn = os.path.basename(name).split(".pl")[0]
+
+    try:
+        addr = socket.getaddrinfo(fqdn, None)[0][4][0]
+        if ":" in addr:
+            ping = "/bin/ping6"
+        else:
+            ping = "/bin/ping"
+    except:
+        ping = "/bin/ping"
+
+    host = None
+    for host_name in conf['hosts']:
+        host = config.get_config_section(repo, metadata, "backuppc",
+                                         "host_%s" % host_name)
+        if host['fqdn'] == fqdn:
+            break
+
+    user = "backuppc"
+    password = ""
+    shares = []
+
+    if host['type'] == "auto":
+        key = "H_%s.json" % fqdn
+
+        if key in metadata.Properties:
+            prop = metadata.Properties[key].json
+            if prop:
+                password = prop.get('backuppc_password', '')
+                shares = [share.encode('utf-8')
+                          for share in prop.get('backuppc_shares', '')]
+    else:
+        user = host['user']
+        password = host['password']
+        shares = host['shares']
+
+    shares = "%s" % shares
+%}\
+$$Conf{XferMethod} = 'rsyncd';
+$$Conf{RsyncdUserName} = '${user}';
+$$Conf{RsyncdPasswd} = '${password}';
+$$Conf{RsyncShareName} = ${shares};
+$$Conf{PingCmd} = '${ping} -c 1 $$host';

@@ -1,0 +1,106 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    import json
+    import socket
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "rsync", "rsyncd.conf")
+
+    for key in ("allowed_hosts", "shares"):
+        if not conf[key]:
+            conf[key] = []
+        if not isinstance(conf[key], list):
+            conf[key] = [conf[key]]
+
+    allowed_hosts = "::1"
+    for entry in conf['allowed_hosts']:
+        try:
+            addr = socket.getaddrinfo(entry, None)[0][4][0]
+            allowed_hosts += " %s" % addr
+        except:
+            allowed_hosts += " %s" % entry
+
+    shares = []
+    backuppc_shares = []
+    for share_name in conf['shares']:
+        if share_name == "auto:lxc":
+            share = config.get_config_section(repo, metadata, "rsync",
+                                              "share_%s" %
+                                              share_name.replace(":", "_"))
+            if not share['exclude_entries']:
+                share['exclude_entries'] = []
+            if not isinstance(share['exclude_entries'], list):
+                share['exclude_entries'] = [share['exclude_entries']]
+
+            if metadata.Probes["lxc"].json:
+                for container in metadata.Probes["lxc"].json:
+                    if container['name'] in share['exclude_entries']:
+                        continue
+                    container['include'] = share['include']
+                    container['exclude'] = share['exclude']
+                    shares.append(container)
+
+                    if share['backup'] == "true":
+                        backuppc_shares.append(share['name'])
+            continue
+
+        share = config.get_config_section(repo, metadata, "rsync",
+                                          "share_%s" % share_name)
+
+        share['name'] = share_name
+        shares.append(share)
+
+        if share['backup'] == "true":
+            backuppc_shares.append(share['name'])
+
+    # BackupPC config
+    if "rsync-server-backuppc" in metadata.groups:
+        key = "H_%s.json" % metadata.hostname
+        if key in metadata.Properties and metadata.Properties[key].json:
+            metadata.Properties[key].json['backuppc_shares'] = backuppc_shares
+            metadata.Properties[key].write()
+        else:
+            with open(os.path.join(repo, "Properties", key), "w+") as fd:
+                fd.write(json.dumps({'backuppc_shares': backuppc_shares}))
+
+    conf = config.get_config_section(repo, metadata, "rsync", "rsyncd.secrets")
+
+    if isinstance(conf['users'], list):
+        allowed_users = [user.split(":")[0] for user in conf['users']]
+    else:
+        allowed_users = [conf['users']]
+
+    if "rsync-server-backuppc" in metadata.groups:
+        allowed_users.append("backuppc")
+
+    allowed_users = " ".join(allowed_users)
+%}\
+uid = root
+gid = root
+use chroot = no
+max connections = 5
+syslog facility = local5
+log file = /var/log/rsyncd.log
+read only = yes
+ignore errors = true
+ignore nonreadable = true
+list = false
+strict modes = true
+hosts deny = *
+hosts allow = ${allowed_hosts}
+auth users = ${allowed_users}
+secrets file = /etc/rsyncd.secrets
+{% for share in shares %}\
+
+[${share.name}]
+path = ${share.path}
+exclude = ${share.exclude}
+include = ${share.include}
+{% end %}\

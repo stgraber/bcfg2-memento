@@ -1,4 +1,5 @@
 SSHbase
+Properties
 Probes/probed.xml
 Packages/cache/*
 NagiosGen/*-host.cfg
