@@ -48,7 +48,7 @@
                     shares.append(container)
 
                     if share['backup'] == "true":
-                        backuppc_shares.append(share['name'])
+                        backuppc_shares.append(container['name'])
             continue
 
         share = config.get_config_section(repo, metadata, "rsync",
@@ -72,7 +72,9 @@
 
     conf = config.get_config_section(repo, metadata, "rsync", "rsyncd.secrets")
 
-    if isinstance(conf['users'], list):
+    if not conf['users']:
+        allowed_users = []
+    elif isinstance(conf['users'], list):
         allowed_users = [user.split(":")[0] for user in conf['users']]
     else:
         allowed_users = [conf['users']]
