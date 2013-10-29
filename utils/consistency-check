@@ -76,8 +76,20 @@ for entry in glob.glob("*/*.xml"):
 bundles_paths = set()
 
 for entry in glob.glob("Bundler/*.xml"):
-    bundles_paths.update(set(["Cfg/%s" % "".join(path.get("name")[1:])
-                         for path in ElementTree.parse(entry).iter("Path")]))
+    entries = set()
+    for path in ElementTree.parse(entry).iter("Path"):
+        entry = None
+        if path.get("altsrc"):
+            entry = "Cfg/%s" % "".join(path.get("altsrc")[1:])
+        else:
+            entry = "Cfg/%s" % "".join(path.get("name")[1:])
+
+        if "${" in entry:
+            continue
+
+        entries.add(entry)
+
+    bundles_paths.update(entries)
 
 # Get a list of all Path entries from Rules
 rules_paths = set()
