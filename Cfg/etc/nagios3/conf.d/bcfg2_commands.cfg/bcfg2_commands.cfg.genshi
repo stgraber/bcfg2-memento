@@ -14,12 +14,12 @@
 # Local tests
 define command {
     command_name    check_http_answer
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized'
+    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized,HTTP/1.1 403 Forbidden'
 }
 
 define command {
     command_name    check_http_answer_port
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized' -p $$ARG1$$
+    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized,HTTP/1.1 403 Forbidden' -p $$ARG1$$
 }
 
 define command {
@@ -39,12 +39,12 @@ define command {
 
 define command {
     command_name    check_https_answer
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized'
+    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized,HTTP/1.1 403 Forbidden'
 }
 
 define command {
     command_name    check_https_answer_port
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized' -p $$ARG1$$
+    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e 'HTTP/1.1 404 Not Found,HTTP/1.1 200 OK,HTTP/1.1 401 Authorization Required,HTTP/1.0 401 Unauthorized,HTTP/1.1 403 Forbidden' -p $$ARG1$$
 }
 
 define command {
