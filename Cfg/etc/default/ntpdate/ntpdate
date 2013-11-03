@@ -9,7 +9,7 @@ NTPDATE_USE_NTP_CONF=yes
 
 # List of NTP servers to use  (Separate multiple servers with spaces.)
 # Not used if NTPDATE_USE_NTP_CONF is yes.
-NTPSERVERS="ntp1.cmc.ec.gc.ca"
+NTPSERVERS="2001:470:0:2c8::2"
 
 # Additional options to pass to ntpdate
 NTPOPTIONS=""
