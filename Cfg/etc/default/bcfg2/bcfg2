@@ -1,11 +1,14 @@
 # This file is managed by Bcfg2. Any local change will be lost.
 
+# Wipe currently log
+> /var/log/bcfg2.log
+
 # Configuration options for bcfg2 client
 
 # BCFG2_OPTIONS:
 # Set the default options for Bcfg2 on startup
 #   Default: "-q"
-#BCFG2_OPTIONS="-q"
+BCFG2_OPTIONS="-q -o /var/log/bcfg2.log"
 
 # BCFG2_ENABLED:
 # Should Bcfg2 be run automatically by system scripts
