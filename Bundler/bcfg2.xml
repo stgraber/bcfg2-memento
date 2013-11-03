@@ -9,5 +9,6 @@
 
     <Group name='bcfg2-info'>
         <Path name='/etc/bcfg2.info'/>
+        <Action name='bcfg2-touch-info'/>
     </Group>
 </Bundle>

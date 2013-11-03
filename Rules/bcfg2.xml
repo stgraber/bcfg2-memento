@@ -1,0 +1,4 @@
+<Rules priority='0'>
+    <Action timing='post' name='bcfg2-touch-info'
+            command='touch /etc/bcfg2.info' when='always' status='check'/>
+</Rules>
