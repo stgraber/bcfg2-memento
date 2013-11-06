@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is managed by Bcfg2. Any local change will be lost. -->
+
+<Configuration>
+	<RepositoryList>
+		<Repository name="SoftHSM">
+			<Module>/usr/lib/softhsm/libsofthsm.so</Module>
+			<TokenLabel>OpenDNSSEC</TokenLabel>
+			<PIN>1234</PIN>
+			<SkipPublicKey/>
+		</Repository>
+	</RepositoryList>
+
+	<Common>
+		<Logging>
+			<!-- Command line verbosity will overwrite configure file -->
+			<Verbosity>3</Verbosity>
+			<Syslog><Facility>local0</Facility></Syslog>
+		</Logging>
+		
+		<PolicyFile>/etc/opendnssec/kasp.xml</PolicyFile>
+		<ZoneListFile>/etc/opendnssec/zonelist.xml</ZoneListFile>
+	</Common>
+
+	<Enforcer>
+		<Privileges>
+			<User>opendnssec</User>
+			<Group>opendnssec</Group>
+		</Privileges>
+
+		<WorkerThreads>4</WorkerThreads>
+		<Datastore><SQLite>/var/lib/opendnssec/kasp.db</SQLite></Datastore>
+		<Interval>PT3600S</Interval>
+		<!-- <ManualKeyGeneration/> -->
+		<!-- <RolloverNotification>P14D</RolloverNotification> -->
+		
+		<!-- the <DelegationSignerSubmitCommand> will get all current
+		     DNSKEYs (as a RRset) on standard input (with optional CKA_ID)
+		-->
+		<!-- <DelegationSignerSubmitCommand>/usr/sbin/simple-dnskey-mailer.sh</DelegationSignerSubmitCommand> -->
+	</Enforcer>
+
+	<Signer>
+		<Privileges>
+			<User>opendnssec</User>
+			<Group>opendnssec</Group>
+		</Privileges>
+
+		<WorkingDirectory>/var/lib/opendnssec/tmp</WorkingDirectory>
+		<WorkerThreads>4</WorkerThreads>
+		<SignerThreads>4</SignerThreads>
+
+		<Listener>
+			<Interface><Port>53</Port></Interface>
+		</Listener>
+
+		<!-- the <NotifyCommmand> will expand the following variables:
+
+		     %zone      the name of the zone that was signed
+		     %zonefile  the filename of the signed zone
+		-->
+<!--
+		<NotifyCommand>/usr/local/bin/my_nameserver_reload_command</NotifyCommand>
+-->
+<!--
+		<NotifyCommand>/usr/sbin/rndc reload %zone</NotifyCommand>
+-->
+	</Signer>
+</Configuration>

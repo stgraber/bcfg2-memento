@@ -1,4 +1,23 @@
 // This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "bind9",
+                                     "options")
+
+    if not conf['mirror_servers']:
+        conf['mirror_servers'] = []
+    if not isinstance(conf['mirror_servers'], list):
+        conf['mirror_servers'] = [conf['mirror_servers']]
+    mirror_address_list = "; ".join(conf['mirror_servers'])
+%}\
+
 
 options {
     directory "/var/cache/bind";
@@ -30,5 +49,21 @@ options {
     additional-from-cache no;
 
     tkey-gssapi-keytab "/var/lib/samba/private/dns.keytab";
+
+{% end %}\
+{% if conf.mirror_servers %}\
+    allow-transfer { key mirror; };
+    also-notify {${mirror_address_list};};
 {% end %}\
 };
+
+{% if conf.mirror_servers %}\
+{% for server in conf.mirror_servers %}\
+server ${server} { keys { mirror; }; };
+{% end %}\
+
+key "mirror" {
+    algorithm ${conf.mirror_key_type};
+    secret "${conf.mirror_key_secret}";
+};
+{% end %}\

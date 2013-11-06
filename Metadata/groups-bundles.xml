@@ -49,6 +49,9 @@
     <Group name="networking">
         <Bundle name="networking"/>
     </Group>
+    <Group name="opendnssec">
+        <Bundle name="opendnssec"/>
+    </Group>
     <Group name="postgresql">
         <Bundle name="postgresql"/>
     </Group>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is managed by Bcfg2. Any local change will be lost. -->
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "opendnssec",
+                                     "addns.xml")
+
+    if not conf['source_servers']:
+        conf['source_servers'] = []
+    if not isinstance(conf['source_servers'], list):
+        conf['source_servers'] = [conf['source_servers']]
+
+    if not conf['target_servers']:
+        conf['target_servers'] = []
+    if not isinstance(conf['target_servers'], list):
+        conf['target_servers'] = [conf['target_servers']]
+%}\
+
+<Adapter>
+	<DNS>
+		<TSIG>
+			<Name>mirror</Name>
+			<!-- http://www.iana.org/assignments/tsig-algorithm-names -->
+			<Algorithm>${conf.tsig_type}</Algorithm>
+			<!-- base64 encoded secret -->
+			<Secret>${conf.tsig_secret}</Secret>
+		</TSIG>
+
+{% if conf.source_servers %}\
+		<Inbound>
+			<!-- Address of host to request XFR from -->
+			<RequestTransfer>
+{% for server in conf.source_servers %}\
+				<Remote>
+					<Address>${server}</Address>
+					<Port>53</Port>
+					<Key>mirror</Key>
+				</Remote>
+{% end %}\
+			</RequestTransfer>
+
+			<!-- Allow NOTIFY messages from host -->
+			<AllowNotify>
+{% for server in conf.source_servers %}\
+				<Peer>
+					<Prefix>${server}</Prefix>
+				</Peer>
+{% end %}\
+			</AllowNotify> 
+		</Inbound>
+{% end %}\
+{% if conf.target_servers %}\
+		<Outbound>
+			<!-- Provide XFR to host -->
+			<ProvideTransfer>
+{% for server in conf.target_servers %}\
+				<Peer>
+					<Prefix>${server}</Prefix>
+					<Key>mirror</Key>
+				</Peer>
+{% end %}\
+			</ProvideTransfer>
+
+			<!-- Send NOTIFY messages to host -->
+			<Notify>
+{% for server in conf.target_servers %}\
+				<Remote>
+					<Address>${server}</Address>
+				</Remote>
+{% end %}\
+			</Notify>
+		</Outbound>
+{% end %}\
+	</DNS>
+</Adapter>

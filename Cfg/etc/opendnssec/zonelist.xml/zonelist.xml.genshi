@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is managed by Bcfg2. Any local change will be lost. -->
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "opendnssec",
+                                     "zonelist.xml")
+
+    if not conf['zones']:
+        conf['zones'] = []
+    if not isinstance(conf['zones'], list):
+        conf['zones'] = [conf['zones']]
+%}\
+
+<ZoneList>
+{% for zone in conf.zones %}\
+	<Zone name="${zone}">
+		<Policy>default</Policy>
+		<SignerConfiguration>/var/lib/opendnssec/signconf/${zone}.xml</SignerConfiguration>
+		<Adapters>
+			<Input>
+				<Adapter type="DNS">/etc/opendnssec/addns.xml</Adapter>
+			</Input>
+			<Output>
+				<Adapter type="DNS">/etc/opendnssec/addns.xml</Adapter>
+			</Output>
+		</Adapters>
+	</Zone>
+{% end %}\
+</ZoneList>

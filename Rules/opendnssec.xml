@@ -1,0 +1,9 @@
+<Rules priority="0">
+    <Service name="opendnssec-enforcer" status="ignore" type="deb"
+             restart="false" install="false"/>
+    <Service name="opendnssec-signer" status="ignore" type="deb"
+             restart="false" install="false"/>
+
+    <Action timing="post" name="opendnssec-update" when="modified"
+            command="ods-ksmutil update all" status="check"/>
+</Rules>

@@ -1,0 +1,15 @@
+<Bundle name='opendnssec' version='2.0'>
+    <Package name='opendnssec'/>
+    <Package name='softhsm'/>
+
+    <Service name='opendnssec-enforcer'/>
+    <Service name='opendnssec-signer'/>
+
+    <Path name='/etc/softhsm/softhsm.conf'/>
+
+    <Path name='/etc/opendnssec/addns.xml'/>
+    <Path name='/etc/opendnssec/conf.xml'/>
+    <Path name='/etc/opendnssec/zonelist.xml'/>
+
+    <Action name='opendnssec-update'/>
+</Bundle>
