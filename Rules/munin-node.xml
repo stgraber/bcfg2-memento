@@ -1,4 +1,4 @@
-<Rules priority='0' xmlns:py="http://genshi.edgewall.org/">
+<Rules priority='0'>
     <!-- Service -->
     <Service name="munin-node" status="on" type="upstart" restart="true"
              install="true"/>
@@ -31,18 +31,9 @@
     <Path type='symlink' name='/etc/munin/plugins/fw_packets'
           to='/usr/share/munin/plugins/fw_packets'/>
 
-    <!-- Code for bcfg2 1.4
-    <py:for each='interface in metadata.Probes["hardware"].json["interfaces"]'>
-        <Path type='symlink' name='/etc/munin/plugins/if_${interface}'
-              to='/usr/share/munin/plugins/if_'/>
-        <Path type='symlink' name='/etc/munin/plugins/if_err_${interface}'
-              to='/usr/share/munin/plugins/if_err_'/>
-    </py:for>
-    -->
-    <!-- Code for bcfg2 < 1.4 -->
-    <Path type='symlink' name='/etc/munin/plugins/if_[^_]*'
+    <Path type='symlink' name='/etc/munin/plugins/if_'
           to='/usr/share/munin/plugins/if_'/>
-    <Path type='symlink' name='/etc/munin/plugins/if_err_[^_]*'
+    <Path type='symlink' name='/etc/munin/plugins/if_err_'
           to='/usr/share/munin/plugins/if_err_'/>
 
     <Path type='symlink' name='/etc/munin/plugins/interrupts'

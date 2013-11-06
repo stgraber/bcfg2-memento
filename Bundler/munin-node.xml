@@ -14,8 +14,10 @@
     <Path name='/etc/munin/plugins/forks'/>
     <Path name='/etc/munin/plugins/fw_packets'/>
     <py:for each='interface in metadata.Probes["hardware"].json["interfaces"]'>
-        <Path name='/etc/munin/plugins/if_${interface}'/>
-        <Path name='/etc/munin/plugins/if_err_${interface}'/>
+        <Path name='/etc/munin/plugins/if_${interface}'
+              altsrc='/etc/munin/plugins/if_'/>
+        <Path name='/etc/munin/plugins/if_err_${interface}'
+              altsrc='/etc/munin/plugins/if_err_'/>
     </py:for>
     <Path name='/etc/munin/plugins/iostat'/>
     <Path name='/etc/munin/plugins/iostat_ios'/>
