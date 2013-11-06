@@ -49,6 +49,9 @@
     <Group name="networking">
         <Bundle name="networking"/>
     </Group>
+    <Group name="nsd">
+        <Bundle name="nsd"/>
+    </Group>
     <Group name="opendnssec">
         <Bundle name="opendnssec"/>
     </Group>

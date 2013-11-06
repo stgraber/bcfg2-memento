@@ -1,0 +1,63 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "nsd", "nsd.conf")
+
+    if not conf['zones']:
+        conf['zones'] = []
+    if not isinstance(conf['zones'], list):
+        conf['zones'] = [conf['zones']]
+
+    if not conf['keys']:
+        conf['keys'] = []
+    if not isinstance(conf['keys'], list):
+        conf['keys'] = [conf['keys']]
+
+
+    # Generate the lists
+    keys = []
+    for key_name in conf['keys']:
+        key = config.get_config_section(repo, metadata, "nsd",
+                                        "key_%s" % key_name)
+        key['key_name'] = key_name
+        keys.append(key)
+
+    zones = []
+    for zone_name in conf['zones']:
+        zone = config.get_config_section(repo, metadata, "nsd",
+                                         "zone_%s" % zone_name)
+        zone['zone_name'] = zone_name
+
+        if not zone['source']:
+            zone['source'] = []
+        if not isinstance(zone['source'], list):
+            zone['source'] = [zone['source']]
+
+        zones.append(zone)
+%}\
+
+server:
+    hide-version: yes
+    server-count: 3
+{% for key in keys %}\
+key:
+    name: ${key.key_name}
+    algorithm: ${key.algorithm}
+    secret: "${key.secret}"
+{% end %}\
+{% for zone in zones %}\
+zone:
+    name: "${zone.name}"
+    zonefile: "${zone.zone_name}.zone"
+{% for server in zone.source %}\
+    allow-notify: ${server} ${zone.key}
+    request-xfr: ${server} ${zone.key}
+{% end %}\
+{% end %}\
