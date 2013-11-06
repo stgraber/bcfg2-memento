@@ -84,9 +84,6 @@ for entry in glob.glob("Bundler/*.xml"):
         else:
             entry = "Cfg/%s" % "".join(path.get("name")[1:])
 
-        if "${" in entry:
-            continue
-
         entries.add(entry)
 
     bundles_paths.update(entries)
