@@ -898,7 +898,7 @@ $$Conf{BackupFilesExclude} = undef;
 # to just set $$Conf{WakeupSchedule} to a restricted schedule.
 #
 $$Conf{BlackoutBadPingLimit} = 3;
-$$Conf{BlackoutGoodCnt}      = 7;
+$$Conf{BlackoutGoodCnt}      = -1;
 
 #
 # One or more blackout periods can be specified.  If a client is
@@ -2292,7 +2292,7 @@ $$Conf{CgiCSSFile} = 'BackupPC_stnd.css';
 #
 # Whether the user is allowed to edit their per-PC config.
 #
-$$Conf{CgiUserConfigEditEnable} = 1;
+$$Conf{CgiUserConfigEditEnable} = 0;
 
 #
 # Which per-host config variables a non-admin user is allowed
