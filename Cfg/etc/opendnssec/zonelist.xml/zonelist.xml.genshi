@@ -16,13 +16,20 @@
         conf['zones'] = []
     if not isinstance(conf['zones'], list):
         conf['zones'] = [conf['zones']]
+
+    clean_zones = []
+    for entry in conf['zones']:
+        zone = {}
+        zone['name'] = entry
+        zone['filename'] = entry.replace("/", "_")
+        clean_zones.append(zone)
 %}\
 
 <ZoneList>
-{% for zone in conf.zones %}\
-	<Zone name="${zone}">
+{% for zone in clean_zones %}\
+	<Zone name="${zone.name}">
 		<Policy>default</Policy>
-		<SignerConfiguration>/var/lib/opendnssec/signconf/${zone}.xml</SignerConfiguration>
+		<SignerConfiguration>/var/lib/opendnssec/signconf/${zone.filename}.xml</SignerConfiguration>
 		<Adapters>
 			<Input>
 				<Adapter type="DNS">/etc/opendnssec/addns.xml</Adapter>
