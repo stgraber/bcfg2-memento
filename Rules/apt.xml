@@ -10,4 +10,7 @@
 
     <Action timing='post' name='apt-autoremove' when='always'
             command='apt-get autoremove --purge -y' status='check'/>
+
+    <Action timing='post' name='apt-autoremove' when='always'
+            command='apt-get clean' status='check'/>
 </Rules>

@@ -15,4 +15,8 @@
     <Group name='apt-autoremove'>
         <Action name='apt-autoremove'/>
     </Group>
+
+    <Group name='apt-clean'>
+        <Action name='apt-clean'/>
+    </Group>
 </Bundle>
