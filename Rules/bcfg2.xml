@@ -1,4 +1,22 @@
 <Rules priority='0'>
     <Action timing='post' name='bcfg2-touch-info'
             command='touch /etc/bcfg2.info' when='always' status='check'/>
+
+    <Path name='/etc/bcfg2.conf' type='permissions'
+          owner="root" group="root" mode='0600'/>
+    <Path name='/etc/bcfg2.ca' type='permissions'
+          owner="root" group="root" mode='0600'/>
+    <Path name='/etc/bcfg2.crt' type='permissions'
+          owner="root" group="root" mode='0600'/>
+    <Path name='/etc/bcfg2.key' type='permissions'
+          owner="root" group="root" mode='0600'/>
+
+    <Group name='bcfg2-server'>
+        <Path name='/etc/bcfg2-server.conf' type='permissions'
+              owner="root" group="root" mode='0600'/>
+        <Path name='/etc/bcfg2-server.crt' type='permissions'
+              owner="root" group="root" mode='0600'/>
+        <Path name='/etc/bcfg2-server.key' type='permissions'
+              owner="root" group="root" mode='0600'/>
+    </Group>
 </Rules>

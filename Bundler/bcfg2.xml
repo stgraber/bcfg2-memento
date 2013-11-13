@@ -6,6 +6,16 @@
     <Path name='/etc/bcfg2.netmap'/>
 
     <Path name='/etc/default/bcfg2'/>
+    <Path name='/etc/bcfg2.conf'/>
+    <Path name='/etc/bcfg2.ca'/>
+    <Path name='/etc/bcfg2.crt'/>
+    <Path name='/etc/bcfg2.key'/>
+
+    <Group name='bcfg2-server'>
+        <Path name='/etc/bcfg2-server.conf'/>
+        <Path name='/etc/bcfg2-server.crt'/>
+        <Path name='/etc/bcfg2-server.key'/>
+    </Group>
 
     <Group name='bcfg2-info'>
         <Path name='/etc/bcfg2.info'/>
