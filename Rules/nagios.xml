@@ -8,6 +8,11 @@
           group="nagios"/>
     <Path name="/var/lib/nagios3/rw" type="directory" mode="750" owner="nagios"
           group="nagios"/>
+    <Path name='/etc/nagios3/conf.d/extinfo_nagios2.cfg' type="nonexistent"/>
+    <Path name='/etc/nagios3/conf.d/hostgroups_nagios2.cfg'
+          type="nonexistent"/>
+    <Path name='/etc/nagios3/conf.d/localhost_nagios2.cfg' type="nonexistent"/>
+    <Path name='/etc/nagios3/conf.d/services_nagios2.cfg' type="nonexistent"/>
 
     <Action timing='pre' name='nagios-adduser' when='modified'
             command='adduser www-data nagios' status='check'/>
