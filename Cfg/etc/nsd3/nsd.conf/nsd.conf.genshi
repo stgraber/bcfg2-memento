@@ -20,6 +20,10 @@
     if not isinstance(conf['keys'], list):
         conf['keys'] = [conf['keys']]
 
+    if not conf['addresses']:
+        conf['addresses'] = []
+    if not isinstance(conf['addresses'], list):
+        conf['addresses'] = [conf['addresses']]
 
     # Generate the lists
     keys = []
@@ -46,6 +50,9 @@
 server:
     hide-version: yes
     server-count: 3
+{% for address in conf.addresses %}\
+    ip-address: ${address}
+{% end %}\
 {% for key in keys %}\
 key:
     name: ${key.key_name}
