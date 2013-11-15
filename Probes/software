@@ -23,7 +23,7 @@ append_flag() {
 }
 
 if [ -x "$(which sshd)" ]; then
-    if grep -q AuthorizedKeysCommand $(which sshd); then
+    if grep -q AuthorizedKeysCommandUser $(which sshd); then
         append_flag "ssh-supports-authorizedkeyscommand=true"
     else
         append_flag "ssh-supports-authorizedkeyscommand=false"

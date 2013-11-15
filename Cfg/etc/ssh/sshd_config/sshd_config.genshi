@@ -121,4 +121,5 @@ UsePAM yes
 
 # Use sssd to provide a list of valid ssh keys for the user
 AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys
+AuthorizedKeysCommandUser nobody
 {% end %}\
