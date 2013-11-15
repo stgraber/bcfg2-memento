@@ -31,16 +31,24 @@ setsid 1
 user root
 group root
 
-# Regexps for files to ignore
+# This is the timeout for the whole transaction.
+# Units are in sec. Default is 15 min
+#
+# global_timeout 900
 
-ignore_file ~$
-#ignore_file [#~]$  # FIX doesn't work. '#' starts a comment
-ignore_file DEADJOE$
-ignore_file \.bak$
-ignore_file %$
-ignore_file \.dpkg-(tmp|new|old|dist)$
-ignore_file \.rpm(save|new)$
-ignore_file \.pod$
+# This is the timeout for each plugin.
+# Units are in sec. Default is 1 min
+#
+# timeout 60
+
+# Regexps for files to ignore
+ignore_file [\#~]$$
+ignore_file DEADJOE$$
+ignore_file \.bak$$
+ignore_file %$$
+ignore_file \.dpkg-(tmp|new|old|dist)$$
+ignore_file \.rpm(save|new)$$
+ignore_file \.pod$$
 
 # Set this if the client doesn't report the correct hostname when
 # telnetting to localhost, port 4949
@@ -52,7 +60,8 @@ ignore_file \.pod$
 # network notation unless the perl module Net::CIDR is installed.  You
 # may repeat the allow line as many times as you'd like
 
-allow ^127\.0\.0\.1$
+allow ^127\.0\.0\.1$$
+allow ^::1$$
 {% for address in munin_servers %}\
 allow ${address}
 {% end %}\
@@ -77,4 +86,3 @@ host *
 
 # And which port
 port 4949
-
