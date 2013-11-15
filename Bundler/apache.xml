@@ -5,4 +5,6 @@
     <Group name='apache-rproxy-target'>
         <Path name='/etc/apache2/conf.d/bcfg2'/>
     </Group>
+
+    <Action name='apache-reload'/>
 </Bundle>

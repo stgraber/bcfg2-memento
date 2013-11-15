@@ -1,4 +1,7 @@
 <Rules priority="0">
     <Service name="apache2" status="on" type="deb" restart="true"
              install="true"/>
+
+    <Action timing="post" name="apache-reload" when="modified"
+            command="/etc/init.d/apache2 reload" status="check"/>
 </Rules>
