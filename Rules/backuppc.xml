@@ -3,4 +3,7 @@
              install="false"/>
     <Path type='symlink' name='/etc/apache2/conf.d/backuppc.conf'
           to='/etc/backuppc/apache.conf'/>
+
+    <Action timing="post" name="backuppc-reload" when="modified"
+            command="/etc/init.d/backuppc reload" status="check"/>
 </Rules>

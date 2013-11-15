@@ -32,4 +32,6 @@
     <py:for each='host in hosts'>
         <Path name='/etc/backuppc/${host}.pl' altsrc='/etc/backuppc/host.pl'/>
     </py:for>
+
+    <Action name='backuppc-reload'/>
 </Bundle>
