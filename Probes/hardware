@@ -28,6 +28,12 @@ attributes = {}
 attributes['interfaces'] = []
 for interface in os.listdir("/sys/class/net/"):
     if os.path.isdir(os.path.join("/sys/class/net/", interface)):
+        if interface.startswith("veth"):
+            continue
+
+        if interface in ['sit0', 'gre0']:
+            continue
+
         attributes['interfaces'].append(interface)
 
 # Detect containers vs host
