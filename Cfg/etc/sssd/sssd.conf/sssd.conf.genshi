@@ -15,7 +15,6 @@
     elif isinstance(conf['allowed_groups'], list):
         conf['allowed_groups'] = " ".join(conf['allowed_groups'])
 
-    krb5_domain = conf['domain'].upper()
     ldap_dn = "DC=%s" % ",DC=".join(conf['domain'].split("."))
 
     if conf['ldap_user_search_base'] == "none":
@@ -39,28 +38,30 @@ debug_level = 0
 default_shell = /bin/bash
 
 [domain/SAMBA]
-lookup_family_order = ipv6_first
-enumerate = true
 cache_credentials = true
+enumerate = true
 fallback_homedir = /home/%u
+lookup_family_order = ipv6_first
 
 access_provider = simple
-id_provider = ldap
-auth_provider = krb5
-chpass_provider = krb5
-sudo_provider = ldap
+auth_provider = ad
+chpass_provider = ad
+id_provider = ad
 ssh_provider = ldap
+sudo_provider = ldap
 
+ad_domain = ${conf.domain}
 dns_discovery_domain = ${conf.domain}
-krb5_realm = ${krb5_domain}
 
-ldap_idmap_default_domain_sid = ${conf.domain_sid}
-ldap_schema = ad
-ldap_id_mapping = true
-ldap_user_gecos = displayName
 ldap_force_upper_case_realm = true
-ldap_user_ssh_public_key = sshPublicKey
+ldap_idmap_default_domain_sid = ${conf.domain_sid}
+ldap_id_mapping = true
 ldap_referrals = false
+ldap_sasl_mech = GSSAPI
+ldap_schema = ad
+
+ldap_user_gecos = displayName
+ldap_user_ssh_public_key = sshPublicKey
 
 ldap_user_search_base = ${conf.ldap_user_search_base}
 ldap_group_search_base = ${conf.ldap_group_search_base}
@@ -71,5 +72,3 @@ ldap_account_expire_policy = ad
 {% if conf.allowed_groups %}\
 simple_allow_groups = ${conf.allowed_groups}
 {% end %}\
-
-ldap_sasl_mech = GSSAPI
