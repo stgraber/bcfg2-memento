@@ -1,6 +1,6 @@
 <Bundle name='nsd' version='2.0'>
-    <Package name='nsd3'/>
-    <Service name='nsd3'/>
+    <Package name='nsd'/>
+    <Service name='nsd'/>
 
-    <Path name='/etc/nsd3/nsd.conf'/>
+    <Path name='/etc/nsd/nsd.conf'/>
 </Bundle>

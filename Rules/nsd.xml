@@ -1,4 +1,4 @@
 <Rules priority="0">
-    <Service name="nsd3" status="ignore" type="deb" restart="false"
-             install="false"/>
+    <Service name="nsd" status="on" type="upstart" restart="true"
+             install="true"/>
 </Rules>
