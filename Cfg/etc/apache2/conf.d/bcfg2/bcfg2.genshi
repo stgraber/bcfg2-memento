@@ -8,7 +8,8 @@
     from bcfg2_repo import config
 
     # Load the config
-    conf = config.get_config_section(repo, metadata, "apache", "rproxy_target")
+    conf = config.get_config_section(repo, metadata, "apache2",
+                                     "rproxy_target")
 
     if conf['allow_from'] == "none":
         conf['allow_from'] = []
