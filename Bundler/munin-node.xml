@@ -41,7 +41,7 @@
         <Path name='/etc/munin/plugins/uptime'/>
     </Group>
 
-    <Group name='apache'>
+    <Group name='apache2'>
         <Package name='libwww-perl'/>
         <Path name='/etc/munin/plugin-conf.d/apache'/>
 

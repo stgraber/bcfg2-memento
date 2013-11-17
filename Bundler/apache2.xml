@@ -1,10 +1,10 @@
-<Bundle name='apache' version='2.0'>
+<Bundle name='apache2' version='2.0'>
     <Package name='apache2'/>
     <Service name='apache2'/>
 
-    <Group name='apache-rproxy-target'>
+    <Group name='apache2-rproxy-target'>
         <Path name='/etc/apache2/conf.d/bcfg2'/>
     </Group>
 
-    <Action name='apache-reload'/>
+    <Action name='apache2-reload'/>
 </Bundle>

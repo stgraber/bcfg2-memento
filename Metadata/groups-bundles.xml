@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <Groups>
     <!-- File auto-generated, do not edit !!! -->
-    <Group name="apache">
-        <Bundle name="apache"/>
+    <Group name="apache2">
+        <Bundle name="apache2"/>
     </Group>
     <Group name="apt">
         <Bundle name="apt"/>

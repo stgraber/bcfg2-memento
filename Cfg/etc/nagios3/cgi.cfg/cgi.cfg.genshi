@@ -119,7 +119,7 @@ use_ssl_authentication=0
 # define this variable, anyone who has not authenticated to the web
 # server will inherit all rights you assign to this user!
  
-{% if "apache-rproxy-target" in metadata.groups %}\
+{% if "apache2-rproxy-target" in metadata.groups %}\
 default_user_name=nagiosadmin
 {% end %}\
 
