@@ -64,6 +64,17 @@
         <Path name='/etc/resolvconf/resolv.conf.d/tail'/>
     </Group>
 
+    <Group name='networking-strongswan'>
+        <Path name='/etc/ipsec.conf'/>
+        <Path name='/etc/ipsec.secrets'/>
+
+        <Path name='/etc/ipsec.d/certs'/>
+
+        <Package name='strongswan'/>
+
+        <Service name='ipsec'/>
+    </Group>
+
     <Group name='networking-vlan'>
         <Package name='vlan'/>
     </Group>

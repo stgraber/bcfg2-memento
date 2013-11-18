@@ -1,0 +1,60 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "networking",
+                                     "ipsec.conf")
+
+    if not conf['peers']:
+        conf['peers'] = []
+    if not isinstance(conf['peers'], list):
+        conf['peers'] = [conf['peers']]
+
+    # Generate the list of zones and forward_zones overrides
+    peers = []
+    for peer_name in conf['peers']:
+        peer = config.get_config_section(repo, metadata, "networking",
+                                         "ipsec_peer_%s" % peer_name)
+
+        default = {}
+        if peer['base']:
+            default = config.get_config_section(repo, metadata, "networking",
+                                                "ipsec_peer_%s" % peer['base'])
+
+        peer['name'] = peer_name
+
+        for key in ("leftcert", "left", "leftsubnet",
+                    "rightcert", "right", "rightsubnet"):
+            if key not in peer:
+                peer[key] = default[key]
+
+        peers.append(peer)
+%}\
+
+config setup
+    charonstart=yes
+    plutostart=no
+    charondebug="none"
+
+conn %default
+    keyexchange=ikev2
+    mobike=no
+    compress=yes
+    dpdaction=hold
+    auto=start
+{% for peer in peers %}\
+
+conn ${peer.name}
+    leftcert=${peer.leftcert}
+    left=${peer.left}
+    leftsubnet=${peer.leftsubnet}
+    rightcert=${peer.rightcert}
+    right=${peer.right}
+    rightsubnet=${peer.rightsubnet}
+{% end %}\

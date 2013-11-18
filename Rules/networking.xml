@@ -8,6 +8,9 @@
     <Path name="/etc/firewall.d" type="directory" mode="755" owner="root"
           group="root" prune="true"/>
 
+    <Path name="/etc/ipsec.d/certs/" type="directory" mode="755"
+          owner="root" group="root" prune="true"/>
+
     <Path name="/etc/network/interfaces.d" type="directory" mode="755"
           owner="root" group="root" prune="true"/>
 
@@ -22,5 +25,7 @@
     <Service name="isc-dhcp-server" status="on" type="upstart" restart="true"
              install="true"/>
     <Service name="radvd" status="on" type="deb" restart="true"
+             install="true"/>
+    <Service name="ipsec" status="on" type="deb" restart="true"
              install="true"/>
 </Rules>
