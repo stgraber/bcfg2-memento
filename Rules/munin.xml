@@ -1,3 +1,13 @@
 <Rules priority='0'>
-        <Path type='symlink' name="/etc/apache2/conf.d/munin" to="/etc/munin/apache.conf"/>
+    <Path type='symlink' name='/etc/apache2/conf.d/munin'
+          to='/etc/munin/apache.conf'/>
+    <Path type='permissions' name='/var/log/munin/'
+          owner='munin' group='munin' mode='0770'/>
+    <Path type='permissions' name='/var/cache/munin/www/'
+          owner='munin' group='munin' mode='0770'/>
+    <Path type='permissions' name='/var/lib/munin/'
+          owner='munin' group='munin' mode='0770'/>
+
+    <Action timing='pre' name='munin-adduser' when='modified'
+            command='adduser www-data nagios' status='check'/>
 </Rules>
