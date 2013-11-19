@@ -68,7 +68,7 @@
         <Path name='/etc/ipsec.conf'/>
         <Path name='/etc/ipsec.secrets'/>
 
-        <Path name='/etc/ipsec.d/certs'/>
+        <Path name='/etc/ipsec.d/certs/'/>
 
         <Package name='strongswan'/>
 
