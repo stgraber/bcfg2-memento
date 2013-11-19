@@ -5,7 +5,10 @@
     munin_nodes = []
     for entry in metadata.query.by_groups(['munin-node']):
         addr = socket.getaddrinfo(entry.hostname, None)[0][4][0]
-        munin_nodes.append((entry.hostname, addr))
+        if ":" in addr:
+            munin_nodes.append((entry.hostname, "[%s]" % addr))
+        else:
+            munin_nodes.append((entry.hostname, addr))
 %}\
 
 # The next three variables specifies where the location of the RRD
