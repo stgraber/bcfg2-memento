@@ -110,6 +110,11 @@ define command {
     command_line    $$USER1$$/check_snmp_shim -H $$HOSTADDRESS$$ $$ARG1$$
 }
 
+define command {
+    command_name    check_switch_ports
+    command_line    $$USER1$$/check_switch_ports -H $$HOSTADDRESS$$ $$ARG1$$
+}
+
 # NRPE tests
 define command {
     command_name    check_by_nrpe_amavisd_new_virus
