@@ -49,6 +49,9 @@ for dirpath, dirnames, filenames in os.walk("Cfg/"):
             if entry == "info.xml":
                 continue
 
+            if entry.endswith(".crt"):
+                continue
+
             try:
                 with open(os.path.join(dirpath, entry), "r") as fd:
                     for line in fd.readlines()[0:3]:
