@@ -6,8 +6,6 @@
           to='../mods-available/proxy_http.load'/>
     <Path type='symlink' name='/etc/apache2/mods-enabled/proxy.load'
           to='../mods-available/proxy.load'/>
-    <Path type='symlink' name='/etc/apache2/mods-enabled/rewrite.load'
-          to='../mods-available/rewrite.load'/>
     <Path type='symlink' name='/etc/apache2/mods-enabled/version.load'
           to='../mods-available/version.load'/>
 </Rules>
