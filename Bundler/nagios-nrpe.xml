@@ -48,10 +48,6 @@
         <Path name='/etc/nagios/nrpe.d/postgres.cfg'/>
     </Group>
 
-    <Group name='postgresql-database'>
-        <Path name='/etc/nagios/nrpe.d/postgres-database.cfg'/>
-    </Group>
-
     <Group name='tftpd'>
         <Path name='/etc/nagios/nrpe.d/tftpd.cfg'/>
     </Group>
