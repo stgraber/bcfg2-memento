@@ -10,8 +10,16 @@
         <Package name='libapache2-mod-fcgid'/>
     </Group>
 
-    <Group name='apache2-mod-rewrite'>
-        <Package name='libapache2-mod-rewrite'/>
+    <Group name='apache2-mod-php5'>
+        <Package name='libapache2-mod-php5'/>
+        <Group name='postgresql'>
+            <Package name='php5-pgsql'/>
+        </Group>
     </Group>
+
+    <Group name='apache2-mod-rewrite'>
+        <Path name='/etc/apache2/mods-enabled/rewrite.load'/>
+    </Group>
+
     <Action name='apache2-reload'/>
 </Bundle>
