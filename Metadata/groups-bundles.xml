@@ -19,6 +19,9 @@
     <Group name="cacti">
         <Bundle name="cacti"/>
     </Group>
+    <Group name="cron">
+        <Bundle name="cron"/>
+    </Group>
     <Group name="cups">
         <Bundle name="cups"/>
     </Group>
