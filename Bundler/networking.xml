@@ -1,6 +1,7 @@
 <Bundle name='networking' version='2.0'>
     <Path name='/etc/sysctl.d/10-ipv6-privacy.conf'/>
     <Path name='/etc/default/ntpdate'/>
+    <Path name='/etc/hosts'/>
 
     <Group name='networking-bridge'>
         <Package name='bridge-utils'/>
