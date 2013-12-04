@@ -58,6 +58,9 @@
     <Group name="opendnssec">
         <Bundle name="opendnssec"/>
     </Group>
+    <Group name="postfix">
+        <Bundle name="postfix"/>
+    </Group>
     <Group name="postgresql">
         <Bundle name="postgresql"/>
     </Group>

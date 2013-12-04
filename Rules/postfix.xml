@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="postfix" status="ignore" type="deb" restart="true"
+             install="true"/>
+</Rules>

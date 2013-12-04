@@ -1,0 +1,4 @@
+<Bundle name='postfix' version='2.0'>
+    <Package name='postfix'/>
+    <Service name='postfix'/>
+</Bundle>
