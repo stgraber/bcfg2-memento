@@ -24,7 +24,10 @@
     <Package name='backuppc'/>
     <Service name='backuppc'/>
 
-    <Path name='/etc/apache2/conf.d/backuppc.conf'/>
+    <Group name='apache2'>
+        <Path name='/etc/apache2/conf.d/backuppc.conf'/>
+        <Action name='apache2-reload'/>
+    </Group>
     <Path name='/etc/backuppc/apache.conf'/>
     <Path name='/etc/backuppc/config.pl'/>
     <Path name='/etc/backuppc/hosts'/>
