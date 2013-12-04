@@ -1,4 +1,4 @@
-<Rules priority='0' xmlns:py="http://genshi.edgewall.org/">
+<Rules priority='0'>
     <!-- SymLink -->
     <Path type='symlink' name='/etc/apache2/mods-enabled/proxy.conf'
           to='../mods-available/proxy.conf'/>
