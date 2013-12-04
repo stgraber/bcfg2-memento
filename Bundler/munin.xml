@@ -1,14 +1,16 @@
 <Bundle name='munin' version='2.0'>
     <Path name='/etc/munin/munin.conf'/>
     <Path name='/etc/munin/apache.conf'/>
-    <Path name='/etc/apache2/conf.d/munin'/>
 
     <Path name='/var/log/munin/'/>
     <Path name='/var/cache/munin/www/'/>
     <Path name='/var/lib/munin/'/>
 
     <Group name='apache2'>
+        <Path name='/etc/apache2/conf.d/munin'/>
+
         <Action name='munin-adduser'/>
+        <Action name='apache2-reload'/>
     </Group>
 
     <Package name='munin'/>
