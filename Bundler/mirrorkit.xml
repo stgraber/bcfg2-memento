@@ -8,5 +8,6 @@
         <Path name='/etc/apache2/mods-enabled/proxy_http.load'/>
         <Path name='/etc/apache2/mods-enabled/proxy.load'/>
         <Path name='/etc/apache2/mods-enabled/version.load'/>
+        <Action name='apache2-reload'/>
     </Group>
 </Bundle>
