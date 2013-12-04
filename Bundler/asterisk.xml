@@ -1,0 +1,7 @@
+<Bundle name='asterisk' version='2.0'>
+    <Package name='asterisk'/>
+    <Service name='asterisk'/>
+
+    <Path name='/etc/asterisk/'/>
+    <Path name='/etc/asterisk-certs/'/>
+</Bundle>

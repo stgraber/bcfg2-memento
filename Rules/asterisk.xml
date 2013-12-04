@@ -1,0 +1,9 @@
+<Rules priority="0">
+    <Service name="asterisk" status="on" type="deb" restart="true"
+             install="true"/>
+
+    <Path name="/etc/asterisk/" type="directory" mode="755" owner="root"
+          group="root" prune="true"/>
+    <Path name="/etc/asterisk-certs/" type="directory" mode="750" owner="root"
+          group="asterisk"/>
+</Rules>

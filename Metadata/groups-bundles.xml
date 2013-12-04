@@ -7,6 +7,9 @@
     <Group name="apt">
         <Bundle name="apt"/>
     </Group>
+    <Group name="asterisk">
+        <Bundle name="asterisk"/>
+    </Group>
     <Group name="backuppc">
         <Bundle name="backuppc"/>
     </Group>
