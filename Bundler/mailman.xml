@@ -1,0 +1,32 @@
+<Bundle name='mailman' version='2.0' xmlns:py="http://genshi.edgewall.org/">
+    <?python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "mailman", "mm_cfg.py")
+
+    if not conf['domains']:
+        conf['domains'] = []
+    if not isinstance(conf['domains'], list):
+        conf['domains'] = [conf['domains']]
+    ?>
+
+    <Package name='mailman'/>
+
+    <Path name='/etc/mailman/mm_cfg.py'/>
+    <Group name='apache2'>
+        <!-- Replace by /etc/apache2/sites-available once we have bcfg2 3.4 -->
+        <py:for each='domain in conf.domains'>
+            <Path name='/etc/apache2/sites-enabled/${domain}'
+                  altsrc='/etc/apache2/sites-enabled/mailman'/>
+        </py:for>
+        <Action name='apache2-reload'/>
+    </Group>
+
+    <Service name='mailman'/>
+</Bundle>

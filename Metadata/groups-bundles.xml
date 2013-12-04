@@ -34,6 +34,9 @@
     <Group name="lxc">
         <Bundle name="lxc"/>
     </Group>
+    <Group name="mailman">
+        <Bundle name="mailman"/>
+    </Group>
     <Group name="mirrorkit">
         <Bundle name="mirrorkit"/>
     </Group>

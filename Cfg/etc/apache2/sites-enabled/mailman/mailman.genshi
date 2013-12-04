@@ -1,0 +1,36 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    import os
+
+    fqdn = os.path.basename(name)
+%}\
+<VirtualHost *:80>
+    ServerName ${fqdn}
+    DocumentRoot /var/www
+    ErrorLog /var/log/apache2/${fqdn}-error.log
+    CustomLog /var/log/apache2/${fqdn}-access.log combined
+
+    <Directory /var/lib/mailman/archives/>
+        Options FollowSymLinks
+        AllowOverride None
+    </Directory>
+
+    RewriteEngine on
+    RewriteRule ^$ /listinfo [R,L]
+    RewriteRule ^/$ /listinfo [R,L]
+
+    Alias /pipermail/ /var/lib/mailman/archives/public/
+    Alias /images/mailman/ /usr/share/images/mailman/
+    ScriptAlias /admin /usr/lib/cgi-bin/mailman/admin
+    ScriptAlias /admindb /usr/lib/cgi-bin/mailman/admindb
+    ScriptAlias /confirm /usr/lib/cgi-bin/mailman/confirm
+    ScriptAlias /create /usr/lib/cgi-bin/mailman/create
+    ScriptAlias /edithtml /usr/lib/cgi-bin/mailman/edithtml
+    ScriptAlias /listinfo /usr/lib/cgi-bin/mailman/listinfo
+    ScriptAlias /options /usr/lib/cgi-bin/mailman/options
+    ScriptAlias /private /usr/lib/cgi-bin/mailman/private
+    ScriptAlias /rmlist /usr/lib/cgi-bin/mailman/rmlist
+    ScriptAlias /roster /usr/lib/cgi-bin/mailman/roster
+    ScriptAlias /subscribe /usr/lib/cgi-bin/mailman/subscribe
+    ScriptAlias /mailman/ /usr/lib/cgi-bin/mailman/
+</VirtualHost>

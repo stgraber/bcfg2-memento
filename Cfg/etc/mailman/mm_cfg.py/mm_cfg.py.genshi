@@ -1,0 +1,35 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "mailman", "mm_cfg.py")
+
+    # List of domains
+    if not conf['domains']:
+        conf['domains'] = []
+    if not isinstance(conf['domains'], list):
+        conf['domains'] = [conf['domains']]
+
+    domains = str(conf['domains'])
+%}\
+
+from Defaults import *
+MAILMAN_SITE_LIST = 'mailman'
+DEFAULT_URL_PATTERN = 'http://%s/'
+PRIVATE_ARCHIVE_URL = '/cgi-bin/mailman/private'
+IMAGE_LOGOS         = '/images/mailman/'
+DEFAULT_EMAIL_HOST = '${conf.default_host}'
+DEFAULT_URL_HOST   = '${conf.default_host}'
+add_virtualhost(DEFAULT_URL_HOST, DEFAULT_EMAIL_HOST)
+DEFAULT_SERVER_LANGUAGE = 'en'
+USE_ENVELOPE_SENDER    = 0
+DEFAULT_SEND_REMINDERS = 0
+MTA = 'Postfix'
+POSTFIX_STYLE_VIRTUAL_DOMAINS = ${domains}
+DEB_LISTMASTER = '${conf.list_master}'
