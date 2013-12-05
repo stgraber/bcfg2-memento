@@ -1,4 +1,8 @@
 <Bundle name='postfix' version='2.0'>
     <Package name='postfix'/>
     <Service name='postfix'/>
+
+    <Path name='/etc/postfix/main.cf'/>
+    <Path name='/etc/postfix/transport'/>
+    <Action name='postfix-map-transport'/>
 </Bundle>
