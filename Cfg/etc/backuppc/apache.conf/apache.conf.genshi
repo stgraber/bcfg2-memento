@@ -1,0 +1,24 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "backuppc", "apache.conf")
+%}\
+
+Alias ${conf.base_url} /usr/share/backuppc/cgi-bin/
+
+<Directory /usr/share/backuppc/cgi-bin/>
+    Options ExecCGI FollowSymLinks
+    AllowOverride None
+    Order Allow,Deny
+    Allow From All
+
+    AddHandler cgi-script .cgi
+    DirectoryIndex index.cgi
+</Directory>

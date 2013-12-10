@@ -9,6 +9,8 @@
 
     # Load the config
     conf = config.get_config_section(repo, metadata, "backuppc", "config.pl")
+    conf1 = config.get_config_section(repo, metadata, "backuppc",
+                                      "apache.conf")
 %}\
 
 #============================================================= -*-perl-*-
@@ -2150,7 +2152,7 @@ $$Conf{CgiAdminUsers}     = 'backuppc';
 #
 # URL of the BackupPC_Admin CGI script.  Used for email messages.
 #
-$$Conf{CgiURL} = 'http://'.$$Conf{ServerHost}.'/backuppc/index.cgi';
+$$Conf{CgiURL} = 'http://'.$$Conf{ServerHost}.'/${conf1.base_url}/index.cgi';
 
 #   
 # Language to use.  See lib/BackupPC/Lang for the list of supported
