@@ -14,6 +14,10 @@
           to='/usr/share/munin/plugins/apache_processes'/>
     <Path type='symlink' name='/etc/munin/plugins/apache_volume'
           to='/usr/share/munin/plugins/apache_volume'/>
+    <Path type='symlink' name='/etc/munin/plugins/asterisk_channels'
+          to='/usr/share/munin/plugins/asterisk_channels'/>
+    <Path type='symlink' name='/etc/munin/plugins/asterisk_sippeers'
+          to='/usr/share/munin/plugins/asterisk_sippeers'/>
     <Path type='symlink' name='/etc/munin/plugins/backuppc'
           to='/usr/share/munin/plugins/backuppc'/>
     <Path type='symlink' name='/etc/munin/plugins/cpu'
@@ -22,12 +26,18 @@
           to='/usr/share/munin/plugins/df_inode'/>
     <Path type='symlink' name='/etc/munin/plugins/df'
           to='/usr/share/munin/plugins/df'/>
+    <Path type='symlink' name='/etc/munin/plugins/dhcp'
+          to='/usr/share/munin/plugins/dhcp'/>
     <Path type='symlink' name='/etc/munin/plugins/diskstats'
           to='/usr/share/munin/plugins/diskstats'/>
     <Path type='symlink' name='/etc/munin/plugins/entropy'
           to='/usr/share/munin/plugins/entropy'/>
     <Path type='symlink' name='/etc/munin/plugins/forks'
           to='/usr/share/munin/plugins/forks'/>
+    <Path type='symlink' name='/etc/munin/plugins/fw_conntrack'
+          to='/usr/share/munin/plugins/fw_conntrack'/>
+    <Path type='symlink' name='/etc/munin/plugins/fw_forwarded_local'
+          to='/usr/share/munin/plugins/fw_forwarded_local'/>
     <Path type='symlink' name='/etc/munin/plugins/fw_packets'
           to='/usr/share/munin/plugins/fw_packets'/>
 
@@ -46,6 +56,10 @@
           to='/usr/share/munin/plugins/irqstats'/>
     <Path type='symlink' name='/etc/munin/plugins/load'
           to='/usr/share/munin/plugins/load'/>
+    <Path type='symlink' name='/etc/munin/plugins/lpstat'
+          to='/usr/share/munin/plugins/lpstat'/>
+    <Path type='symlink' name='/etc/munin/plugins/mailman'
+          to='/usr/share/munin/plugins/mailman'/>
     <Path type='symlink' name='/etc/munin/plugins/memory'
           to='/usr/share/munin/plugins/memory'/>
     <Path type='symlink' name='/etc/munin/plugins/munin_stats'
@@ -58,12 +72,34 @@
           to='/usr/share/munin/plugins/open_files'/>
     <Path type='symlink' name='/etc/munin/plugins/open_inodes'
           to='/usr/share/munin/plugins/open_inodes'/>
+    <Path type='symlink' name='/etc/munin/plugins/openvpn'
+          to='/usr/share/munin/plugins/openvpn'/>
+    <Path type='symlink' name='/etc/munin/plugins/postfix_mailqueue'
+          to='/usr/share/munin/plugins/postfix_mailqueue'/>
+    <Path type='symlink' name='/etc/munin/plugins/postfix_mailstats'
+          to='/usr/share/munin/plugins/postfix_mailstats'/>
+    <Path type='symlink' name='/etc/munin/plugins/postfix_mailvolume'
+          to='/usr/share/munin/plugins/postfix_mailvolume'/>
     <Path type='symlink' name='/etc/munin/plugins/processes'
           to='/usr/share/munin/plugins/processes'/>
     <Path type='symlink' name='/etc/munin/plugins/proc_pri'
           to='/usr/share/munin/plugins/proc_pri'/>
+    <Path type='symlink' name='/etc/munin/plugins/samba'
+          to='/usr/share/munin/plugins/samba'/>
+    <Path type='symlink' name='/etc/munin/plugins/squid_cache'
+          to='/usr/share/munin/plugins/squid_cache'/>
+    <Path type='symlink' name='/etc/munin/plugins/squid_icp'
+          to='/usr/share/munin/plugins/squid_icp'/>
+    <Path type='symlink' name='/etc/munin/plugins/squid_objectsize'
+          to='/usr/share/munin/plugins/squid_objectsize'/>
+    <Path type='symlink' name='/etc/munin/plugins/squid_requests'
+          to='/usr/share/munin/plugins/squid_requests'/>
+    <Path type='symlink' name='/etc/munin/plugins/squid_traffic'
+          to='/usr/share/munin/plugins/squid_traffic'/>
     <Path type='symlink' name='/etc/munin/plugins/swap'
           to='/usr/share/munin/plugins/swap'/>
+    <Path type='symlink' name='/etc/munin/plugins/tcp'
+          to='/usr/share/munin/plugins/tcp'/>
     <Path type='symlink' name='/etc/munin/plugins/threads'
           to='/usr/share/munin/plugins/threads'/>
     <Path type='symlink' name='/etc/munin/plugins/unbound_munin_by_class'

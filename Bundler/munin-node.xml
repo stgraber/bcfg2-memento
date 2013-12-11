@@ -12,7 +12,6 @@
     <Path name='/etc/munin/plugins/df_inode'/>
     <Path name='/etc/munin/plugins/diskstats'/>
     <Path name='/etc/munin/plugins/forks'/>
-    <Path name='/etc/munin/plugins/fw_packets'/>
     <py:for each='interface in metadata.Probes["hardware"].json["interfaces"]'>
         <Path name='/etc/munin/plugins/if_${interface}'
               altsrc='/etc/munin/plugins/if_'/>
@@ -26,6 +25,7 @@
     <Path name='/etc/munin/plugins/open_inodes'/>
     <Path name='/etc/munin/plugins/proc_pri'/>
     <Path name='/etc/munin/plugins/processes'/>
+    <Path name='/etc/munin/plugins/tcp'/>
     <Path name='/etc/munin/plugins/threads'/>
     <Path name='/etc/munin/plugins/vmstat'/>
 
@@ -50,9 +50,62 @@
         <Path name='/etc/munin/plugins/apache_volume'/>
     </Group>
 
+    <Group name='asterisk'>
+        <Path name='/etc/munin/plugin-conf.d/asterisk'/>
+
+        <Path name='/etc/munin/plugins/asterisk_channels'/>
+        <Path name='/etc/munin/plugins/asterisk_sippeers'/>
+    </Group>
+
+    <Group name='backuppc'>
+        <Path name='/etc/munin/plugins/backuppc'/>
+    </Group>
+
+    <Group name='cups'>
+        <Path name='/etc/munin/plugins/lpstat'/>
+    </Group>
+
+    <Group name='mailman'>
+        <Path name='/etc/munin/plugins/mailman'/>
+    </Group>
+
     <Group name='munin'>
         <Path name='/etc/munin/plugins/munin_stats'/>
         <Path name='/etc/munin/plugins/munin_update'/>
+    </Group>
+
+    <Group name='networking-dhcpd'>
+        <Package name='libnet-ip-perl'/>
+        <Package name='libnet-netmask-perl'/>
+        <Path name='/etc/munin/plugins/dhcp'/>
+    </Group>
+
+    <Group name='networking-firewall'>
+        <Path name='/etc/munin/plugins/fw_conntrack'/>
+        <Path name='/etc/munin/plugins/fw_forwarded_local'/>
+        <Path name='/etc/munin/plugins/fw_packets'/>
+    </Group>
+
+    <Group name='networking-openvpn'>
+        <Path name='/etc/munin/plugins/openvpn'/>
+    </Group>
+
+    <Group name='postfix'>
+        <Path name='/etc/munin/plugins/postfix_mailqueue'/>
+        <Path name='/etc/munin/plugins/postfix_mailstats'/>
+        <Path name='/etc/munin/plugins/postfix_mailvolume'/>
+    </Group>
+
+    <Group name='samba'>
+        <Path name='/etc/munin/plugins/samba'/>
+    </Group>
+
+    <Group name='squid'>
+        <Path name='/etc/munin/plugins/squid_cache'/>
+        <Path name='/etc/munin/plugins/squid_icp'/>
+        <Path name='/etc/munin/plugins/squid_objectsize'/>
+        <Path name='/etc/munin/plugins/squid_requests'/>
+        <Path name='/etc/munin/plugins/squid_traffic'/>
     </Group>
 
     <Group name='unbound'>
@@ -67,9 +120,5 @@
         <Path name='/etc/munin/plugins/unbound_munin_by_rcode'/>
         <Path name='/etc/munin/plugins/unbound_munin_by_flags'/>
         <Path name='/etc/munin/plugins/unbound_munin_histogram'/>
-    </Group>
-
-    <Group name='backuppc'>
-        <Path name='/etc/munin/plugins/backuppc'/>
     </Group>
 </Bundle>

@@ -1,0 +1,4 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+[asterisk]
+env.user = munin
+env.secret = munin
