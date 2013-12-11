@@ -76,6 +76,11 @@
         <Service name='ipsec'/>
     </Group>
 
+    <Group name='networking-openvpn'>
+        <Package name='openvpn'/>
+        <Service name='openvpn'/>
+    </Group>
+
     <Group name='networking-vlan'>
         <Package name='vlan'/>
     </Group>
