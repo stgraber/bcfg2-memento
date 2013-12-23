@@ -45,11 +45,17 @@
 {% for url, pocket in repositories %}\
 deb ${url} ${distro.codename}${pocket} ${components}
 {% end %}\
+{% if conf.partner == "true" %}\
+deb http://archive.canonical.com ${distro.codename} partner
+{% end %}\
 \
 {% if conf.sources == "true" %}\
 # Source package repositories
 
 {% for url, pocket in repositories %}\
 deb-src ${url} ${distro.codename}${pocket} ${components}
+{% if conf.partner == "true" %}\
+deb-src http://archive.canonical.com ${distro.codename} partner
+{% end %}\
 {% end %}\
 {% end %}\
