@@ -2278,7 +2278,7 @@ $$Conf{CgiExt2ContentType} = { };
 # Example:
 #     $$Conf{CgiImageDirURL} = '/BackupPC';
 #
-$$Conf{CgiImageDirURL} = '/backuppc/image';
+$$Conf{CgiImageDirURL} = '/${conf1.base_url}/image';
 
 #
 # CSS stylesheet "skin" for the CGI interface.  It is stored
