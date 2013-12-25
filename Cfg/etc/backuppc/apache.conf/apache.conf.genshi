@@ -9,9 +9,11 @@
 
     # Load the config
     conf = config.get_config_section(repo, metadata, "backuppc", "apache.conf")
+
+    base_url = conf['base_url'].lstrip("/")
 %}\
 
-Alias ${conf.base_url} /usr/share/backuppc/cgi-bin/
+Alias /${base_url} /usr/share/backuppc/cgi-bin/
 
 <Directory /usr/share/backuppc/cgi-bin/>
     Options ExecCGI FollowSymLinks

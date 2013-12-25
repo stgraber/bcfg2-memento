@@ -11,6 +11,8 @@
     conf = config.get_config_section(repo, metadata, "backuppc", "config.pl")
     conf1 = config.get_config_section(repo, metadata, "backuppc",
                                       "apache.conf")
+
+    base_url = conf1['base_url'].lstrip("/")
 %}\
 
 #============================================================= -*-perl-*-
@@ -2152,7 +2154,7 @@ $$Conf{CgiAdminUsers}     = 'backuppc';
 #
 # URL of the BackupPC_Admin CGI script.  Used for email messages.
 #
-$$Conf{CgiURL} = 'http://'.$$Conf{ServerHost}.'/${conf1.base_url}/index.cgi';
+$$Conf{CgiURL} = 'http://'.$$Conf{ServerHost}.'/${base_url}/index.cgi';
 
 #   
 # Language to use.  See lib/BackupPC/Lang for the list of supported
@@ -2278,7 +2280,7 @@ $$Conf{CgiExt2ContentType} = { };
 # Example:
 #     $$Conf{CgiImageDirURL} = '/BackupPC';
 #
-$$Conf{CgiImageDirURL} = '/${conf1.base_url}/image';
+$$Conf{CgiImageDirURL} = '/${base_url}/image';
 
 #
 # CSS stylesheet "skin" for the CGI interface.  It is stored
