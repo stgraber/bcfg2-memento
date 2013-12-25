@@ -37,6 +37,7 @@
     user = "backuppc"
     password = ""
     shares = []
+    ip = host.get('ip', None)
 
     if host['type'] == "auto":
         key = "H_%s.json" % fqdn
@@ -59,3 +60,6 @@ $$Conf{RsyncdUserName} = '${user}';
 $$Conf{RsyncdPasswd} = '${password}';
 $$Conf{RsyncShareName} = ${shares};
 $$Conf{PingCmd} = '${ping} -c 1 $$host';
+{% if ip %}\
+$$Conf{ClientNameAlias} = '${ip}';
+{% end %}\
