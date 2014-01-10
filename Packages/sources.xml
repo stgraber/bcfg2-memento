@@ -42,14 +42,59 @@
                 <Arch>i386</Arch>
             </Source>
         </Group>
-        <Group name='cloudprint'>
+    </Group>
+
+    <Group name='ubuntu-14.04'>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='trusty'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='trusty-updates'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='trusty-security'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Group name='ubuntu-backports'>
             <Source type='apt'
-                url='http://dl.google.com/linux/chrome/deb/'
-                version='stable'>
+                url='http://archive.ubuntu.com/ubuntu'
+                version='trusty-backports'>
                 <Component>main</Component>
+                <Component>restricted</Component>
+                <Component>universe</Component>
+                <Component>multiverse</Component>
                 <Arch>amd64</Arch>
                 <Arch>i386</Arch>
             </Source>
         </Group>
+    </Group>
+    <Group name='cloudprint'>
+        <Source type='apt'
+            url='http://dl.google.com/linux/chrome/deb/'
+            version='stable'>
+            <Component>main</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
     </Group>
 </Sources>
