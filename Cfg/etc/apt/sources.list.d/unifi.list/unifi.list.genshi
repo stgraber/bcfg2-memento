@@ -15,4 +15,4 @@
 %}\
 
 deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
-deb http://www.ubnt.com/downloads/unifi/distros/deb/precise ${distro.codename} ubiquiti
+deb http://www.ubnt.com/downloads/unifi/distros/deb/${distro.codename} ${distro.codename} ubiquiti
