@@ -8,8 +8,21 @@
         <Path name='/etc/apache2/conf.d/bcfg2'/>
     </Group>
 
+    <Group name='apache2-mod-authnz_ldap'>
+        <Path name='/etc/apache2/mods-enabled/authnz_ldap.load'/>
+    </Group>
+
     <Group name='apache2-mod-fcgid'>
         <Package name='libapache2-mod-fcgid'/>
+    </Group>
+
+    <Group name='apache2-mod-headers'>
+        <Path name='/etc/apache2/mods-enabled/headers.load'/>
+    </Group>
+
+    <Group name='apache2-mod-ldap'>
+        <Path name='/etc/apache2/mods-enabled/ldap.conf'/>
+        <Path name='/etc/apache2/mods-enabled/ldap.load'/>
     </Group>
 
     <Group name='apache2-mod-php5'>
@@ -19,8 +32,32 @@
         </Group>
     </Group>
 
+    <Group name='apache2-mod-proxy'>
+        <Path name='/etc/apache2/mods-enabled/proxy.conf'/>
+        <Path name='/etc/apache2/mods-enabled/proxy.load'/>
+        <Path name='/etc/apache2/mods-enabled/proxy_http.load'/>
+    </Group>
+
+    <Group name='apache2-mod-python'>
+        <Package name='libapache2-mod-python'/>
+        <Path name='/etc/apache2/mods-enabled/python.load'/>
+    </Group>
+
     <Group name='apache2-mod-rewrite'>
         <Path name='/etc/apache2/mods-enabled/rewrite.load'/>
+    </Group>
+
+    <Group name='apache2-mod-socache_shmcb'>
+        <Path name='/etc/apache2/mods-enabled/socache_shmcb.load'/>
+    </Group>
+
+    <Group name='apache2-mod-ssl'>
+        <Path name='/etc/apache2/mods-enabled/ssl.conf'/>
+        <Path name='/etc/apache2/mods-enabled/ssl.load'/>
+    </Group>
+
+    <Group name='apache2-mod-version'>
+        <Path name='/etc/apache2/mods-enabled/version.load'/>
     </Group>
 
     <Action name='apache2-reload'/>

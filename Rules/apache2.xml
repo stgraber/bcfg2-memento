@@ -2,8 +2,41 @@
     <Service name="apache2" status="on" type="deb" restart="true"
              install="true"/>
 
+    <Path type='symlink' name='/etc/apache2/mods-enabled/authnz_ldap.load'
+          to='../mods-available/authnz_ldap.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/headers.load'
+          to='../mods-available/headers.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/ldap.conf'
+          to='../mods-available/ldap.conf'/>
+    <Path type='symlink' name='/etc/apache2/mods-enabled/ldap.load'
+          to='../mods-available/ldap.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/proxy.conf'
+          to='../mods-available/proxy.conf'/>
+    <Path type='symlink' name='/etc/apache2/mods-enabled/proxy.load'
+          to='../mods-available/proxy.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/proxy_http.load'
+          to='../mods-available/proxy_http.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/python.load'
+          to='../mods-available/python.load'/>
+
     <Path type='symlink' name='/etc/apache2/mods-enabled/rewrite.load'
           to='../mods-available/rewrite.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/socache_shmcb.load'
+          to='../mods-available/socache_shmcb.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/ssl.conf'
+          to='../mods-available/ssl.conf'/>
+    <Path type='symlink' name='/etc/apache2/mods-enabled/ssl.load'
+          to='../mods-available/ssl.load'/>
+
+    <Path type='symlink' name='/etc/apache2/mods-enabled/version.load'
+          to='../mods-available/version.load'/>
 
     <Action timing="post" name="apache2-reload" when="always"
             command="/etc/init.d/apache2 reload" status="check"/>
