@@ -2,6 +2,8 @@
     <Package name='apache2'/>
     <Service name='apache2'/>
 
+    <Path name='/etc/apache2/ports.conf'/>
+
     <Group name='ubuntu-12.04'>
         <Path name='/etc/apache2/sites-available/default'/>
     </Group>

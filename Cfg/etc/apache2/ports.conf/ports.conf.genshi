@@ -1,0 +1,37 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "apache2",
+                                     "ports.conf")
+
+    if not conf['http_ports']:
+        conf['http_ports'] = []
+    elif not isinstance(conf['http_ports'], list):
+        conf['http_ports'] = [conf['http_ports']]
+
+    if not conf['https_ports']:
+        conf['https_ports'] = []
+    elif not isinstance(conf['https_ports'], list):
+        conf['https_ports'] = [conf['https_ports']]
+%}\
+
+{% if "ubuntu-12.04" in metadata.groups %}\
+NameVirtualHost *:80
+{% end %}\
+
+{% for entry in conf.http_ports %}\
+Listen ${entry} http
+{% end %}\
+
+{% if "apache2-mod-ssl" in metadata.groups %}\
+{% for entry in conf.https_ports %}\
+    Listen ${entry} https
+{% end %}\
+{% end %}\
