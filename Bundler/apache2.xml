@@ -2,7 +2,9 @@
     <Package name='apache2'/>
     <Service name='apache2'/>
 
-    <Path name='/etc/apache2/sites-available/default'/>
+    <Group name='ubuntu-12.04'>
+        <Path name='/etc/apache2/sites-available/default'/>
+    </Group>
 
     <Group name='apache2-rproxy-target'>
         <Path name='/etc/apache2/conf.d/bcfg2'/>
