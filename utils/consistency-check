@@ -49,7 +49,10 @@ for dirpath, dirnames, filenames in os.walk("Cfg/"):
             if entry == "info.xml":
                 continue
 
-            if entry.endswith(".crt"):
+            if entry.endswith(".crt") or ".crt." in entry:
+                continue
+
+            if entry.endswith(".pem") or ".pem." in entry:
                 continue
 
             try:
