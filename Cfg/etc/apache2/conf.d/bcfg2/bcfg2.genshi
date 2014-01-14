@@ -2,6 +2,7 @@
 {% python
     # Import the bcfg2_repo module
     import os
+    import socket
     import sys
     sys.path.insert(0, os.path.join(repo, "lib"))
 
@@ -15,13 +16,21 @@
         conf['allow_from'] = []
     elif not isinstance(conf['allow_from'], list):
         conf['allow_from'] = [conf['allow_from']]
+
+    allow_from = []
+    for entry in conf['allow_from']:
+        try:
+            addr = socket.getaddrinfo(entry, None)[0][4][0]
+            allow_from.append(addr)
+        except:
+            allow_from.append(entry)
 %}\
 
 <Location />
     # Allow localhost
     Allow from 127.0.0.1
 
-{% for server in conf.allow_from %}\
+{% for server in allow_from %}\
     Allow from ${server}
 {% end %}\
 
