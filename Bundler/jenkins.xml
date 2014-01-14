@@ -1,0 +1,7 @@
+<Bundle name='jenkins' version='2.0'>
+    <Path name='/etc/apt/sources.list.d/jenkins.list'/>
+    <Path name='/etc/apt/trusted.gpg.d/jenkins.gpg'/>
+
+    <Package name='jenkins'/>
+    <Service name='jenkins'/>
+</Bundle>

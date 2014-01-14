@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="jenkins" status="on" type="deb" restart="false"
+             install="false"/>
+</Rules>
