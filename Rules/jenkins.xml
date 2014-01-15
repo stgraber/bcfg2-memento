@@ -1,4 +1,6 @@
 <Rules priority="0">
     <Service name="jenkins" status="on" type="deb" restart="false"
              install="false"/>
+    <Service name="jenkins-slave" status="on" type="upstart" restart="false"
+             install="false"/>
 </Rules>

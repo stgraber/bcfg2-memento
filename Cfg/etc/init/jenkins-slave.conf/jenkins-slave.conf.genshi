@@ -1,0 +1,25 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "jenkins",
+                                     "jenkins-slave.conf")
+%}\
+
+start on static-network-up
+setuid jenkins
+setgid jenkins
+
+respawn
+
+script
+    wget -q ${conf.server_url}/jnlpJars/slave.jar -O /home/jenkins/slave.jar
+
+    exec java -jar /home/jenkins/slave.jar -jnlpUrl ${conf.server_url}/computer/${conf.slave_name}/slave-agent.jnlp -secret ${conf.slave_secret}
+end script

@@ -1,7 +1,17 @@
 <Bundle name='jenkins' version='2.0'>
-    <Path name='/etc/apt/sources.list.d/jenkins.list'/>
-    <Path name='/etc/apt/trusted.gpg.d/jenkins.gpg'/>
+    <Group name='jenkins-master'>
+        <Path name='/etc/apt/sources.list.d/jenkins.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/jenkins.gpg'/>
 
-    <Package name='jenkins'/>
-    <Service name='jenkins'/>
+        <Package name='jenkins'/>
+        <Service name='jenkins'/>
+    </Group>
+
+    <Group name='jenkins-slave'>
+        <Path name='/etc/init/jenkins-slave.conf'/>
+
+        <Service name='jenkins-slave'/>
+
+        <Package name='default-jre-headless'/>
+    </Group>
 </Bundle>
