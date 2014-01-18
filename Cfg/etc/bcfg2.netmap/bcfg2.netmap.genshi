@@ -27,6 +27,8 @@
 
         sites[entry] = site
 %}\
+[global]
+group_prefix = ${conf.group_prefix}
 {% for site_name, site_zones in sites.items() %}\
 
 [${site_name}]

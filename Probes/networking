@@ -52,7 +52,15 @@ addresses += [ipaddr.IPAddress(line.split()[1].split("/")[0])
 config = configparser.ConfigParser()
 config.read(CONF_PATH)
 
+prefix = ""
+if config.has_section("global") and config.has_option("global",
+                                                      "group_prefix"):
+    prefix = config.get("global", "group_prefix")
+
 for site_name in config.sections():
+    if site_name == "global":
+        continue
+
     zones = set()
     for zone_name, zone_subnets in config.items(site_name):
         for subnet_string in zone_subnets.split(", "):
@@ -63,9 +71,9 @@ for site_name in config.sections():
                     break
 
     if zones:
-        print("group:%s" % site_name)
+        print("group:%s%s" % (prefix, site_name))
         for zone in zones:
-            print("group:%s" % zone)
+            print("group:%s%s" % (prefix, zone))
 
         print("site=%s,zones=%s" % (site_name, ";".join(zones)))
         sys.exit(0)
