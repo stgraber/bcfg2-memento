@@ -9,14 +9,13 @@
 
     # Load the config
     conf = config.get_config_section(repo, metadata, "sssd", "sssd.conf")
-    smb_workgroup = conf['domain'].split(".")[0].upper()
 
     netbios = metadata.hostname.split(".")[0].upper()
 %}\
 
 # Global parameters
 [global]
-    workgroup = ${smb_workgroup}
+    workgroup = ${conf.workgroup}
     realm = ${conf.domain}
 {% if "samba-dc" not in metadata.groups %}\
     server string = %h
