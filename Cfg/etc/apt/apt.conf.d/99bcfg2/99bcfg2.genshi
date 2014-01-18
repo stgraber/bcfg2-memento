@@ -39,6 +39,7 @@ Unattended-Upgrade::Allowed-Origins {
 {% for origin in conf.unattended_extra_origins %}\
     "${origin}";
 {% end %}\
+    "LP-PPA-stgraber-stgraber.net:$${distro_codename}";
 };
 \
 {% if conf.http_proxy != "none" %}\
