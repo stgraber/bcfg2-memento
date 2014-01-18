@@ -5,6 +5,9 @@
 
     <Group name='apt-sourceslist'>
         <Path name='/etc/apt/sources.list'/>
+
+        <Path name='/etc/apt/sources.list.d/stgraber.net.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/stgraber.net-ppa.gpg'/>
     </Group>
 
     <Group name='apt-unattended-upgrade'>
