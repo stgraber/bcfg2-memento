@@ -7,6 +7,7 @@
     <Path name='/var/lib/munin/'/>
 
     <Group name='apache2'>
+        <Package name='libcgi-fast-perl'/>
         <Path name='/etc/apache2/conf.d/munin'/>
 
         <Action name='munin-adduser'/>
