@@ -12,6 +12,7 @@
     <Group name='apache2'>
         <Path name='/var/lib/nagios3'/>
         <Path name='/var/lib/nagios3/rw'/>
+        <Path name='/etc/nagios3/apache2.conf'/>
         <Action name='nagios-adduser'/>
     </Group>
 
