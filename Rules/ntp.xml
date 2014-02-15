@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="ntp" status="on" type="deb" restart="true"
+             install="true"/>
+</Rules>

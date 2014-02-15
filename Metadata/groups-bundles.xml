@@ -67,6 +67,9 @@
     <Group name="nsd">
         <Bundle name="nsd"/>
     </Group>
+    <Group name="ntp">
+        <Bundle name="ntp"/>
+    </Group>
     <Group name="opendnssec">
         <Bundle name="opendnssec"/>
     </Group>

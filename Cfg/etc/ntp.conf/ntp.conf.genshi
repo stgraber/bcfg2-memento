@@ -1,0 +1,46 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "ntp", "ntp.conf")
+
+    if not conf['servers']:
+        conf['servers'] = []
+    if not isinstance(conf['servers'], list):
+        conf['servers'] = [conf['servers']]
+
+    if not conf['networks']:
+        conf['networks'] = []
+    if not isinstance(conf['networks'], list):
+        conf['networks'] = [conf['networks']]
+%}\
+
+driftfile /var/lib/ntp/ntp.drift
+
+restrict -4 default ignore
+restrict -6 default ignore
+
+{% for server in conf.servers %}\
+server ${server} iburst
+{% end %}\
+
+server 127.127.1.0
+fudge 127.127.1.0 stratum 10
+
+{% for server in conf.servers %}\
+restrict ${server} nomodify notrap nopeer noquery
+{% end %}\
+
+{% for network in conf.networks %}\
+restrict ${network} nomodify notrap nopeer noquery
+{% end %}\
+
+restrict 127.0.0.1
+restrict ::1
+{% end %}\
