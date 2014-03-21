@@ -78,7 +78,12 @@
 
         <Package name='strongswan'/>
 
-        <Service name='ipsec'/>
+        <Group name='ubuntu-12.04'>
+            <Service name='ipsec'/>
+        </Group>
+        <Group name='ubuntu-12.04' negate='true'>
+            <Service name='strongswan'/>
+        </Group>
     </Group>
 
     <Group name='networking-openvpn'>
