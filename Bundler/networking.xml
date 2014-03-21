@@ -8,7 +8,12 @@
     </Group>
 
     <Group name='networking-bond'>
-        <Package name='ifenslave-2.6'/>
+        <Group name='ubuntu-12.04'>
+            <Package name='ifenslave-2.6'/>
+        </Group>
+        <Group name='ubuntu-12.04' negate='true'>
+            <Package name='ifenslave'/>
+        </Group>
     </Group>
 
     <Group name='networking-dhcpd'>
