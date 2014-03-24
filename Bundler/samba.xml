@@ -3,8 +3,14 @@
 
     <Group name='samba-dc'>
         <Package name='dnsutils'/>
-        <Package name='samba4'/>
-        <Service name='samba4'/>
+        <Group name='ubuntu-12.04'/>
+            <Package name='samba4'/>
+            <Service name='samba4'/>
+        </Group>
+        <Group name='ubuntu-12.04' negate='true'/>
+            <Package name='samba'/>
+            <Service name='samba-ad-dc'/>
+        </Group>
     </Group>
 
     <Group name='samba-fileserver'>

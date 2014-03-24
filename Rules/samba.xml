@@ -3,4 +3,6 @@
              install="true"/>
     <Service name="samba4" status="on" type="upstart" restart="true"
              install="true"/>
+    <Service name="samba-ad-dc" status="on" type="upstart" restart="true"
+             install="true"/>
 </Rules>
