@@ -2,6 +2,9 @@
     <Service name="apache2" status="on" type="deb" restart="true"
              install="true"/>
 
+    <Path type='symlink' name='/etc/apache2/conf-enabled/bcfg2.conf'
+          to='../conf-available/bcfg2.conf'/>
+
     <Path type='symlink' name='/etc/apache2/mods-enabled/authnz_ldap.load'
           to='../mods-available/authnz_ldap.load'/>
 
