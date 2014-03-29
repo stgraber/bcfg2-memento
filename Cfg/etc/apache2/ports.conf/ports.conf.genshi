@@ -23,15 +23,20 @@
 %}\
 
 {% if "ubuntu-12.04" in metadata.groups %}\
-NameVirtualHost *:80
+{% for entry in conf.http_ports %}\
+NameVirtualHost *:${entry}
 {% end %}\
-
+{% if "apache2-mod-ssl" in metadata.groups %}\
+{% for entry in conf.https_ports %}\
+NameVirtualHost *:${entry}
+{% end %}\
+{% end %}\
+{% end %}\
 {% for entry in conf.http_ports %}\
 Listen ${entry} http
 {% end %}\
-
 {% if "apache2-mod-ssl" in metadata.groups %}\
 {% for entry in conf.https_ports %}\
-    Listen ${entry} https
+Listen ${entry} https
 {% end %}\
 {% end %}\
