@@ -13,6 +13,8 @@
     # Load the config
     conf = config.get_config_section(repo, metadata, "rsync", "rsyncd.conf")
 
+    read_only = conf['read_only']
+
     for key in ("allowed_hosts", "shares"):
         if not conf[key]:
             conf[key] = []
@@ -91,7 +93,7 @@ use chroot = no
 max connections = 5
 syslog facility = local5
 log file = /var/log/rsyncd.log
-read only = yes
+read only = ${read_only}
 ignore errors = true
 ignore nonreadable = true
 list = false
