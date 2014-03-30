@@ -74,10 +74,11 @@
 
     if not conf['users']:
         allowed_users = []
-    elif isinstance(conf['users'], list):
-        allowed_users = [user.split(":")[0] for user in conf['users']]
-    else:
+
+    if not isinstance(conf['users'], list):
         allowed_users = [conf['users']]
+
+    allowed_users = [user.split(":")[0] for user in allowed_users]
 
     if "rsync-server-backuppc" in metadata.groups:
         allowed_users.append("backuppc")
