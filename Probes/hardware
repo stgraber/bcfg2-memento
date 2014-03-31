@@ -92,7 +92,13 @@ if os.path.exists("/proc/mdstat"):
 
 # Detect HP SmartArray controlers
 if os.path.exists("/sys/module/hpsa"):
+    print("group:hwraid")
     print("group:hpsa")
+
+# Detect LSI RAID controlers
+if os.path.exists("/sys/module/mpt2sas"):
+    print("group:hwraid")
+    print("group:mpt2sas")
 
 print(json.dumps(attributes))
 sys.exit(0)

@@ -34,6 +34,9 @@
     <Group name="freeradius">
         <Bundle name="freeradius"/>
     </Group>
+    <Group name="hwraid">
+        <Bundle name="hwraid"/>
+    </Group>
     <Group name="jenkins">
         <Bundle name="jenkins"/>
     </Group>
