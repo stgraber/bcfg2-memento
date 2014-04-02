@@ -13,7 +13,7 @@
     if conf['allowed_groups'] == "all":
         conf['allowed_groups'] = ""
     elif isinstance(conf['allowed_groups'], list):
-        conf['allowed_groups'] = " ".join(conf['allowed_groups'])
+        conf['allowed_groups'] = ", ".join(conf['allowed_groups'])
 
     ldap_dn = "DC=%s" % ",DC=".join(conf['domain'].split("."))
 
