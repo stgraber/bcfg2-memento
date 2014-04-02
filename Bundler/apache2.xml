@@ -37,6 +37,9 @@
 
     <Group name='apache2-mod-php5'>
         <Package name='libapache2-mod-php5'/>
+        <Group name='mysql'>
+            <Package name='php5-mysql'/>
+        </Group>
         <Group name='postgresql'>
             <Package name='php5-pgsql'/>
         </Group>

@@ -1,0 +1,4 @@
+<Bundle name='mysql' version='2.0'>
+    <Package name='mysql-server'/>
+    <Service name='mysql'/>
+</Bundle>

@@ -58,6 +58,9 @@
     <Group name="munin">
         <Bundle name="munin"/>
     </Group>
+    <Group name="mysql">
+        <Bundle name="mysql"/>
+    </Group>
     <Group name="nagios-nrpe">
         <Bundle name="nagios-nrpe"/>
     </Group>
