@@ -40,6 +40,9 @@
     <Group name="jenkins">
         <Bundle name="jenkins"/>
     </Group>
+    <Group name="libvirt">
+        <Bundle name="libvirt"/>
+    </Group>
     <Group name="lxc">
         <Bundle name="lxc"/>
     </Group>

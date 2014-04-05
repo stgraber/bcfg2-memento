@@ -1,0 +1,4 @@
+<Bundle name='libvirt-bin' version='2.0'>
+    <Package name='libvirt-bin'/>
+    <Service name='libvirt-bin'/>
+</Bundle>

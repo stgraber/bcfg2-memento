@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="libvirt" status="on" type="upstart" restart="true"
+             install="true"/>
+</Rules>
