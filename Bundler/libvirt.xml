@@ -1,4 +1,5 @@
 <Bundle name='libvirt-bin' version='2.0'>
     <Package name='libvirt-bin'/>
+    <Package name='qemu-kvm'/>
     <Service name='libvirt-bin'/>
 </Bundle>
