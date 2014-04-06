@@ -2,7 +2,7 @@
 {% python
     import os
 
-    fqdn = os.path.basename(name)
+    fqdn = os.path.basename(name).rsplit(".conf", 1)[0]
 %}\
 <VirtualHost *:80>
     ServerName ${fqdn}
