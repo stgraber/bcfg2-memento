@@ -22,6 +22,11 @@
         <Path name='/etc/apache2/mods-enabled/authnz_ldap.load'/>
     </Group>
 
+    <Group name='apache2-mod-cgid'>
+        <Path name='/etc/apache2/mods-enabled/cgid.conf'/>
+        <Path name='/etc/apache2/mods-enabled/cgid.load'/>
+    </Group>
+
     <Group name='apache2-mod-fcgid'>
         <Package name='libapache2-mod-fcgid'/>
     </Group>

@@ -8,6 +8,11 @@
     <Path type='symlink' name='/etc/apache2/mods-enabled/authnz_ldap.load'
           to='../mods-available/authnz_ldap.load'/>
 
+    <Path type='symlink' name='/etc/apache2/mods-enabled/cgid.conf'
+          to='../mods-available/cgid.conf'/>
+    <Path type='symlink' name='/etc/apache2/mods-enabled/cgid.load'
+          to='../mods-available/cgid.load'/>
+
     <Path type='symlink' name='/etc/apache2/mods-enabled/headers.load'
           to='../mods-available/headers.load'/>
 
