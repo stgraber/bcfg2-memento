@@ -1,0 +1,3 @@
+<Bundle name='gitolite' version='2.0'>
+    <Package name='gitolite3'/>
+</Bundle>
