@@ -1,8 +1,9 @@
 <Bundle name='bcfg2' version='2.0'>
     <!-- Required for the probes -->
-    <Package name='python3'/>
+    <Package name='bcfg2'/>
     <Package name='python3-apt'/>
     <Package name='python3-ipaddr'/>
+
     <Path name='/etc/bcfg2.netmap'/>
 
     <Path name='/etc/default/bcfg2'/>
@@ -12,9 +13,13 @@
     <Path name='/etc/bcfg2.key'/>
 
     <Group name='bcfg2-server'>
+        <Package name='bcfg2-server'/>
+
         <Path name='/etc/bcfg2-server.conf'/>
         <Path name='/etc/bcfg2-server.crt'/>
         <Path name='/etc/bcfg2-server.key'/>
+
+        <Service name='bcfg2-server'/>
     </Group>
 
     <Group name='bcfg2-info'>

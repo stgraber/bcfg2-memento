@@ -11,12 +11,13 @@
     <Path name='/etc/bcfg2.key' type='permissions'
           owner="root" group="root" mode='0600'/>
 
-    <Group name='bcfg2-server'>
-        <Path name='/etc/bcfg2-server.conf' type='permissions'
-              owner="root" group="root" mode='0600'/>
-        <Path name='/etc/bcfg2-server.crt' type='permissions'
-              owner="root" group="root" mode='0600'/>
-        <Path name='/etc/bcfg2-server.key' type='permissions'
-              owner="root" group="root" mode='0600'/>
-    </Group>
+    <Path name='/etc/bcfg2-server.conf' type='permissions'
+          owner="root" group="root" mode='0600'/>
+    <Path name='/etc/bcfg2-server.crt' type='permissions'
+          owner="root" group="root" mode='0600'/>
+    <Path name='/etc/bcfg2-server.key' type='permissions'
+          owner="root" group="root" mode='0600'/>
+
+    <Service name="bcfg2-server" status="on" type="deb" restart="true"
+             install="true"/>
 </Rules>
