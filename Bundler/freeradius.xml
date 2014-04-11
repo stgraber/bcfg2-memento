@@ -3,5 +3,4 @@
     <Service name='freeradius'/>
 
     <Path name='/etc/freeradius/clients.conf'/>
-    <Path name='/etc/freeradius/radiusd.conf'/>
 </Bundle>
