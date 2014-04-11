@@ -1,0 +1,33 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "freeradius",
+                                     "clients.conf")
+
+    # Generate the list of clients
+    clients = []
+    for client_name in conf['clients']:
+        client = config.get_config_section(repo, metadata, "freeradius",
+                                           "client_%s" % client_name)
+        client['name'] = client_name
+        clients.append(client)
+%}\
+{% for client in clients %}\
+
+client ${client.name} {
+{% if 'ipaddr' in client %}\
+    ipaddr = ${client.ipaddr}
+{% end %}\
+{% if 'ipv6addr' in client %}\
+    ipv6addr = ${client.ipv6addr}
+{% end %}\
+    secret = ${client.secret}
+}
+{% end %}\
