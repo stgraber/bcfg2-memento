@@ -19,9 +19,18 @@
         conf['networks'] = []
     if not isinstance(conf['networks'], list):
         conf['networks'] = [conf['networks']]
+
+    if not conf['interfaces']:
+        conf['interfaces'] = []
+    if not isinstance(conf['interfaces'], list):
+        conf['interfaces'] = [conf['interfaces']]
 %}\
 
 driftfile /var/lib/ntp/ntp.drift
+
+{% for interface in conf.interfaces %}\
+interface listen ${interface}
+{% end %}\
 
 restrict -4 default ignore
 restrict -6 default ignore
