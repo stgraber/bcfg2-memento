@@ -1,0 +1,20 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "networking",
+                                     "dhcpd6.conf")
+%}\
+
+authoritative;
+default-lease-time ${conf.default_lease};
+max-lease-time ${conf.max_lease};
+
+include "/etc/dhcp/dhcpd6.conf.d/local";
+include "/etc/dhcp/dhcpd6.conf.d/static";

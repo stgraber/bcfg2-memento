@@ -25,6 +25,15 @@
         <Path name='/etc/dhcp/dhcpd.conf.d/static'/>
     </Group>
 
+    <Group name='networking-dhcpd6'>
+        <Package name='isc-dhcp-server'/>
+        <Service name='isc-dhcp-server6'/>
+
+        <Path name='/etc/dhcp/dhcpd6.conf'/>
+        <Path name='/etc/dhcp/dhcpd6.conf.d/local'/>
+        <Path name='/etc/dhcp/dhcpd6.conf.d/static'/>
+    </Group>
+
     <Group name='networking-dhcp-relay'>
         <Package name='isc-dhcp-relay'/>
         <Service name='isc-dhcp-relay'/>
