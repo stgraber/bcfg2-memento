@@ -22,6 +22,8 @@
 
     <Service name="isc-dhcp-relay" status="on" type="upstart" restart="true"
              install="true"/>
+    <Service name="isc-dhcp-relay6" status="on" type="upstart" restart="true"
+             install="true"/>
     <Service name="isc-dhcp-server" status="on" type="upstart" restart="true"
              install="true"/>
     <Service name="isc-dhcp-server6" status="on" type="upstart" restart="true"

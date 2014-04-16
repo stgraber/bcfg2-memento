@@ -41,6 +41,13 @@
         <Path name='/etc/default/isc-dhcp-relay'/>
     </Group>
 
+    <Group name='networking-dhcp-relay6'>
+        <Package name='isc-dhcp-relay'/>
+        <Service name='isc-dhcp-relay6'/>
+
+        <Path name='/etc/default/isc-dhcp-relay6'/>
+    </Group>
+
     <Group name='networking-firewall'>
         <Action name='networking-firewall'/>
 
