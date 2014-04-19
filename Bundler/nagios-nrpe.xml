@@ -53,7 +53,8 @@
         <Path name='/etc/nagios/nrpe.d/postfix.cfg'/>
     </Group>
 
-    <Group name='tftpd'>
+    <Group name='tftpd-hpa'>
+        <Package name='tftp-hpa'/>
         <Path name='/etc/nagios/nrpe.d/tftpd.cfg'/>
     </Group>
 </Bundle>
