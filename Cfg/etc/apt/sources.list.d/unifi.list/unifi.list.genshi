@@ -9,10 +9,7 @@
 
     # Load the config
     conf = config.get_config_section(repo, metadata, "apt", "sources.list")
-
-    # Parse the probe result
-    distro = probes.get_probe_as_dict(metadata, "distro")
 %}\
 
 deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
-deb http://www.ubnt.com/downloads/unifi/distros/deb/${distro.codename} ${distro.codename} ubiquiti
+deb http://www.ubnt.com/downloads/unifi/distros/deb/precise precise ubiquiti
