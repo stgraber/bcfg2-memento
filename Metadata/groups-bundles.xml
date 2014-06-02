@@ -31,6 +31,9 @@
     <Group name="cups">
         <Bundle name="cups"/>
     </Group>
+    <Group name="ejabberd">
+        <Bundle name="ejabberd"/>
+    </Group>
     <Group name="freeradius">
         <Bundle name="freeradius"/>
     </Group>

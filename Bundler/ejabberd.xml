@@ -1,0 +1,6 @@
+<Bundle name='ejabberd' version='2.0'>
+    <Package name='ejabberd'/>
+    <Service name='ejabberd'/>
+
+    <Path name='/etc/ejabberd/ejabberd.cfg'/>
+</Bundle>
