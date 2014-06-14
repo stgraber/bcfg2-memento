@@ -47,6 +47,8 @@ recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = all
 smtp_helo_name = ${mailname_conf.mailname}
+smtp_tls_security_level = may
+smtpd_tls_security_level = may
 smtpd_banner = ${mailname_conf.mailname} ESMTP $$mail_name (Ubuntu)
 smtpd_helo_required = yes
 {% if conf.smtp_bind_address %}\
