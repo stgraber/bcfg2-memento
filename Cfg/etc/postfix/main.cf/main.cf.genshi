@@ -49,6 +49,12 @@ inet_protocols = all
 smtp_helo_name = ${mailname_conf.mailname}
 smtpd_banner = ${mailname_conf.mailname} ESMTP $$mail_name (Ubuntu)
 smtpd_helo_required = yes
+{% if conf.smtp_bind_address %}\
+smtp_bind_address = ${conf.smtp_bind_address}
+{% end %}\
+{% if conf.smtp_bind_address6 %}\
+smtp_bind_address6 = ${conf.smtp_bind_address6}
+{% end %}\
 
 # TLS parameters
 smtpd_use_tls=yes
