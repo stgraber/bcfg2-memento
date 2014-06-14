@@ -31,7 +31,9 @@ alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
 mydestination = ${metadata.hostname}, localhost
+{% if relay_host %}\
 relayhost = ${relay_host}
+{% end %}\
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 mailbox_size_limit = 0
 recipient_delimiter = +
@@ -43,8 +45,8 @@ smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 smtpd_use_tls=yes
 smtpd_tls_session_cache_database = btree:$${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:$${data_directory}/smtp_scache
-
 {% if "mailman" in metadata.groups %}\
+
 # Mailman parameters
 relay_domains = ${mailman_domains}
 relay_recipient_maps = hash:/var/lib/mailman/data/virtual-mailman
