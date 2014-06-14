@@ -22,9 +22,6 @@
     <Group name="cacti">
         <Bundle name="cacti"/>
     </Group>
-    <Group name="cloudprint">
-        <Bundle name="cloudprint"/>
-    </Group>
     <Group name="cron">
         <Bundle name="cron"/>
     </Group>

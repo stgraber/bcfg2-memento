@@ -174,13 +174,4 @@
             </Source>
         </Group>
     </Group>
-    <Group name='cloudprint'>
-        <Source type='apt'
-            url='http://dl.google.com/linux/chrome/deb/'
-            version='stable'>
-            <Component>main</Component>
-            <Arch>amd64</Arch>
-            <Arch>i386</Arch>
-        </Source>
-    </Group>
 </Sources>
