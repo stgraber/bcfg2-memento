@@ -1,0 +1,31 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # saslauthd.conf
+    conf = config.get_config_section(repo, metadata, "postfix",
+                                     "saslauthd.conf")
+    if not conf['ldap_servers']:
+        conf['ldap_servers'] = []
+    if not isinstance(conf['ldap_servers'], list):
+        conf['ldap_servers'] = [conf['ldap_servers']]
+
+    ldap_servers = " ".join(conf['ldap_servers'])
+%}\
+
+ldap_servers: ${ldap_servers}
+ldap_bind_dn: ${conf.ldap_bind_dn}
+ldap_bind_pw: ${conf.ldap_bind_pw}
+ldap_version: 3
+ldap_ssl: no
+ldap_start_tls: yes
+ldap_search_base: ${conf.ldap_search_base}
+ldap_filter: ${conf.ldap_filter}
+{% if conf.ldap_tls_cacert_file %}\
+ldap_tls_cacert_file: ${conf.ldap_tls_cacert_file}
+{% end %}\

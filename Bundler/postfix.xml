@@ -2,6 +2,17 @@
     <Package name='postfix'/>
     <Service name='postfix'/>
 
+    <Group name='postfix-sasl'>
+        <Package name='sasl2-bin'/>
+        <Service name='saslauthd'/>
+
+        <Path name='/etc/default/saslauthd'/>
+        <Path name='/etc/postfix/sasl/smtpd.conf'/>
+        <Path name='/etc/saslauthd.conf'/>
+
+        <Action name='postfix-sasl-adduser'/>
+    </Group>
+
     <Path name='/etc/postfix/main.cf'/>
     <Path name='/etc/postfix/master.cf'/>
     <Path name='/etc/postfix/transport'/>
