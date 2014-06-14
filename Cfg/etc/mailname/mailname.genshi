@@ -1,0 +1,12 @@
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Postfix
+    conf = config.get_config_section(repo, metadata, "postfix", "mailname")
+%}\
+${conf.mailname}

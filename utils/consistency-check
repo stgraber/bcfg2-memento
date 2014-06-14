@@ -31,6 +31,8 @@ valid_paths = ["Cfg/etc/nagios/nagiosgen.cfg", "Cfg/etc/nagiosgen.status",
                "Cfg/etc/ssh/ssh_host_ecdsa_key.pub",
                "Cfg/etc/ssh/ssh_host_rsa_key",
                "Cfg/etc/ssh/ssh_host_rsa_key.pub"]
+no_comments = ["mailname.genshi"]
+
 
 for dirpath, dirnames, filenames in os.walk("Cfg/"):
     if not dirnames and not filenames:
@@ -53,6 +55,9 @@ for dirpath, dirnames, filenames in os.walk("Cfg/"):
                 continue
 
             if entry.endswith(".pem") or ".pem." in entry:
+                continue
+
+            if entry in no_comments:
                 continue
 
             try:

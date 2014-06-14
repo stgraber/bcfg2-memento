@@ -4,5 +4,6 @@
 
     <Path name='/etc/postfix/main.cf'/>
     <Path name='/etc/postfix/transport'/>
+    <Path name='/etc/mailname'/>
     <Action name='postfix-map-transport'/>
 </Bundle>
