@@ -9,6 +9,14 @@
 
     # Postfix
     conf = config.get_config_section(repo, metadata, "postfix", "main.cf")
+    mailname_conf = config.get_config_section(repo, metadata, "postfix",
+                                              "mailname")
+
+    if not conf['mynetworks']:
+        conf['mynetworks'] = []
+    if not isinstance(conf['mynetworks'], list):
+        conf['mynetworks'] = [conf['mynetworks']]
+    mynetworks = " ".join(conf['mynetworks'])
 
     # Mailman
     mailman_conf = config.get_config_section(repo, metadata, "mailman",
@@ -22,27 +30,31 @@
 %}\
 
 # Global parameters
-smtpd_banner = $$myhostname ESMTP $$mail_name (Ubuntu)
-biff = no
-append_dot_mydomain = no
-readme_directory = no
 myhostname = ${metadata.hostname}
-alias_maps = hash:/etc/aliases
-alias_database = hash:/etc/aliases
-myorigin = /etc/mailname
 mydestination = ${metadata.hostname}, localhost
+mynetworks = ${mynetworks}
 {% if conf.relay_host %}\
 relayhost = ${conf.relay_host}
 {% end %}\
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = /etc/mailname
 mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
+inet_protocols = all
+smtp_helo_name = ${mailname_conf.mailname}
+smtpd_banner = ${mailname_conf.mailname} ESMTP $$mail_name (Ubuntu)
+smtpd_helo_required = yes
 
 # TLS parameters
+smtpd_use_tls=yes
 smtpd_tls_cert_file=${conf.smtpd_tls_cert_file}
 smtpd_tls_key_file=${conf.smtpd_tls_key_file}
-smtpd_use_tls=yes
+smtpd_tls_mandatory_exclude_ciphers=aNULL,MD5
 smtpd_tls_session_cache_database = btree:$${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:$${data_directory}/smtp_scache
 {% if "mailman" in metadata.groups %}\
@@ -52,4 +64,17 @@ relay_domains = ${mailman_domains}
 relay_recipient_maps = hash:/var/lib/mailman/data/virtual-mailman
 transport_maps = hash:/etc/postfix/transport
 mailman_destination_recipient_limit = 1
+{% end %}\
+{% if "postfix-smtpout" in metadata.groups %}\
+
+# SMTP out parameters
+smtpd_sender_restrictions =
+        permit_mynetworks,
+        permit
+
+# Filter on rcpt to
+smtpd_recipient_restrictions =
+        permit_mynetworks,
+        permit_sasl_authenticated,
+        reject
 {% end %}\
