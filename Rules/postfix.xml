@@ -3,6 +3,8 @@
              install="true"/>
     <Service name="saslauthd" status="on" type="deb" restart="true"
              install="true"/>
+    <Service name="opendkim" status="on" type="deb" restart="true"
+             install="true"/>
     <Action timing="post" name="postfix-map-transport" when="modified"
             command="postmap /etc/postfix/transport" status="check"/>
     <Action timing='pre' name='postfix-sasl-adduser' when='modified'

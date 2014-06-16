@@ -1,0 +1,22 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Postfix
+    conf = config.get_config_section(repo, metadata, "postfix",
+                                     "opendkim.conf")
+
+    if not conf['domains']:
+        conf['domains'] = []
+    elif not isinstance(conf['domains'], list):
+        conf['domains'] = [conf['domains']]
+%}\
+
+{% for domain in conf.domains %}\
+${domain} ${conf.selector}._domainkey.${domain}
+{% end %}\

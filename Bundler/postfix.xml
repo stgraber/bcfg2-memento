@@ -13,6 +13,18 @@
         <Action name='postfix-sasl-adduser'/>
     </Group>
 
+    <Group name='postfix-dkim'>
+        <Package name='opendkim'/>
+        <Package name='opendkim-tools'/>
+        <Service name='opendkim'/>
+
+        <Path name='/etc/opendkim.conf'/>
+        <Path name='/etc/opendkim/KeyTable'/>
+        <Path name='/etc/opendkim/SigningTable'/>
+        <Path name='/etc/opendkim/TrustedHosts'/>
+        <Path name='/etc/default/opendkim'/>
+    </Group>
+
     <Path name='/etc/postfix/main.cf'/>
     <Path name='/etc/postfix/master.cf'/>
     <Path name='/etc/postfix/transport'/>

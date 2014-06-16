@@ -86,3 +86,11 @@ smtpd_recipient_restrictions =
         permit_sasl_authenticated,
         reject
 {% end %}\
+{% if "postfix-dkim" in metadata.groups %}\
+
+# DKIM
+milter_default_action = accept
+milter_protocol = 6
+smtpd_milters = inet:localhost:10000
+non_smtpd_milters = inet:localhost:10000
+{% end %}\
