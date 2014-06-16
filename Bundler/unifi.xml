@@ -7,8 +7,14 @@
         <Package name='unifi-beta'/>
     </Group>
 
+    <Group name='unifi-rapid'>
+        <Package name='unifi-rapid'/>
+    </Group>
+
     <Group name='unifi-beta' negate='true'>
-        <Package name='unifi'/>
+        <Group name='unifi-rapid' negate='true'>
+            <Package name='unifi'/>
+        </Group>
     </Group>
 
     <Service name='unifi'/>
