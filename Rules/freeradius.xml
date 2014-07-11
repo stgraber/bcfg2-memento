@@ -1,4 +1,4 @@
 <Rules priority="0">
-    <Service name="freeradius" status="on" type="deb" restart="true"
+    <Service name="freeradius" status="ignore" type="deb" restart="true"
              install="true"/>
 </Rules>
