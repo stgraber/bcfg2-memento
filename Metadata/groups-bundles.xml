@@ -37,6 +37,9 @@
     <Group name="gitolite">
         <Bundle name="gitolite"/>
     </Group>
+    <Group name="google-chrome">
+        <Bundle name="google-chrome"/>
+    </Group>
     <Group name="hwraid">
         <Bundle name="hwraid"/>
     </Group>
