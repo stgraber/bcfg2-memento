@@ -97,6 +97,9 @@
     <Group name="rsync">
         <Bundle name="rsync"/>
     </Group>
+    <Group name="rsyslog">
+        <Bundle name="rsyslog"/>
+    </Group>
     <Group name="samba">
         <Bundle name="samba"/>
     </Group>

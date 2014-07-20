@@ -1,0 +1,12 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% if "rsyslog-server" in metadata.groups %}\
+
+/var/log/remote/*.log {
+        daily
+        missingok
+        rotate 7
+        compress
+        notifempty
+        nocreate
+}
+{% end %}\

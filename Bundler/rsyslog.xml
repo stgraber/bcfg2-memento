@@ -1,0 +1,13 @@
+<Bundle name='rsyslog' version='2.0'>
+    <Package name='rsyslog'/>
+    <Service name='rsyslog'/>
+
+    <Group name='container'>
+        <Path name='/etc/rsyslog.conf'/>
+    </Group>
+
+    <Path name='/etc/rsyslog.d/10-bcfg2.conf'/>
+    <Group name='rsyslog-server'>
+        <Path name='/etc/logrotate.d/bcfg2'/>
+    </Group>
+</Bundle>
