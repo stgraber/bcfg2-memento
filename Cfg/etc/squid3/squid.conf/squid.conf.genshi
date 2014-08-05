@@ -47,3 +47,9 @@ htcp_access allow all
 htcp_clr_access allow all
 htcp_port ${conf.htcp_port}
 {% end %}\
+
+# Hide our traces
+forwarded_for transparent
+via off
+reply_header_access X-Cache deny all
+reply_header_access X-Cache-Lookup deny all
