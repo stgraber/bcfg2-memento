@@ -1,0 +1,55 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "networking",
+                                     "resolv.conf")
+
+    if not isinstance(conf['nameservers'], list):
+        conf['nameservers'] = [conf['nameservers']]
+
+    nameservers = ",".join(conf['nameservers'])
+%}\
+
+# Log to syslog
+Syslog			yes
+
+# Required to use local socket with MTAs that access the socket as a non-
+# privileged user (e.g. Postfix)
+UMask			002
+{% if nameservers %}\
+
+# Name servers
+Nameservers		${nameservers}
+{% end %}\
+
+{% if "postfix-dkim-signer" in metadata.groups %}\
+# Operating mode
+Mode			s
+KeyTable		/etc/opendkim/KeyTable
+SigningTable	/etc/opendkim/SigningTable
+InternalHosts	/etc/opendkim/TrustedHosts
+
+# Always oversign From (sign using actual From and a null From to prevent
+# malicious signatures header fields (From and/or others) between the signer
+# and the verifier.  From is oversigned by default in the Debian pacakge
+# because it is often the identity key used by reputation systems and thus
+# somewhat security sensitive.
+OversignHeaders		From
+{% end %}\
+{% if "postfix-dkim-signer" not in metadata.groups %}\
+# Operating mode
+Mode				v
+
+# Always add a header
+AlwaysAddARHeader	yes
+
+# Quarantine messages with invalid signature
+On-BadSignature		quarantine
+{% end %}\

@@ -17,6 +17,11 @@
     if not isinstance(conf['mynetworks'], list):
         conf['mynetworks'] = [conf['mynetworks']]
     mynetworks = " ".join(conf['mynetworks'])
+    if not conf['relay_domains']:
+        conf['relay_domains'] = []
+    if not isinstance(conf['relay_domains'], list):
+        conf['relay_domains'] = [conf['relay_domains']]
+    relay_domains = " ".join(conf['relay_domains'])
 
     # Mailman
     mailman_conf = config.get_config_section(repo, metadata, "mailman",
@@ -27,6 +32,24 @@
         mailman_conf['domains'] = [mailman_conf['domains']]
 
     mailman_domains = " ".join(mailman_conf['domains'])
+
+    # Milters
+    smtpd_milters = []
+    non_smtpd_milters = []
+
+    if "postfix-spf" in metadata.groups:
+        smtpd_milters.append("inet:localhost:10021")
+        non_smtpd_milters.append("inet:localhost:10021")
+
+    if "postfix-dkim" in metadata.groups:
+        smtpd_milters.append("inet:localhost:10000")
+        non_smtpd_milters.append("inet:localhost:10000")
+
+    if "postfix-antispam" in metadata.groups:
+        smtpd_milters.append("inet:localhost:10025")
+
+    smtpd_milters = " ".join(smtpd_milters)
+    non_smtpd_milters = " ".join(non_smtpd_milters)
 %}\
 
 # Global parameters
@@ -57,12 +80,21 @@ smtp_bind_address = ${conf.smtp_bind_address}
 {% if conf.smtp_bind_address6 %}\
 smtp_bind_address6 = ${conf.smtp_bind_address6}
 {% end %}\
+milter_default_action = accept
+milter_protocol = 6
+milter_connect_macros = j {daemon_name} v {if_name} _
+{% if smtpd_milters %}\
+smtpd_milters = ${smtpd_milters}
+{% end %}\
+{% if non_smtpd_milters %}\
+non_smtpd_milters = ${non_smtpd_milters}
+{% end %}\
 
 # TLS parameters
-smtpd_use_tls=yes
-smtpd_tls_cert_file=${conf.smtpd_tls_cert_file}
-smtpd_tls_key_file=${conf.smtpd_tls_key_file}
-smtpd_tls_mandatory_exclude_ciphers=aNULL,MD5
+smtpd_use_tls = yes
+smtpd_tls_cert_file = ${conf.smtpd_tls_cert_file}
+smtpd_tls_key_file = ${conf.smtpd_tls_key_file}
+smtpd_tls_mandatory_exclude_ciphers = aNULL,MD5
 smtpd_tls_session_cache_database = btree:$${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:$${data_directory}/smtp_scache
 {% if "mailman" in metadata.groups %}\
@@ -86,11 +118,21 @@ smtpd_recipient_restrictions =
         permit_sasl_authenticated,
         reject
 {% end %}\
-{% if "postfix-dkim" in metadata.groups %}\
+{% if "postfix-smtpin" in metadata.groups %}\
 
-# DKIM
-milter_default_action = accept
-milter_protocol = 6
-smtpd_milters = inet:localhost:10000
-non_smtpd_milters = inet:localhost:10000
+# SMTP in parameters
+relay_domains = ${relay_domains}
+transport_maps = hash:/etc/postfix/transport
+
+{% if "postfix-greylist" in metadata.groups %}\
+smtpd_recipient_restrictions =
+        permit_mynetworks,
+        reject_unauth_destination,
+        check_policy_service inet:127.0.0.1:10023
+{% end %}\
+{% if "postfix-greylist" not in metadata.groups %}\
+smtpd_recipient_restrictions =
+        permit_mynetworks,
+        reject_unauth_destination
+{% end %}\
 {% end %}\

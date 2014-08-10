@@ -1,0 +1,21 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Mailman
+    conf = config.get_config_section(repo, metadata, "mailman", "mm_cfg.py")
+    if not conf['domains']:
+        conf['domains'] = []
+    if not isinstance(conf['domains'], list):
+        conf['domains'] = [conf['domains']]
+%}\
+{% if "mailman" in metadata.groups %}\
+{% for domain in conf.domains %}\
+${domain} mailman:
+{% end %}\
+{% end %}\

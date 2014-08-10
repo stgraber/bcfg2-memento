@@ -1,10 +1,19 @@
 <Rules priority="0">
+    <Service name="opendkim" status="on" type="deb" restart="true"
+             install="true"/>
     <Service name="postfix" status="ignore" type="deb" restart="true"
+             install="true"/>
+    <Service name="postgrey" status="ignore" type="deb" restart="true"
              install="true"/>
     <Service name="saslauthd" status="on" type="deb" restart="true"
              install="true"/>
-    <Service name="opendkim" status="on" type="deb" restart="true"
+    <Service name="spamassassin" status="on" type="deb" restart="true"
              install="true"/>
+    <Service name="spamass-milter" status="on" type="deb" restart="true"
+             install="true"/>
+    <Service name="spf-milter-python" status="ignore" type="deb" restart="true"
+             install="true"/>
+
     <Action timing="post" name="postfix-map-transport" when="modified"
             command="postmap /etc/postfix/transport" status="check"/>
     <Action timing='pre' name='postfix-sasl-adduser' when='modified'

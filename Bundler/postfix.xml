@@ -2,6 +2,38 @@
     <Package name='postfix'/>
     <Service name='postfix'/>
 
+    <Group name='postfix-antispam'>
+        <Package name='spamassassin'/>
+        <Package name='spamass-milter'/>
+
+        <Service name='spamassassin'/>
+        <Service name='spamass-milter'/>
+
+        <Path name='/etc/default/spamass-milter'/>
+        <Path name='/etc/default/spamassassin'/>
+        <Path name='/etc/spamassassin/local.cf'/>
+    </Group>
+
+    <Group name='postfix-dkim'>
+        <Package name='opendkim'/>
+        <Package name='opendkim-tools'/>
+        <Service name='opendkim'/>
+
+        <Group name='postfix-dkim-signer'>
+            <Path name='/etc/opendkim/KeyTable'/>
+            <Path name='/etc/opendkim/SigningTable'/>
+            <Path name='/etc/opendkim/TrustedHosts'/>
+        </Group>
+
+        <Path name='/etc/opendkim.conf'/>
+        <Path name='/etc/default/opendkim'/>
+    </Group>
+
+    <Group name='postfix-greylist'>
+        <Package name='postgrey'/>
+        <Service name='postgrey'/>
+    </Group>
+
     <Group name='postfix-sasl'>
         <Package name='sasl2-bin'/>
         <Service name='saslauthd'/>
@@ -13,21 +45,18 @@
         <Action name='postfix-sasl-adduser'/>
     </Group>
 
-    <Group name='postfix-dkim'>
-        <Package name='opendkim'/>
-        <Package name='opendkim-tools'/>
-        <Service name='opendkim'/>
-
-        <Path name='/etc/opendkim.conf'/>
-        <Path name='/etc/opendkim/KeyTable'/>
-        <Path name='/etc/opendkim/SigningTable'/>
-        <Path name='/etc/opendkim/TrustedHosts'/>
-        <Path name='/etc/default/opendkim'/>
+    <Group name='postfix-spf'>
+        <Package name='spf-milter-python'/>
+        <Service name='spf-milter-python'/>
+        <Path name='/etc/spf-milter-python/spfmilter.cfg'/>
     </Group>
 
-    <Path name='/etc/postfix/main.cf'/>
-    <Path name='/etc/postfix/master.cf'/>
-    <Path name='/etc/postfix/transport'/>
+    <Group name='postfix-smtpin'>
+        <Path name='/etc/postfix/transport'/>
+        <Action name='postfix-map-transport'/>
+    </Group>
+
     <Path name='/etc/mailname'/>
-    <Action name='postfix-map-transport'/>
+    <Path name='/etc/postfix/master.cf'/>
+    <Path name='/etc/postfix/main.cf'/>
 </Bundle>
