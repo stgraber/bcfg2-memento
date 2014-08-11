@@ -8,7 +8,8 @@
     from bcfg2_repo import config
 
     # Load the config
-    conf = config.get_config_section(repo, metadata, "networking", "resolv.conf")
+    conf = config.get_config_section(repo, metadata, "networking",
+                                     "resolv.conf")
 
     if isinstance(conf['search'], list):
         conf['search'] = " ".join(conf['search'])
