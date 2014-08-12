@@ -1,4 +1,21 @@
 # This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "postfix",
+                                     "spfmilter.cfg")
+
+    if not isinstance(conf['trusted_relays'], list):
+        conf['trusted_relays'] = [conf['trusted_relays']]
+
+    trusted_relays = ", ".join(conf['trusted_relays'])
+%}\
 
 [milter]
 # The socket used to communicate with sendmail
@@ -7,7 +24,7 @@ socketname = inet:10021@127.0.0.1
 # Name of the milter given to sendmail
 name = pyspffilter
 # Trusted relays such as secondary MXes that should not have SPF checked.
-;trusted_relay =
+trusted_relay = ${trusted_relays}
 # Internal networks that should not have SPF checked.
 internal_connect = 127.0.0.1
 
