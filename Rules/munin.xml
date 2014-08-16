@@ -8,6 +8,11 @@
     <Path type='permissions' name='/var/lib/munin/'
           owner='munin' group='munin' mode='0770'/>
 
+    <Path type='symlink' name='/etc/apache2/conf-enabled/munin.conf'
+          to='../conf-available/munin.conf'/>
+    <Path type='symlink' name='/etc/apache2/conf-available/munin.conf'
+          to='/etc/munin/apache.conf'/>
+
     <Action timing='pre' name='munin-adduser' when='modified'
             command='adduser www-data nagios' status='check'/>
 </Rules>
