@@ -4,6 +4,11 @@
     <Path type='symlink' name='/etc/apache2/conf.d/backuppc.conf'
           to='/etc/backuppc/apache.conf'/>
 
+    <Path type='symlink' name='/etc/apache2/conf-enabled/backuppc.conf'
+          to='../conf-available/backuppc.conf'/>
+    <Path type='symlink' name='/etc/apache2/conf-available/backuppc.conf'
+          to='/etc/backuppc/apache.conf'/>
+
     <Action timing="post" name="backuppc-reload" when="always"
             command="/etc/init.d/backuppc reload" status="check"/>
 </Rules>

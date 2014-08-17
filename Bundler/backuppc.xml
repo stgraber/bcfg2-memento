@@ -25,9 +25,16 @@
     <Service name='backuppc'/>
 
     <Group name='apache2'>
-        <Path name='/etc/apache2/conf.d/backuppc.conf'/>
+        <Group name='ubuntu-12.04'>
+            <Path name='/etc/apache2/conf.d/backuppc.conf'/>
+        </Group>
+        <Group name='ubuntu-12.04' negate='true'>
+            <Path name='/etc/apache2/conf-available/backuppc.conf'/>
+            <Path name='/etc/apache2/conf-enabled/backuppc.conf'/>
+        </Group>
         <Action name='apache2-reload'/>
     </Group>
+
     <Path name='/etc/backuppc/apache.conf'/>
     <Path name='/etc/backuppc/config.pl'/>
     <Path name='/etc/backuppc/hosts'/>
