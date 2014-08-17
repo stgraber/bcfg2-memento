@@ -22,52 +22,52 @@
 # Local tests
 define command {
     command_name    check_http_answer
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e '${http_status}'
+    command_line    $$USER1$$/check_http -I $$HOSTADDRESS$$ -e '${http_status}'
 }
 
 define command {
     command_name    check_http_answer_port
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e '${http_status}' -p $$ARG1$$
+    command_line    $$USER1$$/check_http -I $$HOSTADDRESS$$ -e '${http_status}' -p $$ARG1$$
 }
 
 define command {
     command_name    check_http_port
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -p $$ARG1$$
+    command_line    $$USER1$$/check_http -I $$HOSTADDRESS$$ -p $$ARG1$$
 }
 
 define command {
     command_name    check_http_redirect
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 302'
+    command_line    $$USER1$$/check_http -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 302'
 }
 
 define command {
     command_name    check_http_redirect_permanent
-    command_line    $$USER1$$/check_http -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 301'
+    command_line    $$USER1$$/check_http -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 301'
 }
 
 define command {
     command_name    check_https_answer
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e '${http_status}'
+    command_line    $$USER1$$/check_http --ssl -I $$HOSTADDRESS$$ -e '${http_status}'
 }
 
 define command {
     command_name    check_https_answer_port
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -e '${http_status}' -p $$ARG1$$
+    command_line    $$USER1$$/check_http --ssl -I $$HOSTADDRESS$$ -e '${http_status}' -p $$ARG1$$
 }
 
 define command {
     command_name    check_https_port
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -p $$ARG1$$
+    command_line    $$USER1$$/check_http --ssl -I $$HOSTADDRESS$$ -p $$ARG1$$
 }
 
 define command {
     command_name    check_https_redirect
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 302'
+    command_line    $$USER1$$/check_http --ssl -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 302'
 }
 
 define command {
     command_name    check_https_redirect_permanent
-    command_line    $$USER1$$/check_http --ssl -H $$HOSTADDRESS$$ -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 301'
+    command_line    $$USER1$$/check_http --ssl -I $$HOSTADDRESS$$ -w 5 -c 10 -u $$ARG2$$ -e 'HTTP/1.1 301'
 }
 
 define command {
