@@ -152,6 +152,11 @@ define command {
 }
 
 define command {
+    command_name    check_by_nrpe_crashes
+    command_line    $$USER1$$/check_nrpe -t 30 -H $$HOSTADDRESS$$ -c check_crashes
+}
+
+define command {
     command_name    check_by_nrpe_database_pgsql
     command_line    $$USER1$$/check_nrpe -t 30 -H $$HOSTADDRESS$$ -c check_database_pgsql
 }
