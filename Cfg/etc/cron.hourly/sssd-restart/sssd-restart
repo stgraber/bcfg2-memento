@@ -1,0 +1,2 @@
+#!/bin/sh
+restart sssd >/dev/null
