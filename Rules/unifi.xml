@@ -1,4 +1,6 @@
 <Rules priority="0">
     <Service name="unifi" status="on" type="deb" restart="true"
              install="true"/>
+    <Service name="unifi-video" status="on" type="deb" restart="true"
+             install="true"/>
 </Rules>

@@ -11,6 +11,12 @@
         <Package name='unifi-rapid'/>
     </Group>
 
+    <Group name='unifi-video'>
+        <Path name='/etc/apt/trusted.gpg.d/unifi-video.gpg'/>
+        <Package name='unifi-video'/>
+        <Service name='unifi-video'/>
+    </Group>
+
     <Group name='unifi-beta' negate='true'>
         <Group name='unifi-rapid' negate='true'>
             <Package name='unifi'/>
