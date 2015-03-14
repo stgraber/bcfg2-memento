@@ -40,6 +40,9 @@
     <Group name="google-chrome">
         <Bundle name="google-chrome"/>
     </Group>
+    <Group name="hw-vendor-hp">
+        <Bundle name="hw-vendor-hp"/>
+    </Group>
     <Group name="hwraid">
         <Bundle name="hwraid"/>
     </Group>

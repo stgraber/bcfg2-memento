@@ -1,0 +1,4 @@
+<Bundle name='hw-vendor-hp' version='2.0'>
+    <Path name='/etc/apt/sources.list.d/hp.list'/>
+    <Path name='/etc/apt/trusted.gpg.d/hp.gpg'/>
+</Bundle>
