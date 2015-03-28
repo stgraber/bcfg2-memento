@@ -286,3 +286,8 @@ define command {
     command_name    check_by_nrpe_zimbra_mysql
     command_line    $$USER1$$/check_nrpe -t 30 -H $$HOSTADDRESS$$ -c check_zimbra_mysql
 }
+
+define command {
+    command_name    check_by_nrpe_hparray
+    command_line    $$USER1$$/check_nrpe -t 30 -H $$HOSTADDRESS$$ -c check_hparray
+}

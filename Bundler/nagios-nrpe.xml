@@ -57,4 +57,8 @@
         <Package name='tftp-hpa'/>
         <Path name='/etc/nagios/nrpe.d/tftpd.cfg'/>
     </Group>
+
+    <Group name='hw-vendor-hp'>
+        <Path name='/etc/nagios/nrpe.d/hp.cfg'/>
+    </Group>
 </Bundle>
