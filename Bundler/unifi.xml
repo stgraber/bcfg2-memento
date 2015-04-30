@@ -19,7 +19,9 @@
 
     <Group name='unifi-beta' negate='true'>
         <Group name='unifi-rapid' negate='true'>
-            <Package name='unifi'/>
+            <Group name='unifi-manual' negate='true'>
+                <Package name='unifi'/>
+            </Group>
         </Group>
     </Group>
 
