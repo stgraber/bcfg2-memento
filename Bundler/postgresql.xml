@@ -2,6 +2,13 @@
     <Package name='postgresql'/>
     <Service name='postgresql'/>
 
-    <Path name='/etc/postgresql/9.1/main/postgresql.conf'/>
-    <Path name='/etc/postgresql/9.1/main/pg_hba.conf'/>
+    <Group name='ubuntu-12.04'>
+        <Path name='/etc/postgresql/9.1/main/postgresql.conf'/>
+        <Path name='/etc/postgresql/9.1/main/pg_hba.conf'/>
+    </Group>
+
+    <Group name='ubuntu-12.04' negate='true'>
+        <Path name='/etc/postgresql/9.3/main/postgresql.conf'/>
+        <Path name='/etc/postgresql/9.3/main/pg_hba.conf'/>
+    </Group>
 </Bundle>
