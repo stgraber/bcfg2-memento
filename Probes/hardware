@@ -81,6 +81,10 @@ if os.path.exists("/sys/class/dmi/id"):
     with open("/sys/class/dmi/id/product_name", "r") as fd:
         model = "".join(filter(str.isalnum, fd.read())).lower()
 
+# trim overly long vendor name
+if vendor.startswith("dell"):
+  vendor = "dell"
+
 print("group:hw-vendor-%s" % vendor)
 print("group:hw-model-%s" % model)
 
@@ -92,7 +96,7 @@ if vendor == "hp":
         print("group:hpasm")
 
 # # Dell OMSA
-if vendor == "dellinc":
+if vendor == "dell":
     dell_exclude_list = []
 
     if model not in dell_exclude_list and "poweredge" in model:
