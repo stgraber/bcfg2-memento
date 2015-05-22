@@ -1,0 +1,3 @@
+<Bundle name='ipmi' version='2.0'>
+    <Package name='ipmitool'/>
+</Bundle>

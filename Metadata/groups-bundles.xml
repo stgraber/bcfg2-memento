@@ -46,6 +46,9 @@
     <Group name="hwraid">
         <Bundle name="hwraid"/>
     </Group>
+    <Group name="ipmi">
+        <Bundle name="ipmi"/>
+    </Group>
     <Group name="jenkins">
         <Bundle name="jenkins"/>
     </Group>

@@ -61,4 +61,8 @@
     <Group name='hw-vendor-hp'>
         <Path name='/etc/nagios/nrpe.d/hp.cfg'/>
     </Group>
+
+    <Group name='ipmi'>
+        <Path name='/etc/nagios/nrpe.d/ipmi.cfg'/>
+    </Group>
 </Bundle>
