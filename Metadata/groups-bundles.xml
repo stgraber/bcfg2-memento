@@ -133,4 +133,7 @@
     <Group name="xbmc">
         <Bundle name="xbmc"/>
     </Group>
+    <Group name="zfs">
+        <Bundle name="zfs"/>
+    </Group>
 </Groups>
