@@ -4,7 +4,7 @@
     <Path name='/etc/default/lxc'/>
 
     <Group name='lxc-ppa-stable'>
-        <Path name='/etc/apt/sources.list.d/lxc-stable.list'/>
-        <Path name='/etc/apt/trusted.gpg.d/lxc-stable.gpg'/>
+        <Path name='/etc/apt/sources.list.d/lxc.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/lxc.gpg'/>
     </Group>
 </Bundle>
