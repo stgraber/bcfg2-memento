@@ -10,6 +10,5 @@
     <Group name="cups-samsung-binary">
         <Path name="/etc/apt/sources.list.d/samsung-printer.list"/>
         <Path name="/etc/apt/trusted.gpg.d/samsung-printer.gpg"/>
-        <Package name="samsungmfp-driver"/>
     </Group>
 </Bundle>
