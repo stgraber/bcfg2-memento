@@ -88,6 +88,9 @@
     <Group name="opendnssec">
         <Bundle name="opendnssec"/>
     </Group>
+    <Group name="owncloud">
+        <Bundle name="owncloud"/>
+    </Group>
     <Group name="postfix">
         <Bundle name="postfix"/>
     </Group>
