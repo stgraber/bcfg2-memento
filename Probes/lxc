@@ -16,19 +16,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-# NOTE: To remove once the API is stabilized
-import warnings
-warnings.filterwarnings("ignore", "The python-lxc API isn't yet stable")
-
+import json
+import os
 import sys
 
 try:
     import lxc
 except ImportError:
     sys.exit(0)
-
-import json
-import os
 
 containers = []
 
@@ -43,5 +38,20 @@ for container_name in sorted(lxc.list_containers()):
         continue
 
     containers.append(entry)
+
+if os.path.exists("/var/lib/lxd/containers/"):
+    for container in sorted(os.listdir("/var/lib/lxd/containers")):
+        path = os.path.join("/var/lib/lxd/containers/", container)
+        if "." in container:
+            continue
+
+        entry = {}
+        entry['name'] = container
+        entry['path'] = "%s/rootfs" % path
+
+        if not os.path.exists(entry['path']):
+            continue
+
+        containers.append(entry)
 
 print(json.dumps(containers))
