@@ -91,6 +91,11 @@ server:
     rrset-roundrobin: yes
     minimal-responses: yes
 {% end %}\
+{% if conf.dns64 == "true" %}\
+
+    # DNS64
+    module-config: "dns64 validator iterator"
+{% end %}\
 {% for zone_name, zone_servers in zones %}\
 
 forward-zone:
