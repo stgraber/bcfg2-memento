@@ -51,12 +51,15 @@
         conf['extra_conf'] = []
     elif not isinstance(conf['extra_conf'], list):
         conf['extra_conf'] = [conf['extra_conf']]
+
+    cpus = metadata.Probes["hardware"].json["cpus"]
 %}\
 
 server:
     interface: 0.0.0.0
     interface-automatic: yes
-    num-threads: 3
+    num-threads: ${cpus}
+    so-reuseport: yes
     access-control: 0.0.0.0/0 allow
     access-control: ::/0 allow
 {% for local_zone in local_zones %}\

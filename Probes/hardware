@@ -17,6 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import json
+import multiprocessing
 import os
 import subprocess
 import sys
@@ -35,6 +36,7 @@ for interface in os.listdir("/sys/class/net/"):
             continue
 
         attributes['interfaces'].append(interface)
+attributes['cpus'] = multiprocessing.cpu_count()
 
 # Detect containers vs host
 process = subprocess.Popen(["running-in-container"], stdout=subprocess.PIPE,
@@ -45,7 +47,7 @@ if process.wait() == 0:
     print("group:%s-ve" % process.stdout.read().strip())
 
     # The next tests are for hosts, so exit now
-    print(json.dumps(attributes))
+    print(json.dumps(attributes, sort_keys=True))
     sys.exit(0)
 else:
     print("group:host")
@@ -100,5 +102,5 @@ if os.path.exists("/sys/module/mpt2sas"):
     print("group:hwraid")
     print("group:mpt2sas")
 
-print(json.dumps(attributes))
+print(json.dumps(attributes, sort_keys=True))
 sys.exit(0)
