@@ -72,8 +72,8 @@ for site_name in config.sections():
 
     if zones:
         print("group:%s%s" % (prefix, site_name))
-        for zone in zones:
+        for zone in sorted(zones):
             print("group:%s%s" % (prefix, zone))
 
-        print("site=%s,zones=%s" % (site_name, ";".join(zones)))
+        print("site=%s,zones=%s" % (site_name, ";".join(sorted(zones))))
         sys.exit(0)
