@@ -1,4 +1,8 @@
 <Bundle name='lxc' version='2.0'>
+    <Group name='ubuntu-14.04'>
+        <Package name='cgroup-lite'/>
+    </Group>
+
     <Package name='lxc'/>
 
     <Path name='/etc/default/lxc'/>
