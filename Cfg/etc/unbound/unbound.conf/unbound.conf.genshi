@@ -98,6 +98,7 @@ server:
 
     # DNS64
     module-config: "dns64 validator iterator"
+    dns64-prefix: ${conf.dns64_prefix}
 {% end %}\
 {% for zone_name, zone_servers in zones %}\
 
