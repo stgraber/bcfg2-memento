@@ -1,10 +1,4 @@
 <Rules priority="0">
-    <Group name='precise'>
-        <Service name="freeradius" status="ignore" type="deb" restart="true"
-                 install="true"/>
-    </Group>
-    <Group name='precise' negate='true'>
-        <Service name="freeradius" status="ignore" type="upstart"
-                 restart="true" install="true"/>
-    </Group>
+    <Service name="freeradius" status="ignore" type="upstart"
+             restart="true" install="true"/>
 </Rules>
