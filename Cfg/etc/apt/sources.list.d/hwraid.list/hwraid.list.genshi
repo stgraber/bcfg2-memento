@@ -13,8 +13,8 @@
     # Parse the probe result
     distro = probes.get_probe_as_dict(metadata, "distro")
 
-    if distro['codename'] == "trusty":
-        distro['codename'] = "precise"
+    if distro['codename'] == "xenial":
+        distro['codename'] = "trusty"
 %}\
 
 deb http://hwraid.le-vert.net/ubuntu ${distro.codename} main
