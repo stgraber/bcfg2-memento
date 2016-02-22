@@ -1,94 +1,4 @@
 <Sources>
-    <Group name='ubuntu-12.04'>
-        <!-- x86 -->
-        <Source type='apt'
-            url='http://archive.ubuntu.com/ubuntu'
-            version='precise'>
-            <Component>main</Component>
-            <Component>restricted</Component>
-            <Component>universe</Component>
-            <Component>multiverse</Component>
-            <Arch>amd64</Arch>
-            <Arch>i386</Arch>
-        </Source>
-        <Source type='apt'
-            url='http://archive.ubuntu.com/ubuntu'
-            version='precise-updates'>
-            <Component>main</Component>
-            <Component>restricted</Component>
-            <Component>universe</Component>
-            <Component>multiverse</Component>
-            <Arch>amd64</Arch>
-            <Arch>i386</Arch>
-        </Source>
-        <Source type='apt'
-            url='http://archive.ubuntu.com/ubuntu'
-            version='precise-security'>
-            <Component>main</Component>
-            <Component>restricted</Component>
-            <Component>universe</Component>
-            <Component>multiverse</Component>
-            <Arch>amd64</Arch>
-            <Arch>i386</Arch>
-        </Source>
-        <Group name='ubuntu-backports'>
-            <Source type='apt'
-                url='http://archive.ubuntu.com/ubuntu'
-                version='precise-backports'>
-                <Component>main</Component>
-                <Component>restricted</Component>
-                <Component>universe</Component>
-                <Component>multiverse</Component>
-                <Arch>amd64</Arch>
-                <Arch>i386</Arch>
-            </Source>
-        </Group>
-
-        <!-- ports -->
-        <Source type='apt'
-            url='http://ports.ubuntu.com/ubuntu-ports'
-            version='precise'>
-            <Component>main</Component>
-            <Component>restricted</Component>
-            <Component>universe</Component>
-            <Component>multiverse</Component>
-            <Arch>armel</Arch>
-            <Arch>armhf</Arch>
-        </Source>
-        <Source type='apt'
-            url='http://ports.ubuntu.com/ubuntu-ports'
-            version='precise-updates'>
-            <Component>main</Component>
-            <Component>restricted</Component>
-            <Component>universe</Component>
-            <Component>multiverse</Component>
-            <Arch>armel</Arch>
-            <Arch>armhf</Arch>
-        </Source>
-        <Source type='apt'
-            url='http://ports.ubuntu.com/ubuntu-ports'
-            version='precise-security'>
-            <Component>main</Component>
-            <Component>restricted</Component>
-            <Component>universe</Component>
-            <Component>multiverse</Component>
-            <Arch>armel</Arch>
-            <Arch>armhf</Arch>
-        </Source>
-        <Group name='ubuntu-backports'>
-            <Source type='apt'
-                url='http://ports.ubuntu.com/ubuntu-ports'
-                version='precise-backports'>
-                <Component>main</Component>
-                <Component>restricted</Component>
-                <Component>universe</Component>
-                <Component>multiverse</Component>
-                <Arch>armel</Arch>
-                <Arch>armhf</Arch>
-            </Source>
-        </Group>
-    </Group>
-
     <Group name='ubuntu-14.04'>
         <!-- x86 -->
         <Source type='apt'
@@ -166,6 +76,92 @@
             <Source type='apt'
                 url='http://ports.ubuntu.com/ubuntu-ports'
                 version='trusty-backports'>
+                <Component>main</Component>
+                <Component>restricted</Component>
+                <Component>universe</Component>
+                <Component>multiverse</Component>
+                <Arch>armhf</Arch>
+            </Source>
+        </Group>
+    </Group>
+
+    <Group name='ubuntu-16.04'>
+        <!-- x86 -->
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='xenial'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='xenial-updates'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://archive.ubuntu.com/ubuntu'
+            version='xenial-security'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>amd64</Arch>
+            <Arch>i386</Arch>
+        </Source>
+        <Group name='ubuntu-backports'>
+            <Source type='apt'
+                url='http://archive.ubuntu.com/ubuntu'
+                version='xenial-backports'>
+                <Component>main</Component>
+                <Component>restricted</Component>
+                <Component>universe</Component>
+                <Component>multiverse</Component>
+                <Arch>amd64</Arch>
+                <Arch>i386</Arch>
+            </Source>
+        </Group>
+
+        <!-- ports -->
+        <Source type='apt'
+            url='http://ports.ubuntu.com/ubuntu-ports'
+            version='xenial'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>armhf</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://ports.ubuntu.com/ubuntu-ports'
+            version='xenial-updates'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>armhf</Arch>
+        </Source>
+        <Source type='apt'
+            url='http://ports.ubuntu.com/ubuntu-ports'
+            version='xenial-security'>
+            <Component>main</Component>
+            <Component>restricted</Component>
+            <Component>universe</Component>
+            <Component>multiverse</Component>
+            <Arch>armhf</Arch>
+        </Source>
+        <Group name='ubuntu-backports'>
+            <Source type='apt'
+                url='http://ports.ubuntu.com/ubuntu-ports'
+                version='xenial-backports'>
                 <Component>main</Component>
                 <Component>restricted</Component>
                 <Component>universe</Component>
