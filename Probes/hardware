@@ -38,19 +38,37 @@ for interface in os.listdir("/sys/class/net/"):
         attributes['interfaces'].append(interface)
 attributes['cpus'] = multiprocessing.cpu_count()
 
-# Detect containers vs host
-process = subprocess.Popen(["running-in-container"], stdout=subprocess.PIPE,
-                           universal_newlines=True)
+# Detect containers
+is_container = False
+try:
+    process = subprocess.Popen(["running-in-container"],
+                               stdout=subprocess.PIPE,
+                               universal_newlines=True)
+    if process.wait() == 0:
+        is_container = True
+        print("group:container")
+        print("group:%s-ve" % process.stdout.read().strip())
+except:
+    pass
 
-if process.wait() == 0:
-    print("group:container")
-    print("group:%s-ve" % process.stdout.read().strip())
+# Detect containers on systemd
+try:
+    process = subprocess.Popen(["systemd-detect-virt", "--container"],
+                               stdout=subprocess.PIPE,
+                               universal_newlines=True)
+    if process.wait() == 0:
+        is_container = True
+        print("group:container")
+        print("group:%s-ve" % process.stdout.read().strip())
+except:
+    pass
 
+if is_container:
     # The next tests are for hosts, so exit now
     print(json.dumps(attributes, sort_keys=True))
     sys.exit(0)
-else:
-    print("group:host")
+
+print("group:host")
 
 # Export some product information
 vendor = "unknown"
@@ -67,13 +85,13 @@ print("group:hw-vendor-%s" % vendor)
 print("group:hw-model-%s" % model)
 
 # Hardware monitoring
-## HP Advanced Server Management
+# # HP Advanced Server Management
 if vendor == "hp":
     hp_exclude_list = ["proliantdl165g5p"]
     if model not in hp_exclude_list and "prolian" in model:
         print("group:hpasm")
 
-## Dell OMSA
+# # Dell OMSA
 if vendor == "dellinc":
     dell_exclude_list = []
 
@@ -104,7 +122,7 @@ if os.path.exists("/sys/module/mpt2sas"):
 
 # Detect IPMI device
 if os.path.exists("/dev/ipmi0"):
-  print("group:ipmi")
+    print("group:ipmi")
 
 print(json.dumps(attributes, sort_keys=True))
 sys.exit(0)
