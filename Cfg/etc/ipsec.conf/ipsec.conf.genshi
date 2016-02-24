@@ -46,7 +46,7 @@ conn %default
     keyexchange=ikev2
     mobike=no
     compress=yes
-    dpdaction=hold
+    dpdaction=restart
     auto=start
 {% for peer in peers %}\
 
