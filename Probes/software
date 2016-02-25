@@ -30,4 +30,8 @@ if [ -x "$(which sshd)" ]; then
     fi
 fi
 
+if [ -d /run/systemd/system ]; then
+    echo "group:systemd"
+fi
+
 echo $FLAGS
