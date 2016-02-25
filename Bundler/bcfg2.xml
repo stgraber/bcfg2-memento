@@ -2,7 +2,6 @@
     <!-- Required for the probes -->
     <Package name='bcfg2'/>
     <Package name='python3-apt'/>
-    <Package name='python3-ipaddr'/>
 
     <Path name='/etc/bcfg2.netmap'/>
 
