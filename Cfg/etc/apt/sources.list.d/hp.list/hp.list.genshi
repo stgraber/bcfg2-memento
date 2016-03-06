@@ -14,4 +14,4 @@
     distro = probes.get_probe_as_dict(metadata, "distro")
 %}\
 
-deb http://downloads.linux.hp.com/SDR/repo/mcp ${distro.codename}/current non-free
+deb http://downloads.linux.hpe.com/SDR/repo/mcp ${distro.codename}/current non-free
