@@ -15,7 +15,9 @@
 %}\
 
 deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
+{% if "unifi-manual" not in metadata.groups %}\
 deb http://dl.ubnt.com/unifi/distros/deb/ubuntu ubuntu ubiquiti
+{% end %}\
 {% if "unifi-video" in metadata.groups %}\
 deb http://dl.ubnt.com/unifi-video/apt ${distro.codename} ubiquiti
 {% end %}\
