@@ -16,7 +16,8 @@
     # Do some pre-processing
     sssd_ldap_keys = False
     if (software.get('ssh-supports-authorizedkeyscommand', 'false') == "true" \
-            and conf['sssd_authorized_keys'] == "true"):
+            and conf['sssd_authorized_keys'] == "true" \
+            and "sssd-ssh" in metadata.groups):
         sssd_ldap_keys = True
 
     if not isinstance(conf['ports'], list):
