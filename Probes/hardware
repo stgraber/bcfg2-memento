@@ -120,6 +120,10 @@ if os.path.exists("/sys/module/mpt2sas"):
     print("group:hwraid")
     print("group:mpt2sas")
 
+if os.path.exists("/sys/module/mpt3sas"):
+    print("group:hwraid")
+    print("group:mpt3sas")
+
 # Detect IPMI device
 if os.path.exists("/dev/ipmi0"):
     print("group:ipmi")
