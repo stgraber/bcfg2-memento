@@ -1,0 +1,12 @@
+<Bundle name='lxd' version='2.0'>
+    <Group name='ubuntu-14.04'>
+        <Package name='cgroup-lite'/>
+    </Group>
+
+    <Package name='lxd'/>
+
+    <Group name='lxd-ppa-stable'>
+        <Path name='/etc/apt/sources.list.d/lxc.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/lxc.gpg'/>
+    </Group>
+</Bundle>

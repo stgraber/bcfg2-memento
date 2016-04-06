@@ -58,6 +58,9 @@
     <Group name="lxc">
         <Bundle name="lxc"/>
     </Group>
+    <Group name="lxd">
+        <Bundle name="lxd"/>
+    </Group>
     <Group name="mailman">
         <Bundle name="mailman"/>
     </Group>
