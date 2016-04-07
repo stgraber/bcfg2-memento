@@ -2,5 +2,10 @@
     <Path name='/etc/apt/sources.list.d/owncloud.list'/>
     <Path name='/etc/apt/trusted.gpg.d/owncloud.gpg'/>
 
+    <Group name="ubuntu-14.04">
+        <Path name='/etc/apt/sources.list.d/php7.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/php7.gpg'/>
+    </Group>
+
     <Package name='owncloud'/>
 </Bundle>
