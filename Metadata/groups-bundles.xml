@@ -52,6 +52,9 @@
     <Group name="jenkins">
         <Bundle name="jenkins"/>
     </Group>
+    <Group name="kodi">
+        <Bundle name="kodi"/>
+    </Group>
     <Group name="libvirt">
         <Bundle name="libvirt"/>
     </Group>
@@ -141,9 +144,6 @@
     </Group>
     <Group name="unifi">
         <Bundle name="unifi"/>
-    </Group>
-    <Group name="xbmc">
-        <Bundle name="xbmc"/>
     </Group>
     <Group name="zfs">
         <Bundle name="zfs"/>

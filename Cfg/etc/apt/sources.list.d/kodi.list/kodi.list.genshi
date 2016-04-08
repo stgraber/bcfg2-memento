@@ -13,7 +13,7 @@
     # Parse the probe result
     distro = probes.get_probe_as_dict(metadata, "distro")
 
-    if "xbmc-unstable" in metadata.groups:
+    if "kodi-unstable" in metadata.groups:
         version = "unstable"
     else:
         version = "ppa"
