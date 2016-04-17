@@ -1,6 +1,11 @@
 <Bundle name='zfs' version='2.0'>
-    <Path name='/etc/apt/sources.list.d/zfs.list'/>
-    <Path name='/etc/apt/trusted.gpg.d/zfs.gpg'/>
+    <Group name="ubuntu-14.04">
+        <Path name='/etc/apt/sources.list.d/zfs.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/zfs.gpg'/>
+        <Package name='ubuntu-zfs'/>
+    </Group>
 
-    <Package name='ubuntu-zfs'/>
+    <Group name="ubuntu-14.04" negate="true">
+        <Package name='zfsutils-linux'/>
+    </Group>
 </Bundle>
