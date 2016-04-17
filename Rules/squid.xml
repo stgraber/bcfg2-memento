@@ -1,6 +1,8 @@
 <Rules priority="0">
     <Service name="squid3" status="on" type="upstart" restart="true"
              install="true"/>
+    <Service name="squid" status="on" type="systemd" restart="true"
+             install="true"/>
     <Path name='/etc/squid3/squid.conf.d' type="directory" mode="755"
           owner="root" group="root" prune="true"/>
 </Rules>

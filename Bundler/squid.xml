@@ -1,8 +1,22 @@
 <Bundle name='squid' version='2.0'>
-    <Path name='/etc/squid3/squid.conf'/>
-    <Path name='/etc/squid3/squid.conf.d'/>
-    <Path name='/etc/squid3/squid.conf.d/local.conf'/>
+    <Group name='ubuntu-14.04'>
+        <Path name='/etc/squid3/squid.conf'/>
+        <Path name='/etc/squid3/squid.conf.d'/>
+        <Path name='/etc/squid3/squid.conf.d/local.conf'/>
 
-    <Package name='squid3'/>
-    <Service name='squid3'/>
+        <Package name='squid3'/>
+        <Service name='squid3'/>
+    </Group>
+
+    <Group name='ubuntu-14.04' negate='true'>
+        <Path name='/etc/squid/squid.conf'
+              altsrc='/etc/squid3/squid.conf'/>
+        <Path name='/etc/squid/squid.conf.d'
+              altsrc='/etc/squid3/squid.conf.d'/>
+        <Path name='/etc/squid/squid.conf.d/local.conf'
+              altsrc='/etc/squid3/squid.conf.d/local.conf'/>
+
+        <Package name='squid'/>
+        <Service name='squid'/>
+    </Group>
 </Bundle>
