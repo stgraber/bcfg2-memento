@@ -34,6 +34,13 @@
              install="true"/>
     <Service name="openvpn" status="on" type="deb" restart="true"
              install="true"/>
-    <Service name="strongswan" status="on" type="upstart" restart="true"
-             install="true"/>
+
+    <Group name="ubuntu-14.04">
+        <Service name="strongswan" status="on" type="upstart" restart="true"
+                 install="true"/>
+    </Group>
+    <Group name="ubuntu-14.04" negate="true">
+        <Service name="strongswan" status="on" type="systemd" restart="true"
+                 install="true"/>
+    </Group>
 </Rules>
