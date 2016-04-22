@@ -119,10 +119,13 @@ override_acls.
 {ldap_servers, ${ldap_servers}}.
 
 %% Encryption of connection to LDAP servers (LDAPS):
-{ldap_encrypt, none}.
+{ldap_encrypt, ${conf.ldap_encrypt}}.
+
+%% Certificate verification
+{ldap_tls_verif, ${conf.ldap_tls_verif}}.
 
 %% Port connect to LDAP server:
-{ldap_port, 389}.
+{ldap_port, ${conf.ldap_port}}.
 
 %% LDAP manager:
 {ldap_rootdn, "${conf.ldap_rootdn}"}.
