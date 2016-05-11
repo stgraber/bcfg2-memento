@@ -1,3 +1,0 @@
-#!/bin/sh
-# This file is managed by Bcfg2. Any local change will be lost.
-restart sssd >/dev/null
