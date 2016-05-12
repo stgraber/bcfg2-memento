@@ -12,12 +12,14 @@
     <Path name='/etc/munin/plugins/df_inode'/>
     <Path name='/etc/munin/plugins/diskstats'/>
     <Path name='/etc/munin/plugins/forks'/>
-    <py:for each='interface in metadata.Probes["hardware"].json["interfaces"]'>
-        <Path name='/etc/munin/plugins/if_${interface}'
-              altsrc='/etc/munin/plugins/if_'/>
-        <Path name='/etc/munin/plugins/if_err_${interface}'
-              altsrc='/etc/munin/plugins/if_err_'/>
-    </py:for>
+    <Group name='munin-node-nonet' negate='true'>
+        <py:for each='interface in metadata.Probes["hardware"].json["interfaces"]'>
+            <Path name='/etc/munin/plugins/if_${interface}'
+                  altsrc='/etc/munin/plugins/if_'/>
+            <Path name='/etc/munin/plugins/if_err_${interface}'
+                  altsrc='/etc/munin/plugins/if_err_'/>
+        </py:for>
+    </Group>
     <Path name='/etc/munin/plugins/iostat'/>
     <Path name='/etc/munin/plugins/iostat_ios'/>
     <Path name='/etc/munin/plugins/netstat'/>
