@@ -35,6 +35,9 @@ for interface in os.listdir("/sys/class/net/"):
         if interface in ['sit0', 'gre0']:
             continue
 
+        if os.path.exists("/sys/class/net/%s/brport" % interface):
+            continue
+
         attributes['interfaces'].append(interface)
 attributes['cpus'] = multiprocessing.cpu_count()
 
