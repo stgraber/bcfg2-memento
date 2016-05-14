@@ -58,6 +58,9 @@
     <Group name="libvirt">
         <Bundle name="libvirt"/>
     </Group>
+    <Group name="lldpd">
+        <Bundle name="lldpd"/>
+    </Group>
     <Group name="lxc">
         <Bundle name="lxc"/>
     </Group>

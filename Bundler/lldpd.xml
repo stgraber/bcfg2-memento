@@ -1,0 +1,6 @@
+<Bundle name='lldpd' version='2.0'>
+    <Package name='lldpd'/>
+    <Service name='lldpd'/>
+
+    <Path name='/etc/default/lldpd'/>
+</Bundle>
