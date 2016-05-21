@@ -16,6 +16,8 @@
     if not isinstance(conf['mirror_servers'], list):
         conf['mirror_servers'] = [conf['mirror_servers']]
     mirror_address_list = "; ".join(conf['mirror_servers'])
+    if not conf['listen_on_port']:
+        conf['listen_on_port'] = '53'
 %}\
 
 
@@ -42,7 +44,8 @@ options {
     dnssec-validation auto;
 
     auth-nxdomain no;    # conform to RFC1035
-    listen-on-v6 { any; };
+    listen-on-v6 port ${conf.listen_on_port} { any; };
+    listen-on port ${conf.listen_on_port} { any; };
 {% if "samba-dc" in metadata.groups %}\
     recursion no;
     additional-from-auth no;
