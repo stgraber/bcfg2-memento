@@ -11,7 +11,8 @@
     conf = config.get_config_section(repo, metadata, "unbound", "unbound.conf")
 
     # Generate the list of zones and forward_zones overrides
-    zones = []
+    forward_zones = []
+    stub_zones = []
     local_zones = []
     for zone in conf['forward_zones']:
         zone_conf = config.get_config_section(repo, metadata, "unbound", "zone_%s" % zone)
@@ -22,7 +23,35 @@
         if not isinstance(zone_conf['servers'], list):
             zone_conf['servers'] = [zone_conf['servers']]
 
-        zones.append((zone, zone_conf['servers']))
+        forward_zones.append((zone, zone_conf['servers']))
+
+        if not zone.endswith(".in-addr.arpa"):
+            continue
+
+        if zone.endswith(".172.in-addr.arpa"):
+            sub = int(zone.split(".")[-4])
+            if sub not in range(0, 32):
+                continue
+
+        if zone.endswith(".10.in-addr.arpa"):
+            zone = "10.in-addr.arpa"
+
+        if zone.endswith(".168.192.in-addr.arpa"):
+            zone = "168.192.in-addr.arpa"
+
+        if zone not in local_zones:
+            local_zones.append(zone)
+
+    for zone in conf['stub_zones']:
+        zone_conf = config.get_config_section(repo, metadata, "unbound", "zone_%s" % zone)
+
+        if not "servers" in zone_conf:
+            continue
+
+        if not isinstance(zone_conf['servers'], list):
+            zone_conf['servers'] = [zone_conf['servers']]
+
+        stub_zones.append((zone, zone_conf['servers']))
 
         if not zone.endswith(".in-addr.arpa"):
             continue
@@ -59,6 +88,12 @@ server:
     interface: 0.0.0.0
     interface-automatic: yes
     num-threads: ${cpus}
+    msg-cache-slabs: ${cpus}
+    rrset-cache-slabs: ${cpus}
+    infra-cache-slabs: ${cpus}
+    key-cache-slabs: ${cpus}
+    rrset-cache-size: 100m
+    msg-cache-size: 50m
     so-reuseport: yes
     access-control: 0.0.0.0/0 allow
     access-control: ::/0 allow
@@ -100,11 +135,19 @@ server:
     module-config: "dns64 validator iterator"
     dns64-prefix: ${conf.dns64_prefix}
 {% end %}\
-{% for zone_name, zone_servers in zones %}\
+{% for zone_name, zone_servers in forward_zones %}\
 
 forward-zone:
     name: "${zone_name}"
 {% for server in zone_servers %}\
     forward-addr: ${server}
+{% end %}\
+{% end %}\
+{% for zone_name, zone_servers in stub_zones %}\
+
+stub-zone:
+    name: "${zone_name}"
+{% for server in zone_servers %}\
+    stub-addr: ${server}
 {% end %}\
 {% end %}\
