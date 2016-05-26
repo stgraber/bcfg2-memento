@@ -1,0 +1,2 @@
+[squid.conf]
+cache_fs_path = /var/spool/squid
