@@ -20,14 +20,26 @@
     <Path name="/etc/resolvconf/resolv.conf.d/original" type="nonexistent"/>
     <Path name="/etc/resolvconf/resolv.conf.d/tail" type="nonexistent"/>
 
-    <Service name="isc-dhcp-relay" status="on" type="upstart" restart="true"
-             install="true"/>
-    <Service name="isc-dhcp-relay6" status="on" type="upstart" restart="true"
-             install="true"/>
-    <Service name="isc-dhcp-server" status="on" type="upstart" restart="true"
-             install="true"/>
-    <Service name="isc-dhcp-server6" status="on" type="upstart" restart="true"
-             install="true"/>
+    <Group name="systemd" negate="true">
+        <Service name="isc-dhcp-relay" status="on" type="upstart"
+                 restart="true" install="true"/>
+        <Service name="isc-dhcp-relay6" status="on" type="upstart"
+                 restart="true" install="true"/>
+        <Service name="isc-dhcp-server" status="on" type="upstart"
+                 restart="true" install="true"/>
+        <Service name="isc-dhcp-server6" status="on" type="upstart"
+                 restart="true" install="true"/>
+    </Group>
+    <Group name="systemd">
+        <Service name="isc-dhcp-relay" status="on" type="systemd"
+                 restart="true" install="true"/>
+        <Service name="isc-dhcp-relay6" status="on" type="systemd"
+                 restart="true" install="true"/>
+        <Service name="isc-dhcp-server" status="on" type="systemd"
+                 restart="true" install="true"/>
+        <Service name="isc-dhcp-server6" status="on" type="systemd"
+                 restart="true" install="true"/>
+    </Group>
     <Service name="radvd" status="on" type="deb" restart="true"
              install="true"/>
     <Service name="ipsec" status="on" type="deb" restart="true"
