@@ -1,6 +1,12 @@
 <Rules priority="0">
     <Service name="jenkins" status="on" type="deb" restart="false"
              install="false"/>
-    <Service name="jenkins-slave" status="on" type="upstart" restart="false"
-             install="false"/>
+    <Group name='systemd'>
+        <Service name="jenkins-slave" status="on" type="systemd" restart="false"
+                 install="false"/>
+    </Group>
+    <Group name='systemd' negate='true'>
+        <Service name="jenkins-slave" status="on" type="upstart" restart="false"
+                 install="false"/>
+    </Group>
 </Rules>

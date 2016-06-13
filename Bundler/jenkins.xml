@@ -8,7 +8,12 @@
     </Group>
 
     <Group name='jenkins-slave'>
-        <Path name='/etc/init/jenkins-slave.conf'/>
+        <Group name='systemd'>
+            <Path name='/etc/systemd/system/jenkins-slave.service'/>
+        </Group>
+        <Group name='systemd' negate='true'>
+            <Path name='/etc/init/jenkins-slave.conf'/>
+        </Group>
 
         <Service name='jenkins-slave'/>
 
