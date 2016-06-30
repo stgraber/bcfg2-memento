@@ -14,4 +14,4 @@
     distro = probes.get_probe_as_dict(metadata, "distro")
 %}\
 
-deb http://download.owncloud.org/download/repositories/stable/xUbuntu_${distro.release}/ /
+deb http://download.owncloud.org/download/repositories/stable/Ubuntu_${distro.release}/ /
