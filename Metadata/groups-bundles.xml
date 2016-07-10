@@ -103,6 +103,9 @@
     <Group name="opendnssec">
         <Bundle name="opendnssec"/>
     </Group>
+    <Group name="owncloud-client">
+        <Bundle name="owncloud-client"/>
+    </Group>
     <Group name="owncloud">
         <Bundle name="owncloud"/>
     </Group>

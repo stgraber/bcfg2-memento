@@ -1,0 +1,7 @@
+<Bundle name='owncloud-client' version='2.0'>
+    <Path name='/etc/apt/sources.list.d/owncloud-client.list'/>
+    <Path name='/etc/apt/trusted.gpg.d/owncloud-client.gpg'/>
+
+    <Package name='owncloud-client'/>
+    <Package name='owncloud-client-nautilus'/>
+</Bundle>
