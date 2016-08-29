@@ -1,4 +1,10 @@
 <Rules priority="0">
-    <Service name="libvirt-bin" status="on" type="upstart" restart="true"
+    <Group name="systemd">
+        <Service name="libvirt-bin" status="on" type="systemd" restart="true"
              install="true"/>
+    </Group>
+    <Group name="systemd" negate="true">
+        <Service name="libvirt-bin" status="on" type="upstart" restart="true"
+             install="true"/>
+    </Group>
 </Rules>
