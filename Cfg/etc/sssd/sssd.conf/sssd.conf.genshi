@@ -52,6 +52,7 @@ sudo_provider = ldap
 
 ad_domain = ${conf.domain}
 dns_discovery_domain = ${conf.domain}
+dyndns_update = false
 
 ldap_force_upper_case_realm = true
 ldap_idmap_default_domain_sid = ${conf.domain_sid}
