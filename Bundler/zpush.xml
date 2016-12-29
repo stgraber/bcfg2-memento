@@ -1,0 +1,8 @@
+<Bundle name='zpush' version='2.0'>
+    <Path name='/etc/apt/sources.list.d/zpush.list'/>
+    <Path name='/etc/apt/trusted.gpg.d/zpush.gpg'/>
+
+    <Package name='z-push-common'/>
+    <Package name='z-push-config-apache'/>
+    <Package name='z-push-ipc-sharedmemory'/>
+</Bundle>

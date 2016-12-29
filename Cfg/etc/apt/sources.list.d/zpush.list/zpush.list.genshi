@@ -1,0 +1,17 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config, probes
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "apt", "sources.list")
+
+    # Parse the probe result
+    distro = probes.get_probe_as_dict(metadata, "distro")
+%}\
+
+deb http://repo.z-hub.io/z-push:/final/Ubuntu_${distro.release}/ /

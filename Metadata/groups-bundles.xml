@@ -154,4 +154,7 @@
     <Group name="zfs">
         <Bundle name="zfs"/>
     </Group>
+    <Group name="zpush">
+        <Bundle name="zpush"/>
+    </Group>
 </Groups>
