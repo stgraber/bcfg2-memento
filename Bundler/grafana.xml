@@ -1,0 +1,6 @@
+<Bundle name='grafana' version='2.0'>
+    <Path name='/etc/apt/sources.list.d/grafana.list'/>
+    <Path name='/etc/apt/trusted.gpg.d/grafana.gpg'/>
+
+    <Package name='grafana'/>
+</Bundle>
