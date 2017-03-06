@@ -20,3 +20,7 @@ After=network.target
 ExecStartPre=/usr/bin/wget -q ${conf.server_url}/jnlpJars/slave.jar -O /home/jenkins/slave.jar
 ExecStart=/usr/bin/java -jar /home/jenkins/slave.jar -jnlpUrl ${conf.server_url}/computer/${conf.slave_name}/slave-agent.jnlp -secret ${conf.slave_secret}
 User=jenkins
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
