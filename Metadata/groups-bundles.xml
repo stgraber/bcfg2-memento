@@ -43,6 +43,9 @@
     <Group name="grafana">
         <Bundle name="grafana"/>
     </Group>
+    <Group name="haproxy">
+        <Bundle name="haproxy"/>
+    </Group>
     <Group name="hw-vendor-hp">
         <Bundle name="hw-vendor-hp"/>
     </Group>

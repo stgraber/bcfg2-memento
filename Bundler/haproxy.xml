@@ -1,0 +1,4 @@
+<Bundle name='haproxy' version='2.0'>
+    <Package name='haproxy'/>
+    <Service name='haproxy'/>
+</Bundle>

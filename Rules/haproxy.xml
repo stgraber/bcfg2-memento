@@ -1,0 +1,4 @@
+<Rules priority="0">
+    <Service name="haproxy" status="on" type="systemd" restart="true"
+             install="true"/>
+</Rules>
