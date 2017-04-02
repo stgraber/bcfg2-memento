@@ -1,3 +1,9 @@
 <FileInfo>
-    <Info owner="root" group="root"/>
+    <Group name="ubuntu-14.04">
+        <Info owner="root" group="root"/>
+    </Group>
+
+    <Group name="ubuntu-14.04" negate="true">
+        <Info owner="root" group="mail" mode="0640"/>
+    </Group>
 </FileInfo>
