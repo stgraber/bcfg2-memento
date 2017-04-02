@@ -8,13 +8,8 @@
 
     <Group name='apache2'>
         <Package name='libcgi-fast-perl'/>
-        <Group name='ubuntu-12.04'>
-            <Path name='/etc/apache2/conf.d/munin'/>
-        </Group>
-        <Group name='ubuntu-12.04' negate='true'>
-            <Path name='/etc/apache2/conf-available/munin.conf'/>
-            <Path name='/etc/apache2/conf-enabled/munin.conf'/>
-        </Group>
+        <Path name='/etc/apache2/conf-available/munin.conf'/>
+        <Path name='/etc/apache2/conf-enabled/munin.conf'/>
 
         <Action name='munin-adduser'/>
         <Action name='apache2-reload'/>

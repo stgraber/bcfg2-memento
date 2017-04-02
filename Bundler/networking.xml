@@ -8,12 +8,7 @@
     </Group>
 
     <Group name='networking-bond'>
-        <Group name='ubuntu-12.04'>
-            <Package name='ifenslave-2.6'/>
-        </Group>
-        <Group name='ubuntu-12.04' negate='true'>
-            <Package name='ifenslave'/>
-        </Group>
+        <Package name='ifenslave'/>
     </Group>
 
     <Group name='networking-dhcpd'>
@@ -69,10 +64,6 @@
 
         <Path name='/etc/radvd.conf'/>
 
-        <Group name='ubuntu-12.04'>
-            <Path name='/etc/init.d/radvd'/>
-        </Group>
-
         <Service name='radvd'/>
     </Group>
 
@@ -94,12 +85,7 @@
 
         <Package name='strongswan'/>
 
-        <Group name='ubuntu-12.04'>
-            <Service name='ipsec'/>
-        </Group>
-        <Group name='ubuntu-12.04' negate='true'>
-            <Service name='strongswan'/>
-        </Group>
+        <Service name='strongswan'/>
     </Group>
 
     <Group name='networking-openvpn'>

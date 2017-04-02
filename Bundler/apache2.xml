@@ -4,18 +4,9 @@
 
     <Path name='/etc/apache2/ports.conf'/>
 
-    <Group name='ubuntu-12.04'>
-        <Path name='/etc/apache2/sites-available/default'/>
-    </Group>
-
     <Group name='apache2-rproxy-target'>
-        <Group name='ubuntu-12.04'>
-            <Path name='/etc/apache2/conf.d/bcfg2'/>
-        </Group>
-        <Group name='ubuntu-12.04' negate='true'>
-            <Path name='/etc/apache2/conf-available/bcfg2.conf'/>
-            <Path name='/etc/apache2/conf-enabled/bcfg2.conf'/>
-        </Group>
+        <Path name='/etc/apache2/conf-available/bcfg2.conf'/>
+        <Path name='/etc/apache2/conf-enabled/bcfg2.conf'/>
     </Group>
 
     <Group name='apache2-mod-authnz_ldap'>

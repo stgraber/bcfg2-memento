@@ -1,6 +1,6 @@
 Design principles:
  - Track the latest stable Bcfg2 version
- - Support only Ubuntu LTS releases starting with 12.04
+ - Support only Ubuntu LTS releases starting with 14.04
  - Configuration only. binaries, scripts, plugins, ... should be shipped as
    their own packages
  - Minimal changes to the target system should always be the #1 goal

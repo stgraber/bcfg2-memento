@@ -22,14 +22,8 @@
     <Group name='apache2'>
         <!-- Replace by /etc/apache2/sites-available once we have bcfg2 3.4 -->
         <py:for each='domain in conf.domains'>
-            <Group name='ubuntu-12.04'>
-                <Path name='/etc/apache2/sites-enabled/${domain}'
-                      altsrc='/etc/apache2/sites-enabled/mailman'/>
-            </Group>
-            <Group name='ubuntu-12.04' negate='true'>
-                <Path name='/etc/apache2/sites-enabled/${domain}.conf'
-                      altsrc='/etc/apache2/sites-enabled/mailman'/>
-            </Group>
+            <Path name='/etc/apache2/sites-enabled/${domain}.conf'
+                  altsrc='/etc/apache2/sites-enabled/mailman'/>
         </py:for>
         <Action name='apache2-reload'/>
     </Group>

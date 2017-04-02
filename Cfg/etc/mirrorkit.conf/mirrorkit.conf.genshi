@@ -47,12 +47,7 @@ log_template_path = /usr/share/mirrorkit/log.html.tpl
 http_base = /
 
 # Path to the auto-generated apache configuration file (optional)
-{% if "ubuntu-12.04" in metadata.groups %}\
-apache_conf_path = /etc/apache2/conf.d/mirrorkit.conf
-{% end %}\
-{% if "ubuntu-12.04" not in metadata.groups %}\
 apache_conf_path = /etc/apache2/conf-enabled/mirrorkit.conf
-{% end %}\
 
 # List of mirrors that are enabled (optional, off if empty)
 mirrors = ${mirror_names}
