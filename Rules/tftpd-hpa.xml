@@ -1,4 +1,10 @@
 <Rules priority="0">
-    <Service name="tftpd-hpa" status="on" type="upstart" restart="true"
-             install="true"/>
+    <Group name="systemd" negate="true">
+        <Service name="tftpd-hpa" status="on" type="upstart" restart="true"
+                 install="true"/>
+    </Group>
+    <Group name="systemd">
+        <Service name="tftpd-hpa" status="on" type="systemd" restart="true"
+                 install="true"/>
+    </Group>
 </Rules>
