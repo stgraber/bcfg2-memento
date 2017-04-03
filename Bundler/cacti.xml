@@ -1,4 +1,6 @@
 <Bundle name='cacti' version='2.0'>
     <Package name='cacti'/>
-    <Package name='php5-ldap'/>
+    <Group name='cacti-ldap'>
+        <Package name='php5-ldap'/>
+    </Group>
 </Bundle>
