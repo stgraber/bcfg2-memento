@@ -1,6 +1,13 @@
 <Rules priority="0">
-    <Service name="unbound" status="on" type="deb" restart="true"
-             install="true"/>
+    <Group name="systemd" negate="true">
+        <Service name="unbound" status="on" type="deb" restart="true"
+                 install="true"/>
+    </Group>
+    <Group name="systemd">
+        <Service name="unbound" status="on" type="systemd" restart="true"
+                 install="true"/>
+    </Group>
+
     <Path name='/etc/unbound/keys/' type="directory" mode="755" owner="unbound"
           group="unbound"/>
     <Path name='/etc/unbound/unbound.conf.d/' type="directory" mode="755" owner="root"
