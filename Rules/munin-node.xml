@@ -1,10 +1,10 @@
 <Rules priority='0'>
     <!-- Service -->
-    <Group name="ubuntu-14.04">
+    <Group name="systemd" negate="true">
         <Service name="munin-node" status="on" type="upstart" restart="true"
                  install="true"/>
     </Group>
-    <Group name="ubuntu-14.04" negate="true">
+    <Group name="systemd">
         <Service name="munin-node" status="on" type="systemd" restart="true"
                  install="true"/>
     </Group>
