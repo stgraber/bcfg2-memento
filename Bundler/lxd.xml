@@ -3,6 +3,7 @@
         <Package name='cgroup-lite'/>
     </Group>
 
+    <Package name='lxcfs'/>
     <Package name='lxd'/>
 
     <Group name='lxd-ppa-stable'>
