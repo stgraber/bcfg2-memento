@@ -1,4 +1,10 @@
 <Rules priority="0">
-    <Service name="rsync" status="on" type="deb" restart="true"
-             install="true"/>
+    <Group name="systemd" negate="true">
+        <Service name="rsync" status="on" type="deb" restart="true"
+                 install="true"/>
+    </Group>
+    <Group name="systemd">
+        <Service name="rsync" status="on" type="systemd" restart="true"
+                 install="true"/>
+    </Group>
 </Rules>
