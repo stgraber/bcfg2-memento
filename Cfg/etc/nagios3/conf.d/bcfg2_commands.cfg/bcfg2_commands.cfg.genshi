@@ -296,3 +296,8 @@ define command {
     command_name    check_by_nrpe_ipmi
     command_line    $$USER1$$/check_nrpe -t 30 -H $$HOSTADDRESS$$ -c check_ipmi
 }
+
+define command {
+    command_name    check_by_nrpe_livepatch
+    command_line    $$USER1$$/check_nrpe -t 30 -H $$HOSTADDRESS$$ -c check_livepatch
+}

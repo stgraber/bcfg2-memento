@@ -65,4 +65,8 @@
     <Group name='ipmi'>
         <Path name='/etc/nagios/nrpe.d/ipmi.cfg'/>
     </Group>
+
+    <Group name='livepatch'>
+        <Path name='/etc/nagios/nrpe.d/livepatch.cfg'/>
+    </Group>
 </Bundle>
