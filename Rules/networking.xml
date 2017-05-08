@@ -29,6 +29,8 @@
                  restart="true" install="true"/>
         <Service name="isc-dhcp-server6" status="on" type="upstart"
                  restart="true" install="true"/>
+        <Service name="radvd" status="on" type="deb" restart="true"
+                 install="true"/>
     </Group>
     <Group name="systemd">
         <Service name="isc-dhcp-relay" status="on" type="systemd"
@@ -39,9 +41,9 @@
                  restart="true" install="true"/>
         <Service name="isc-dhcp-server6" status="on" type="systemd"
                  restart="true" install="true"/>
+        <Service name="radvd" status="on" type="systemd" restart="true"
+                 install="true"/>
     </Group>
-    <Service name="radvd" status="on" type="deb" restart="true"
-             install="true"/>
     <Service name="ipsec" status="on" type="deb" restart="true"
              install="true"/>
     <Service name="openvpn" status="on" type="deb" restart="true"
