@@ -128,7 +128,6 @@ server:
 
     # Round-robin
     rrset-roundrobin: yes
-    minimal-responses: yes
 {% end %}\
 {% if conf.dns64 == "true" %}\
 
