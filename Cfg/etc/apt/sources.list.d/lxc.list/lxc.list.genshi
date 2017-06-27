@@ -12,10 +12,14 @@
 
     # Parse the probe result
     distro = probes.get_probe_as_dict(metadata, "distro")
+
+    ppa = "stable"
+    if "lxc-ppa-daily" in metadata.groups:
+        ppa = "daily"
 %}\
 
-deb http://ppa.launchpad.net/ubuntu-lxc/stable/ubuntu ${distro.codename} main
+deb http://ppa.launchpad.net/ubuntu-lxc/${ppa}/ubuntu ${distro.codename} main
 \
 {% if conf.sources == "true" %}\
-deb-src http://ppa.launchpad.net/ubuntu-lxc/stable/ubuntu ${distro.codename} main
+deb-src http://ppa.launchpad.net/ubuntu-lxc/${ppa}/ubuntu ${distro.codename} main
 {% end %}\

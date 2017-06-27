@@ -11,4 +11,9 @@
         <Path name='/etc/apt/sources.list.d/lxc.list'/>
         <Path name='/etc/apt/trusted.gpg.d/lxc.gpg'/>
     </Group>
+
+    <Group name='lxc-ppa-daily'>
+        <Path name='/etc/apt/sources.list.d/lxc.list'/>
+        <Path name='/etc/apt/trusted.gpg.d/lxc.gpg'/>
+    </Group>
 </Bundle>
