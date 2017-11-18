@@ -39,19 +39,34 @@ for container_name in sorted(lxc.list_containers()):
 
     containers.append(entry)
 
-if os.path.exists("/var/lib/lxd/containers/"):
-    for container in sorted(os.listdir("/var/lib/lxd/containers")):
-        path = os.path.join("/var/lib/lxd/containers/", container)
-        if "." in container:
-            continue
+for cpath in ("/var/lib/lxd/containers/",
+             "/var/snap/lxd/common/lxd/containers"):
+    if os.path.exists(cpath):
+        for container_name in sorted(os.listdir(cpath)):
+            path = os.path.realpath(os.path.join(cpath, container_name, "rootfs"))
+            if not os.path.exists(path):
+                container = lxc.Container(container_name, cpath)
+                if container.state != "RUNNING":
+                    continue
 
-        entry = {}
-        entry['name'] = container
-        entry['path'] = "%s/rootfs" % path
+                with open("/proc/%d/status" % container.init_pid, "r") as fd:
+                    ppid = ""
+                    for line in fd:
+                        if line.startswith("PPid:"):
+                            ppid = line.split()[-1]
+                            break
+                    else:
+                        continue
 
-        if not os.path.exists(entry['path']):
-            continue
+                path = os.path.join("/proc", ppid, "root", path[1:])
 
-        containers.append(entry)
+            entry = {}
+            entry['name'] = container_name
+            entry['path'] = path
+
+            if not os.path.exists(entry['path']):
+                continue
+
+            containers.append(entry)
 
 print(json.dumps(containers))
