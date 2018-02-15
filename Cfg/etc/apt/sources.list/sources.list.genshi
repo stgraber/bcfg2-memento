@@ -14,7 +14,8 @@
     distro = probes.get_probe_as_dict(metadata, "distro")
 
     # Ports/non-ports logic
-    if distro['arch'] in ("armel", "armhf", "powerpc"):
+    if distro['arch'] in ("armel", "armhf", "arm64", "ppc64el",
+                          "powerpc", "s390x"):
         mirror = conf['ports_mirror']
         security_mirror = conf['ports_mirror']
     else:
