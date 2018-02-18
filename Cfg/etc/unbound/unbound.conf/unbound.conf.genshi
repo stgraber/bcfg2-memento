@@ -82,16 +82,17 @@
         conf['extra_conf'] = [conf['extra_conf']]
 
     cpus = metadata.Probes["hardware"].json["cpus"]
+    cpus_powers = 2**round(int(${cpus})**(2**-1))
 %}\
 
 server:
     interface: 0.0.0.0
     interface-automatic: yes
     num-threads: ${cpus}
-    msg-cache-slabs: ${cpus}
-    rrset-cache-slabs: ${cpus}
-    infra-cache-slabs: ${cpus}
-    key-cache-slabs: ${cpus}
+    msg-cache-slabs: ${cpus_power}
+    rrset-cache-slabs: ${cpus_power}
+    infra-cache-slabs: ${cpus_power}
+    key-cache-slabs: ${cpus_power}
     rrset-cache-size: 100m
     msg-cache-size: 50m
     so-reuseport: yes
