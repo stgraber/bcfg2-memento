@@ -82,7 +82,7 @@
         conf['extra_conf'] = [conf['extra_conf']]
 
     cpus = metadata.Probes["hardware"].json["cpus"]
-    cpus_powers = 2**round(int(${cpus})**(2**-1))
+    cpus_power = 2**round(int(cpus)**(2**-1))
 %}\
 
 server:
