@@ -20,11 +20,11 @@ cache_log /dev/null
 
 cache_mgr ${conf.contact}
 visible_hostname ${metadata.hostname}
-{% if "ubuntu-16.04" in metadata.groups %}\
-coredump_dir /var/spool/squid
-{% end %}\
-{% if "ubuntu-16.04" not in metadata.groups %}\
+{% if "ubuntu-14.04" in metadata.groups %}\
 coredump_dir /var/spool/squid3
+{% end %}\
+{% if "ubuntu-14.04" not in metadata.groups %}\
+coredump_dir /var/spool/squid
 {% end %}\
 
 # Caching
@@ -35,11 +35,11 @@ cache_dir ufs ${conf.cache_fs_path} ${conf.cache_fs_size} 32 256
 {% end %}\
 
 # Include local config
-{% if "ubuntu-16.04" in metadata.groups %}\
-include /etc/squid/squid.conf.d/*.conf
-{% end %}\
-{% if "ubuntu-16.04" not in metadata.groups %}\
+{% if "ubuntu-14.04" in metadata.groups %}\
 include /etc/squid3/squid.conf.d/*.conf
+{% end %}\
+{% if "ubuntu-14.04" not in metadata.groups %}\
+include /etc/squid/squid.conf.d/*.conf
 {% end %}\
 
 # Port and mode configuration
