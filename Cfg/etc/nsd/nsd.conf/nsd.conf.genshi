@@ -50,6 +50,7 @@
 server:
     hide-version: yes
     server-count: 3
+    database: ""
 {% for address in conf.addresses %}\
     ip-address: ${address}
 {% end %}\
