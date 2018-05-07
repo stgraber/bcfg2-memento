@@ -79,8 +79,6 @@ recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = all
 smtp_helo_name = ${mailname_conf.mailname}
-smtp_tls_security_level = may
-smtpd_tls_security_level = may
 smtpd_banner = ${mailname_conf.mailname} ESMTP $$mail_name (Ubuntu)
 smtpd_helo_required = yes
 {% if conf.smtp_bind_address %}\
@@ -100,12 +98,14 @@ non_smtpd_milters = ${non_smtpd_milters}
 {% end %}\
 
 # TLS parameters
-smtpd_use_tls = yes
+smtpd_tls_security_level = may
 smtpd_tls_cert_file = ${conf.smtpd_tls_cert_file}
 smtpd_tls_key_file = ${conf.smtpd_tls_key_file}
 smtpd_tls_mandatory_exclude_ciphers = aNULL,MD5
 smtpd_tls_session_cache_database = btree:$${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:$${data_directory}/smtp_scache
+smtp_tls_security_level = may
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
 {% if "mailman" in metadata.groups %}\
 
 # Mailman parameters
