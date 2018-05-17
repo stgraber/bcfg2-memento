@@ -120,7 +120,6 @@ server:
 
     # DNSSEC
     auto-trust-anchor-file: "/etc/unbound/keys/root.key"
-    dlv-anchor: "dlv.isc.org. DS 19297 5 1 7D480DBEF530374D8A4333FCB22106EB10013B46"
 {% for domain in conf.dnssec_insecure_domains %}\
     domain-insecure: "${domain}"
 {% end %}\
