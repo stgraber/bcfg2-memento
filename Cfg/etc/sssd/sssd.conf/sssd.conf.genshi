@@ -70,6 +70,9 @@ ldap_user_search_base = ${conf.ldap_user_search_base}
 ldap_group_search_base = ${conf.ldap_group_search_base}
 ldap_sudo_search_base = ${conf.ldap_sudo_search_base}
 
+ldap_enumeration_refresh_timeout = 1800
+ldap_sudo_smart_refresh_interval = 1800
+
 ldap_access_order = expire, filter
 ldap_account_expire_policy = ad
 {% if conf.allowed_groups %}\
