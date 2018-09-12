@@ -95,6 +95,7 @@ server:
     rrset-cache-size: 100m
     msg-cache-size: 50m
     so-reuseport: yes
+    do-not-query-localhost: no
     access-control: 0.0.0.0/0 allow
     access-control: ::/0 allow
 {% for local_zone in local_zones %}\
