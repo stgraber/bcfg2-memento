@@ -136,3 +136,7 @@ smtpd_recipient_restrictions =
         reject_unauth_destination
 {% end %}\
 {% end %}\
+
+{% if "ubuntu-18.04" in metadata.groups %}\
+compatibility_level = 2
+{% end %}\
