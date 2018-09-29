@@ -17,6 +17,12 @@
     if not isinstance(conf['mynetworks'], list):
         conf['mynetworks'] = [conf['mynetworks']]
     mynetworks = " ".join(conf['mynetworks'])
+
+    if not conf['mydestination']:
+        conf['mydestination'] = []
+    if not isinstance(conf['mydestination'], list):
+        conf['mydestination'] = [conf['mydestination']]
+
     if not conf['relay_domains']:
         conf['relay_domains'] = []
     if not isinstance(conf['relay_domains'], list):
@@ -50,11 +56,14 @@
 
     smtpd_milters = " ".join(smtpd_milters)
     non_smtpd_milters = " ".join(non_smtpd_milters)
+
+    destinations = [metadata.hostname, "localhost"] + conf['mydestination']
+    destination = ", ".join(destinations)
 %}\
 
 # Global parameters
 myhostname = ${metadata.hostname}
-mydestination = ${metadata.hostname}, localhost
+mydestination = ${destination}
 mynetworks = ${mynetworks}
 {% if conf.relay_host %}\
 relayhost = ${conf.relay_host}
