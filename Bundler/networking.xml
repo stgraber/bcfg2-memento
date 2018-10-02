@@ -49,7 +49,9 @@
         <Package name='iptables'/>
 
         <Path name='/etc/network/if-up.d/firewall'/>
-        <Path name='/etc/init/firewall.conf'/>
+        <Group name='ubuntu-14.04'>
+            <Path name='/etc/init/firewall.conf'/>
+        </Group>
         <Path name='/etc/firewall'/>
         <Path name='/etc/firewall.d'/>
     </Group>
