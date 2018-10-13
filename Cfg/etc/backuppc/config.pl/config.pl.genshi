@@ -1422,7 +1422,6 @@ $$Conf{RsyncArgs} = [
             '--links',
             '--hard-links',
             '--times',
-            '--block-size=2048',
             '--recursive',
 
 	    #
@@ -1432,7 +1431,7 @@ $$Conf{RsyncArgs} = [
             # you have a recent client rsync version and you want
             # to enable checksum caching.
 	    #
-	    #'--checksum-seed=32761',
+	    '--checksum-seed=32761',
 ];
 
 #
@@ -1498,7 +1497,6 @@ $$Conf{RsyncRestoreArgs} = [
 	    '--links',
             '--hard-links',
 	    '--times',
-	    '--block-size=2048',
 	    '--relative',
 	    '--ignore-times',
 	    '--recursive',
@@ -1510,7 +1508,7 @@ $$Conf{RsyncRestoreArgs} = [
             # you have a recent client rsync version and you want
             # to enable checksum caching.
 	    #
-	    #'--checksum-seed=32761',
+	    '--checksum-seed=32761',
 
 	    #
 	    # Add additional arguments here
