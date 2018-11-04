@@ -47,7 +47,9 @@ access_provider = simple
 auth_provider = ad
 chpass_provider = ad
 id_provider = ad
+{% if "ubuntu-18.04" not in metadata.groups %}\
 ssh_provider = ldap
+{% end %}\
 sudo_provider = ldap
 
 ad_domain = ${conf.domain}
