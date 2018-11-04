@@ -32,12 +32,27 @@
     </Group>
 
     <Group name='apache2-mod-php5'>
-        <Package name='libapache2-mod-php5'/>
+        <Group name="ubuntu-18.04" negate="true">
+            <Package name='libapache2-mod-php5'/>
+        </Group>
+        <Group name="ubuntu-18.04">
+            <Package name='libapache2-mod-php'/>
+        </Group>
         <Group name='mysql'>
-            <Package name='php5-mysql'/>
+            <Group name="ubuntu-18.04" negate="true">
+                <Package name='php5-mysql'/>
+            </Group>
+            <Group name="ubuntu-18.04">
+                <Package name='php-mysql'/>
+            </Group>
         </Group>
         <Group name='postgresql'>
-            <Package name='php5-pgsql'/>
+            <Group name="ubuntu-18.04" negate="true">
+                <Package name='php5-pgsql'/>
+            </Group>
+            <Group name="ubuntu-18.04">
+                <Package name='php-pgsql'/>
+            </Group>
         </Group>
     </Group>
 
