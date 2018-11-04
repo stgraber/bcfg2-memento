@@ -32,8 +32,14 @@
 {% if "samba-dc" in metadata.groups %}\
     netbios name = ${netbios}
     server role = active directory domain controller
+{% if "ubuntu-14.04" in metadata.groups or "ubuntu-16.04" in metadata.groups %}\
     server services = rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate, smb
     dcerpc endpoint servers = epmapper, wkssvc, rpcecho, samr, netlogon, lsarpc, spoolss, drsuapi, dssetup, unixinfo, browser, eventlog6, backupkey, dnsserver, winreg, srvsvc
+{% end %}\
+{% if "ubuntu-14.04" not in metadata.groups and "ubuntu-16.04" not in metadata.groups %}\
+    server services = rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate, s3fs
+    dcerpc endpoint servers = epmapper, wkssvc, rpcecho, samr, netlogon, lsarpc, drsuapi, dssetup, unixinfo, browser, eventlog6, backupkey, dnsserver
+{% end %}\
     acl:search = No
     dsdb:schema update allowed
 
