@@ -2,5 +2,17 @@
     <Package name='freeradius'/>
     <Service name='freeradius'/>
 
-    <Path name='/etc/freeradius/clients.conf'/>
+    <Group name='ubuntu-14.04'>
+        <Path name='/etc/freeradius/clients.conf'
+              altsrc='/etc/freeradius/3.0/clients.conf'/>
+    </Group>
+    <Group name='ubuntu-16.04'>
+        <Path name='/etc/freeradius/clients.conf'
+              altsrc='/etc/freeradius/3.0/clients.conf'/>
+    </Group>
+    <Group name='ubuntu-14.04' negate='true'>
+        <Group name='ubuntu-16.04' negate='true'>
+            <Path name='/etc/freeradius/3.0/clients.conf'/>
+        </Group>
+    </Group>
 </Bundle>
