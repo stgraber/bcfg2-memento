@@ -5,7 +5,7 @@
 <Configuration>
 	<RepositoryList>
 		<Repository name="SoftHSM">
-			<Module>/usr/lib/softhsm/libsofthsm.so</Module>
+			<Module>/usr/lib/softhsm/libsofthsm2.so</Module>
 			<TokenLabel>OpenDNSSEC</TokenLabel>
 			<PIN>1234</PIN>
 			<SkipPublicKey/>
@@ -31,7 +31,6 @@
 
 		<WorkerThreads>4</WorkerThreads>
 		<Datastore><SQLite>/var/lib/opendnssec/kasp.db</SQLite></Datastore>
-		<Interval>PT3600S</Interval>
 		<!-- <ManualKeyGeneration/> -->
 		<!-- <RolloverNotification>P14D</RolloverNotification> -->
 		
@@ -52,7 +51,10 @@
 		<SignerThreads>4</SignerThreads>
 
 		<Listener>
-			<Interface><Port>53</Port></Interface>
+			<Interface>
+				<Address>::</Address>
+				<Port>53</Port>
+			</Interface>
 		</Listener>
 
 		<!-- the <NotifyCommmand> will expand the following variables:
