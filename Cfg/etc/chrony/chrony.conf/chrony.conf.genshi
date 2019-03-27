@@ -15,6 +15,11 @@
     if not isinstance(conf['pools'], list):
         conf['pools'] = [conf['pools']]
 
+    if not conf['servers']:
+        conf['servers'] = []
+    if not isinstance(conf['servers'], list):
+        conf['servers'] = [conf['servers']]
+
     if not conf['networks']:
         conf['networks'] = []
     if not isinstance(conf['networks'], list):
@@ -23,6 +28,10 @@
 
 {% for pool in conf.pools %}\
 pool ${pool} iburst
+{% end %}\
+
+{% for server in conf.servers %}\
+server ${server} iburst
 {% end %}\
 
 {% for network in conf.networks %}\
