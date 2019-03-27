@@ -1,0 +1,55 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "chrony", "chrony.conf")
+
+    if not conf['pools']:
+        conf['pools'] = []
+    if not isinstance(conf['pools'], list):
+        conf['pools'] = [conf['pools']]
+
+    if not conf['networks']:
+        conf['networks'] = []
+    if not isinstance(conf['networks'], list):
+        conf['networks'] = [conf['networks']]
+%}\
+
+{% for pool in conf.pools %}\
+pool ${pool} iburst
+{% end %}\
+
+{% for network in conf.networks %}\
+allow ${network}
+{% end %}\
+
+# This directive specify the location of the file containing ID/key pairs for
+# NTP authentication.
+keyfile /etc/chrony/chrony.keys
+
+# This directive specify the file into which chronyd will store the rate
+# information.
+driftfile /var/lib/chrony/chrony.drift
+
+# Uncomment the following line to turn logging on.
+#log tracking measurements statistics
+
+# Log files location.
+logdir /var/log/chrony
+
+# Stop bad estimates upsetting machine clock.
+maxupdateskew 100.0
+
+# This directive enables kernel synchronisation (every 11 minutes) of the
+# real-time clock. Note that it can’t be used along with the 'rtcfile' directive.
+rtcsync
+
+# Step the system clock instead of slewing it if the adjustment is larger than
+# one second, but only in the first three clock updates.
+makestep 1 3

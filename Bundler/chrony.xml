@@ -1,0 +1,6 @@
+<Bundle name='chrony' version='2.0'>
+    <Package name='chrony'/>
+    <Service name='chrony'/>
+
+    <Path name='/etc/chrony/chrony.conf'/>
+</Bundle>
