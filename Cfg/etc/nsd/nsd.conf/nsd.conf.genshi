@@ -66,5 +66,8 @@ zone:
 {% for server in zone.source %}\
     allow-notify: ${server} ${zone.key}
     request-xfr: ${server} ${zone.key}
+{% if "address" in zone %}\
+    outgoing-interface: ${zone.address}
+{% end %}\
 {% end %}\
 {% end %}\
