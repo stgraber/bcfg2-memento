@@ -1,0 +1,41 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+{% python
+    # Import the bcfg2_repo module
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(repo, "lib"))
+
+    from bcfg2_repo import config
+
+    # Load the config
+    conf = config.get_config_section(repo, metadata, "networking",
+                                     "wide-dhcp-relay6")
+
+    # Parse some lists
+    if conf['lower_interfaces'] == "none":
+        conf['lower_interfaces'] = ""
+    elif isinstance(conf['lower_interfaces'], list):
+        conf['lower_interfaces'] = " ".join(conf['lower_interfaces'])
+
+    if conf['upper_interfaces'] == "none":
+        conf['upper_interfaces'] = ""
+    elif isinstance(conf['upper_interfaces'], list):
+        conf['upper_interfaces'] = " ".join(conf['upper_interfaces'])
+
+    if conf['options'] == "none":
+        conf['options'] = ""
+    elif isinstance(conf['options'], list):
+        conf['options'] = " ".join(conf['options'])
+%}\
+
+# Defaults for dhcpv6 relay initscript
+# Used by /etc/init.d/wide-dhcpv6-relay
+
+# Interfaces on which the relay should send DHCPv6 requests and listen to
+# answers. If empty, the relay is deactivated.
+INTERFACES="-r ${conf.upper_interfaces} ${conf.lower_interfaces}"
+
+# Additional options that are passed to the DHCP relay daemon?
+
+# Verbose level for syslog. Default is 0 (0: minimal; 1: info; 2: debug)
+#VERBOSE=0

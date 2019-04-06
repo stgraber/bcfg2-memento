@@ -31,6 +31,8 @@
                  restart="true" install="true"/>
         <Service name="radvd" status="on" type="deb" restart="true"
                  install="true"/>
+        <Service name="wide-dhcpv6-relay" status="on" type="deb"
+                 restart="true" install="true"/>
     </Group>
     <Group name="systemd">
         <Service name="isc-dhcp-relay" status="on" type="systemd"
@@ -43,6 +45,8 @@
                  restart="true" install="true"/>
         <Service name="radvd" status="on" type="systemd" restart="true"
                  install="true"/>
+        <Service name="wide-dhcpv6-relay" status="on" type="systemd"
+                 restart="true" install="true"/>
     </Group>
     <Service name="ipsec" status="on" type="deb" restart="true"
              install="true"/>

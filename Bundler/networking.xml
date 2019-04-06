@@ -37,10 +37,19 @@
     </Group>
 
     <Group name='networking-dhcp-relay6'>
-        <Package name='isc-dhcp-relay'/>
-        <Service name='isc-dhcp-relay6'/>
+        <Group name='ubuntu-16.04'>
+            <Package name='isc-dhcp-relay'/>
+            <Service name='isc-dhcp-relay6'/>
 
-        <Path name='/etc/default/isc-dhcp-relay6'/>
+            <Path name='/etc/default/isc-dhcp-relay6'/>
+        <Group>
+        <Group name='ubuntu-16.04' negate='true'>
+            <Package name='wide-dhcpv6-relay'/>
+            <Service name='wide-dhcpv6-relay'/>
+
+            <Path name='/etc/default/wide-dhcpv6-relay'/>
+        </Group>
+
     </Group>
 
     <Group name='networking-firewall'>
