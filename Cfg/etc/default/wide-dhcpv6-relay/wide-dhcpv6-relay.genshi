@@ -21,11 +21,6 @@
         conf['upper_interfaces'] = ""
     elif isinstance(conf['upper_interfaces'], list):
         conf['upper_interfaces'] = " ".join(conf['upper_interfaces'])
-
-    if conf['options'] == "none":
-        conf['options'] = ""
-    elif isinstance(conf['options'], list):
-        conf['options'] = " ".join(conf['options'])
 %}\
 
 # Defaults for dhcpv6 relay initscript
