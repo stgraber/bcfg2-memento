@@ -66,6 +66,10 @@
         <Path name='/etc/firewall.d'/>
     </Group>
 
+    <Group name='networking-netplan'>
+        <Path name='/etc/netplan/00-bcfg2.yaml'/>
+    </Group>
+
     <Group name='networking-interfaces'>
         <Path name='/etc/network/interfaces'/>
         <Path name='/etc/network/interfaces.d'/>

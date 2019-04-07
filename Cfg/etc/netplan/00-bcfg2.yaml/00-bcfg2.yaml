@@ -1,0 +1,9 @@
+# This file is managed by Bcfg2. Any local change will be lost.
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      accept-ra: yes
+      dhcp4: true
+      dhcp6: true
