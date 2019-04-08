@@ -1,0 +1,13 @@
+<Bundle name='ceph' version='2.0'>
+    <Group name='ceph-mon'>
+        <Package name='ceph-mon'/>
+    </Group>
+
+    <Group name='ceph-mgr'>
+        <Package name='ceph-mgr'/>
+    </Group>
+
+    <Group name='ceph-osd'>
+        <Package name='ceph-osd'/>
+    </Group>
+</Bundle>
