@@ -1,4 +1,6 @@
 <Bundle name='ceph' version='2.0'>
+    <Package name='psmisc'/>
+
     <Group name='ceph-mon'>
         <Package name='ceph-mon'/>
     </Group>
