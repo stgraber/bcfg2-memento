@@ -2,6 +2,11 @@
     <Path name="/etc/nagios/nrpe.d" type="directory" mode="755"
           owner="root" group="root" prune="true"/>
 
+    <Group name='ubuntu-18.04'>
+        <Path name='/etc/systemd/system/nagios-nrpe-server.service.d' type='directory'
+              mode='755' owner='root' group='root'/>
+    </Group>
+
     <Service name="nagios-nrpe-server" status="on" type="deb" restart="true"
              install="true"/>
 </Rules>
