@@ -69,4 +69,8 @@
     <Group name='livepatch'>
         <Path name='/etc/nagios/nrpe.d/livepatch.cfg'/>
     </Group>
+
+    <Group name="ubuntu-18.04">
+        <Path name='/etc/systemd/system/nagios-nrpe-server.service.d/override.conf'/>
+    </Group>
 </Bundle>
