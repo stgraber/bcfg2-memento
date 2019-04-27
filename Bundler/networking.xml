@@ -67,6 +67,12 @@
     </Group>
 
     <Group name='networking-netplan'>
+        <Group name='ubuntu-16.04'>
+            <Package name='nplan'/>
+        </Group>
+        <Group name='ubuntu-16.04' negate='true'>
+            <Package name='netplan.io'/>
+        </Group>
         <Path name='/etc/netplan/00-bcfg2.yaml'/>
     </Group>
 
